@@ -13,11 +13,11 @@ class MesasController extends AppController {
 			$this->Mesa->create();
 			$mesa = $this->request->data;
 		if ($this->Mesa->save($mesa)) {
-				$this->Session->setFlash('Se creó mesa '.$mesa['Mesa']['serie'].'.', 'default', array('class' => 'success'));
+				$this->Session->setFlash(__('Se creó mesa %s.', $mesa['Mesa']['serie']), 'default', array('class' => 'success'));
 				return $this->redirect(array('action' => 'index'));
 			}
 			
-			$this->Session->setFlash('No se pudo crear el mesa.');
+			$this->Session->setFlash(__('No se pudo crear el mesa.'));
 		}
 		
 		$this->set('meseros', $this->Mesa->Mesero->find('list', array('fields' => array('id', 'nombre_completo'))));
@@ -25,23 +25,23 @@ class MesasController extends AppController {
 	
 	public function editar($id = null) {
 		if (!$id) {
-			throw new NotFoundException('Datos incorrectos.');
+			throw new NotFoundException(__('Datos incorrectos.'));
 		}
 		
 		$mesa = $this->Mesa->findById($id);
 		if (!$mesa) {
-			throw new NotFoundException('Mesa no existe.');
+			throw new NotFoundException(__('Mesa no existe.'));
 		}
 		
 		if ($this->request->is(array('post', 'put'))) {
 			$this->Mesa->id = $id;
 			if ($this->Mesa->save($this->request->data)) {
 				$mesa = $this->Mesa->findById($id);
-				$this->Session->setFlash('Mesa ' .$mesa['Mesa']['serie'].' actualizada.', 'default', array('class' => 'success'));
+				$this->Session->setFlash(__('Mesa %s actualizada.', $mesa['Mesa']['serie']), 'default', array('class' => 'success'));
 				return $this->redirect(array('action' => 'index'));
 			}
 			
-			$this->Session->setFlash('No se puede modificar mesa.');
+			$this->Session->setFlash(__('No se puede modificar mesa.'));
 		}
 		
 		if (!$this->request->data) {
@@ -53,16 +53,16 @@ class MesasController extends AppController {
 	
 	function eliminar($id) {
 		if (!$this->request->is('post')) {
-			throw new MethodNotAllowedException('Incorrecto.');
+			throw new MethodNotAllowedException(__('Incorrecto.'));
 		}
 		
 		$mesa = $this->Mesa->findById($id);
 		if (!$mesa) {
-			throw new NotFoundException('Mesa no existe.');
+			throw new NotFoundException(__('Mesa no existe.'));
 		}
 		
 		if ($this->Mesa->delete($id)) {
-			$this->Session->setFlash('Mesa ' .$mesa['Mesa']['serie'].' eliminada.', 'default', array('class' => 'success'));
+			$this->Session->setFlash(__('Mesa %s eliminada.', $mesa['Mesa']['serie']), 'default', array('class' => 'success'));
 			return $this->redirect(array('action' => 'index'));
 		}
 	}
