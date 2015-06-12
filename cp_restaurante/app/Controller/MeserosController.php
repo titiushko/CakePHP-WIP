@@ -4,7 +4,7 @@ class MeserosController extends AppController {
 	public $components = array('Session');
 	
 	public function index() {
-		$this->set('meseros', $this->Mesero->find('all'));
+		$this->set(array('meseros' => $this->Mesero->find('all'), 'opcion_menu' => array('meseros' => 'active')));
 	}
 	
 	public function ver($id = null) {
@@ -17,7 +17,7 @@ class MeserosController extends AppController {
 			throw new NotFoundException(__('Mesero no existe.'));
 		}
 		
-		$this->set('mesero', $mesero);
+		$this->set(array('mesero' => $mesero, 'opcion_menu' => array('meseros' => 'active')));
 	}
 	
 	public function nuevo() {
@@ -57,7 +57,7 @@ class MeserosController extends AppController {
 		
 		if (!$this->request->data) {
 			$this->request->data = $mesero;
-			$this->set('mesero', $mesero);
+			$this->set(array('mesero' => $mesero, 'opcion_menu' => array('meseros' => 'active')));
 		}
 	}
 	

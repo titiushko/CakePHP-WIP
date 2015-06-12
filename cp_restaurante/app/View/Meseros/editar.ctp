@@ -14,7 +14,6 @@ $formulario = array(
 $etiqueta = array(
 	'label' => array(
 		'class' => 'col-lg-3 control-label',
-		// 'text' => __('DUI')
 	),
 );
 ?>

@@ -62,7 +62,7 @@ class PagesController extends AppController {
 		if (!empty($path[$count - 1])) {
 			$title_for_layout = Inflector::humanize($path[$count - 1]);
 		}
-		$this->set(compact('page', 'subpage', 'title_for_layout'));
+		$this->set(array(compact('page', 'subpage', 'title_for_layout'), 'opcion_menu' => array('inicio' => 'active')));
 
 		try {
 			$this->render(implode('/', $path));

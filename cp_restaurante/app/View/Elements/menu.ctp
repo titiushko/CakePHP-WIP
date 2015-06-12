@@ -7,25 +7,25 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<?= $this->Html->link('RESTAURANTE', array('controller' => 'pages', 'action' => 'display', 'home'), array('class' => 'navbar-brand')); ?>
+				<?= $this->Html->link(__('<i class="fa fa-globe"></i> RESTAURANTE'), array('controller' => 'pages', 'action' => 'display', 'home'), array('class' => 'navbar-brand', 'escape' => false)); ?>
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-					<li class="active"><?= $this->Html->link('Inicio', array('controller' => 'pages', 'action' => 'display', 'home')); ?></li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Meseros <span class="caret"></span></a>
+					<li class="<?= @$opcion_menu['inicio']; ?>"><?= $this->Html->link(__('<i class="fa fa-home"></i> Inicio'), array('controller' => 'pages', 'action' => 'display', 'home'), array('escape' => false)); ?></li>
+					<li class="dropdown <?= @$opcion_menu['meseros']; ?>">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users"></i> Meseros <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><?= $this->Html->link(__('Lista Meseros'), array('controller' => 'meseros', 'action' => 'index')); ?></li>
+							<li><?= $this->Html->link(__('<i class="fa fa-list-alt"></i> Lista Meseros'), array('controller' => 'meseros', 'action' => 'index'), array('escape' => false)); ?></li>
 							<li class="divider"></li>
-							<li><?= $this->Html->link(__('Nuevo Mesero'), array('controller' => 'meseros', 'action' => 'nuevo')); ?></li>
+							<li><?= $this->Html->link(__('<i class="fa fa-plus-square"></i> Nuevo Mesero'), array('controller' => 'meseros', 'action' => 'nuevo'), array('escape' => false)); ?></li>
 						</ul>
 					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Mesas <span class="caret"></span></a>
+					<li class="dropdown <?= @$opcion_menu['mesas']; ?>">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cutlery"></i> Mesas <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><?= $this->Html->link(__('Lista Mesas'), array('controller' => 'mesas', 'action' => 'index')); ?></li>
+							<li><?= $this->Html->link(__('<i class="fa fa-list-alt"></i> Lista Mesas'), array('controller' => 'mesas', 'action' => 'index'), array('escape' => false)); ?></li>
 							<li class="divider"></li>
-							<li><?= $this->Html->link(__('Nueva Mesa'), array('controller' => 'mesas', 'action' => 'nuevo')); ?></li>
+							<li><?= $this->Html->link(__('<i class="fa fa-plus-square"></i> Nueva Mesa'), array('controller' => 'mesas', 'action' => 'nuevo'), array('escape' => false)); ?></li>
 						</ul>
 					</li>
 				</ul>

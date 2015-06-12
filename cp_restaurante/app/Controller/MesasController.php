@@ -4,7 +4,7 @@ class MesasController extends AppController {
 	public $components = array('Session');
 	
 	public function index() {
-		$this->set('mesas', $this->Mesa->find('all'));
+		$this->set(array('mesas' => $this->Mesa->find('all'), 'opcion_menu' => array('mesas' => 'active')));
 	}
 	
 	public function nuevo() {
@@ -20,7 +20,7 @@ class MesasController extends AppController {
 			$this->Session->setFlash(__('No se pudo crear el mesa.'));
 		}
 		
-		$this->set('meseros', $this->Mesa->Mesero->find('list', array('fields' => array('id', 'nombre_completo'))));
+		$this->set(array('meseros' => $this->Mesa->Mesero->find('list', array('fields' => array('id', 'nombre_completo'))), 'opcion_menu' => array('mesas' => 'active')));
 	}
 	
 	public function editar($id = null) {
@@ -46,6 +46,7 @@ class MesasController extends AppController {
 		
 		if (!$this->request->data) {
 			$this->request->data = $mesa;
+			$this->set(array('mesa' => $mesa, 'opcion_menu' => array('mesas' => 'active')));
 		}
 		
 		$this->set('meseros', $this->Mesa->Mesero->find('list', array('fields' => array('id', 'nombre_completo'))));
