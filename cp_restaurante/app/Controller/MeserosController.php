@@ -57,6 +57,7 @@ class MeserosController extends AppController {
 		
 		if (!$this->request->data) {
 			$this->request->data = $mesero;
+			$this->set('mesero', $mesero);
 		}
 	}
 	

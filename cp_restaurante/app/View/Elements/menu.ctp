@@ -15,17 +15,17 @@
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Meseros <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><?= $this->Html->link('Lista Meseros', array('controller' => 'meseros', 'action' => 'index')); ?></li>
+							<li><?= $this->Html->link(__('Lista Meseros'), array('controller' => 'meseros', 'action' => 'index')); ?></li>
 							<li class="divider"></li>
-							<li><?= $this->Html->link('Nuevo Mesero', array('controller' => 'meseros', 'action' => 'nuevo')); ?></li>
+							<li><?= $this->Html->link(__('Nuevo Mesero'), array('controller' => 'meseros', 'action' => 'nuevo')); ?></li>
 						</ul>
 					</li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Mesas <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><?= $this->Html->link('Lista Mesas', array('controller' => 'mesas', 'action' => 'index')); ?></li>
+							<li><?= $this->Html->link(__('Lista Mesas'), array('controller' => 'mesas', 'action' => 'index')); ?></li>
 							<li class="divider"></li>
-							<li><?= $this->Html->link('Nueva Mesa', array('controller' => 'mesas', 'action' => 'nuevo')); ?></li>
+							<li><?= $this->Html->link(__('Nueva Mesa'), array('controller' => 'mesas', 'action' => 'nuevo')); ?></li>
 						</ul>
 					</li>
 				</ul>
