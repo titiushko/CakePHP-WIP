@@ -1,23 +1,34 @@
 <?php
+App::uses('AppController', 'Controller');
+
 class MeserosController extends AppController {
-	public $helpers = array('Html', 'Form', 'Time');
-	public $components = array('Session');
+	public $helpers = array('Html', 'Form', 'Time', 'Paginator', 'Js');
+	public $components = array('Session', 'RequestHandler');
+	public $paginate = array(
+		'limit' => 3,
+		'order' => array(
+			'Mesero.id' => 'asc'
+		),
+	);
 	
 	public function index() {
-		$this->set(array('meseros' => $this->Mesero->find('all'), 'opcion_menu' => array('meseros' => 'active')));
+		$this->Mesero->recursive = 0;
+		$this->paginate['Mesero']['limit'] = 5;
+		$this->paginate['Mesero']['order'] = array('Mesero.nombres' => 'asc');
+		$this->set(array('meseros' => $this->paginate(), 'opcion_menu' => array('meseros' => 'active')));
 	}
 	
 	public function ver($id = null) {
 		if (!$id) {
 			throw new NotFoundException(__('Datos incorrectos.'));
 		}
-		
-		$mesero = $this->Mesero->findById($id);
-		if (!$mesero) {
+		elseif (!$this->Mesero->exists($id)) {
 			throw new NotFoundException(__('Mesero no existe.'));
 		}
-		
-		$this->set(array('mesero' => $mesero, 'opcion_menu' => array('meseros' => 'active')));
+		else {
+			$opciones = array('conditions' => array('Mesero.'.$this->Mesero->primaryKey => $id));
+			$this->set(array('mesero' => $this->Mesero->find('first', $opciones), 'opcion_menu' => array('meseros' => 'active')));
+		}
 	}
 	
 	public function nuevo() {
@@ -25,7 +36,7 @@ class MeserosController extends AppController {
 			
 			$this->Mesero->create();
 			$mesero = $this->request->data;
-		if ($this->Mesero->save($mesero)) {
+			if ($this->Mesero->save($mesero)) {
 				$this->Session->setFlash(__('Se creó mesero %s %s.', $mesero['Mesero']['nombres'], $mesero['Mesero']['apellidos']), 'default', array('class' => 'success'));
 				return $this->redirect(array('action' => 'index'));
 			}

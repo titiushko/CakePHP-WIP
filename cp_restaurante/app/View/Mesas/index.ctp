@@ -1,55 +1,86 @@
-<div class="row">
-	<div class="col-lg-12">
-		<h1 class="well page-header"><i class="fa fa-cutlery"></i> Módulo de Mesas</h1>
+<?php
+$this->Paginator->options(array(
+	'upadte' => '#contenedor-mesas',
+	'before' => $this->Js->get('#procesando')->effect('fadeIn', array('buffer' => false)),
+	'complete' => $this->Js->get('#procesando')->effect('fadeOut', array('buffer' => false))
+));
+?>
+<div id="contenedor-mesas">
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="well page-header"><i class="fa fa-cutlery"></i> Módulo de Mesas</h1>
+		</div>
 	</div>
-</div>
-<div class="row">
-	<div class="col-lg-12">
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				Listado de Mesas
-			</div>
-			<div class="panel-body">
-				<div class="row">
-					<div class="col-lg-12">
-						<?= $this->Html->link(__('<i class="fa fa-plus-square"></i> Agregar Mesa'), array('controller' => 'mesas', 'action' => 'nuevo'), array('class' => 'btn btn-success', 'escape' => false)); ?>
-					</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					Listado de Mesas
 				</div>
-				<div class="row"><div class="col-lg-12">&nbsp;</div></div>
-				<div class="row">
-					<div class="col-lg-12">
-						<table class="table table-striped table-bordered table-hover">
-							<thead>
-								<tr>
-									<th>Serie</th>
-									<th>Puestos</th>
-									<th>Posición</th>
-									<th>Creado</th>
-									<th>Modificado</th>
-									<th>Responsable</th>
-									<th>Acción</th>
-								</tr>
-							</thead>
-							<tbody>
-								<?php foreach ($mesas as $mesa): ?>
-								<tr>
-									<td><?= $mesa['Mesa']['serie']; ?></td>
-									<td><?= $mesa['Mesa']['puestos']; ?></td>
-									<td><?= $mesa['Mesa']['posicion']; ?></td>
-									<td><?= $this->Time->format('d/m/Y h:i A', $mesa['Mesa']['created']); ?></td>
-									<td><?= $this->Time->format('d/m/Y h:i A', $mesa['Mesa']['modified']); ?></td>
-									<td><?= $this->Html->link(__('%s %s', $mesa['Mesero']['nombres'], $mesa['Mesero']['apellidos']), array('controller' => 'meseros', 'action' => 'ver', $mesa['Mesero']['id'])) ?></td>
-									<td>
-										<?= $this->Html->link(__('<i class="fa fa-pencil"></i> Editar'), array('controller' => 'mesas', 'action' => 'editar', $mesa['Mesa']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => false)); ?>
-										<?= $this->Form->postLink(__('<i class="fa fa-trash"></i> Eliminar'), array('controller' => 'mesas', 'action' => 'eliminar', $mesa['Mesa']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => false, 'confirm' => __('¿Eliminar mesa %s?', $mesa['Mesa']['serie']))); ?>
-									</td>
-								</tr>
-								<?php endforeach; ?>
-							</tbody>
-						</table>
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-lg-12">
+							<?= $this->Html->link(__('<i class="fa fa-plus-square"></i> Agregar Mesa'), array('controller' => 'mesas', 'action' => 'nuevo'), array('class' => 'btn btn-success', 'escape' => false)); ?>
+						</div>
+					</div>
+					<div class="row"><div class="col-lg-12">&nbsp;</div></div>
+					<div class="row">
+						<div class="col-lg-12">
+							<div class="progress oculto" id="procesando">
+								<div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%;">
+									<span class="sr-only">100% Complado</span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-12">
+							<table class="table table-striped table-bordered table-hover">
+								<thead>
+									<tr>
+										<th><?= $this->Paginator->sort('serie', 'Serie'); ?></th>
+										<th><?= $this->Paginator->sort('puestos', 'Puestos'); ?></th>
+										<th><?= $this->Paginator->sort('posicion', 'Posición'); ?></th>
+										<th><?= $this->Paginator->sort('created', 'Creado'); ?></th>
+										<th><?= $this->Paginator->sort('modified', 'Modificado'); ?></th>
+										<th><?= $this->Paginator->sort('Mesero.nombres', 'Responsable'); ?></th>
+										<th>Acción</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php foreach ($mesas as $mesa): ?>
+									<tr>
+										<td><?= $mesa['Mesa']['serie']; ?></td>
+										<td><?= $mesa['Mesa']['puestos']; ?></td>
+										<td><?= $mesa['Mesa']['posicion']; ?></td>
+										<td><?= $this->Time->format('d/m/Y h:i A', $mesa['Mesa']['created']); ?></td>
+										<td><?= $this->Time->format('d/m/Y h:i A', $mesa['Mesa']['modified']); ?></td>
+										<td><?= $this->Html->link(__('%s %s', $mesa['Mesero']['nombres'], $mesa['Mesero']['apellidos']), array('controller' => 'meseros', 'action' => 'ver', $mesa['Mesero']['id'])) ?></td>
+										<td>
+											<?= $this->Html->link(__('<i class="fa fa-pencil"></i> Editar'), array('controller' => 'mesas', 'action' => 'editar', $mesa['Mesa']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => false)); ?>
+											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i> Eliminar'), array('controller' => 'mesas', 'action' => 'eliminar', $mesa['Mesa']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => false, 'confirm' => __('¿Eliminar mesa %s?', $mesa['Mesa']['serie']))); ?>
+										</td>
+									</tr>
+									<?php endforeach; ?>
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<p><?= $this->Paginator->counter(array('format' => __('Página {:page} de {:pages}, mostrando {:current} registros de un total de {:count}, del {:start} al {:end}'))); ?></p>
+			<ul class="pagination">
+				<li><?= $this->Paginator->first(__('<< Primero'), array('tag' => false), null, array('class' => 'first disabled')); ?></li>
+				<li><?= $this->Paginator->prev(__('< Anterior'), array('tag' => false), null, array('class' => 'prev disabled')); ?></li>
+				<?= $this->Paginator->numbers(array('separator' => '', 'tag' => 'li', 'currentTag' => 'a', 'currentClass' => 'active', 'modulus' => 4)); ?>
+				<li><?= $this->Paginator->next(__('Próximo >'), array('tag' => false), null, array('class' => 'next disabled')); ?></li>
+				<li><?= $this->Paginator->last(__('​Último >>'), array('tag' => false), null, array('class' => 'last disabled')); ?></li>
+			</ul>
+		</div>
+	</div>
+	<?= $this->Js->writeBuffer(); ?>
 </div>

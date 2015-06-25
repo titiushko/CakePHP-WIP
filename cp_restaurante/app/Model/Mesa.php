@@ -1,5 +1,9 @@
 <?php
+App::uses('AppModel', 'Model');
+
 class Mesa extends AppModel {
+	public $displayField = 'serie';
+	
 	public $belongsTo = array(
 		'Mesero' => array(
 			'className' => 'Mesero',

@@ -1,3 +1,11 @@
 body {
 	padding-top: 30px;
 }
+
+.oculto {
+	display: none;
+}
+
+.visto {
+	display: inline;
+}

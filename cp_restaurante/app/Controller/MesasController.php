@@ -1,10 +1,20 @@
 <?php
+App::uses('AppController', 'Controller');
+
 class MesasController extends AppController {
-	public $helpers = array('Html', 'Form', 'Time');
-	public $components = array('Session');
+	public $helpers = array('Html', 'Form', 'Time', 'Paginator', 'Js');
+	public $components = array('Session', 'RequestHandler');
+	public $paginate = array(
+		'limit' => 5,
+		'order' => array(
+			'Mesa.id' => 'asc'
+		),
+	);
 	
 	public function index() {
-		$this->set(array('mesas' => $this->Mesa->find('all'), 'opcion_menu' => array('mesas' => 'active')));
+		$this->Mesa->recursive = 0;
+		//$this->paginate['Mesa']['conditions'] = array('Mesa.mesero_id' => 2);
+		$this->set(array('mesas' => $this->paginate(), 'opcion_menu' => array('mesas' => 'active')));
 	}
 	
 	public function nuevo() {
@@ -12,7 +22,7 @@ class MesasController extends AppController {
 			
 			$this->Mesa->create();
 			$mesa = $this->request->data;
-		if ($this->Mesa->save($mesa)) {
+			if ($this->Mesa->save($mesa)) {
 				$this->Session->setFlash(__('Se creó mesa %s.', $mesa['Mesa']['serie']), 'default', array('class' => 'success'));
 				return $this->redirect(array('action' => 'index'));
 			}

@@ -1,5 +1,8 @@
 <?php
+App::uses('AppModel', 'Model');
+
 class Mesero extends AppModel {
+	public $displayField = 'nombres';
 	public $virtualFields = array('nombre_completo' => 'CONCAT(Mesero.nombres, " ", Mesero.apellidos)');
 	
 	public $validate = array(
