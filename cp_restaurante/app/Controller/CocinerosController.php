@@ -16,19 +16,6 @@ class CocinerosController extends AppController {
 		$this->set(array('cocineros' => $this->paginate(), 'opcion_menu' => array('cocineros' => 'active')));
 	}
 	
-	public function ver($id = null) {
-		if (!$id) {
-			throw new NotFoundException(__('Datos incorrectos.'));
-		}
-		elseif (!$this->Cocinero->exists($id)) {
-			throw new NotFoundException(__('Cocinero no existe.'));
-		}
-		else {
-			$opciones = array('conditions' => array('Cocinero.'.$this->Cocinero->primaryKey => $id));
-			$this->set(array('cocinero' => $this->Cocinero->find('first', $opciones), 'opcion_menu' => array('cocineros' => 'active')));
-		}
-	}
-	
 	public function nuevo() {
 		if ($this->request->is('post')) {
 			

@@ -63,21 +63,21 @@ $this->Paginator->options(array(
 							</table>
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-lg-12">
+							<p><?= $this->Paginator->counter(array('format' => __('Página {:page} de {:pages}, mostrando {:current} registros de un total de {:count}, del {:start} al {:end}'))); ?></p>
+							<ul class="pagination">
+								<li><?= $this->Paginator->first(__('<< Primero'), array('tag' => false), null, array('class' => 'first disabled')); ?></li>
+								<li><?= $this->Paginator->prev(__('< Anterior'), array('tag' => false), null, array('class' => 'prev disabled')); ?></li>
+								<?= $this->Paginator->numbers(array('separator' => '', 'tag' => 'li', 'currentTag' => 'a', 'currentClass' => 'active', 'modulus' => 2)); ?>
+								<li><?= $this->Paginator->next(__('Siguiente >'), array('tag' => false), null, array('class' => 'next disabled')); ?></li>
+								<li><?= $this->Paginator->last(__('​Último >>'), array('tag' => false), null, array('class' => 'last disabled')); ?></li>
+							</ul>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-lg-12">
-			<p><?= $this->Paginator->counter(array('format' => __('Página {:page} de {:pages}, mostrando {:current} registros de un total de {:count}, del {:start} al {:end}'))); ?></p>
-			<ul class="pagination">
-				<li><?= $this->Paginator->first(__('<< Primero'), array('tag' => false), null, array('class' => 'first disabled')); ?></li>
-				<li><?= $this->Paginator->prev(__('< Anterior'), array('tag' => false), null, array('class' => 'prev disabled')); ?></li>
-				<?= $this->Paginator->numbers(array('separator' => '', 'tag' => 'li', 'currentTag' => 'a', 'currentClass' => 'active', 'modulus' => 2)); ?>
-				<li><?= $this->Paginator->next(__('Próximo >'), array('tag' => false), null, array('class' => 'next disabled')); ?></li>
-				<li><?= $this->Paginator->last(__('​Último >>'), array('tag' => false), null, array('class' => 'last disabled')); ?></li>
-			</ul>
-		</div>
-	</div>
-	<?= $this->Js->writeBuffer(); ?>
 </div>
+<?= $this->Js->writeBuffer(); ?>

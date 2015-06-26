@@ -25,10 +25,7 @@ class Platillo extends AppModel {
 	public $belongsTo = array(
 		'CategoriaPlatillo' => array(
 			'className' => 'CategoriaPlatillo',
-			'foreignKey' => 'categoria_platillo_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
+			'foreignKey' => 'categoria_platillo_id'
 		)
 	);
 	

@@ -21,7 +21,7 @@
 						</ul>
 					</li>
 					<li class="dropdown <?= @$opcion_menu['mesas']; ?>">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cutlery"></i> Mesas <span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-coffee"></i> Mesas <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><?= $this->Html->link(__('<i class="fa fa-list-alt"></i> Lista Mesas'), array('controller' => 'mesas', 'action' => 'index'), array('escape' => false)); ?></li>
 							<li class="divider"></li>
@@ -29,11 +29,19 @@
 						</ul>
 					</li>
 					<li class="dropdown <?= @$opcion_menu['cocineros']; ?>">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users"></i> Cocineros <span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-male"></i> Cocineros <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
 							<li><?= $this->Html->link(__('<i class="fa fa-list-alt"></i> Lista Cocineros'), array('controller' => 'cocineros', 'action' => 'index'), array('escape' => false)); ?></li>
 							<li class="divider"></li>
 							<li><?= $this->Html->link(__('<i class="fa fa-plus-square"></i> Nuevo Cocinero'), array('controller' => 'cocineros', 'action' => 'nuevo'), array('escape' => false)); ?></li>
+						</ul>
+					</li>
+					<li class="dropdown <?= @$opcion_menu['platillos']; ?>">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cutlery"></i> Platillos <span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><?= $this->Html->link(__('<i class="fa fa-list-alt"></i> Lista Platillos'), array('controller' => 'platillos', 'action' => 'index'), array('escape' => false)); ?></li>
+							<li class="divider"></li>
+							<li><?= $this->Html->link(__('<i class="fa fa-plus-square"></i> Nueva Platillo'), array('controller' => 'platillos', 'action' => 'nuevo'), array('escape' => false)); ?></li>
 						</ul>
 					</li>
 				</ul>
