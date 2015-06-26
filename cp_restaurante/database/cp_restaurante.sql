@@ -4,33 +4,69 @@ USE cp_restaurante;
 
 DROP TABLE IF EXISTS meseros;
 CREATE TABLE IF NOT EXISTS meseros(
-	id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-	dui VARCHAR(9), 
-	nombres VARCHAR(100) COLLATE utf8_spanish_ci, 
-	apellidos VARCHAR(100) COLLATE utf8_spanish_ci, 
-	telefono VARCHAR(8), 
-	created DATETIME DEFAULT NULL, 
-	modified DATETIME DEFAULT NULL
+	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	dui VARCHAR(9) NOT NULL,
+	nombres VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+	apellidos VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+	telefono VARCHAR(8) NULL DEFAULT NULL,
+	created DATETIME NULL DEFAULT NULL,
+	modified DATETIME NULL DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 DROP TABLE IF EXISTS mesas;
 CREATE TABLE IF NOT EXISTS mesas(
-	id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-	mesero_id INT UNSIGNED NOT NULL, 
-	serie VARCHAR(10), 
-	puestos VARCHAR(20), 
-	posicion VARCHAR(100) COLLATE utf8_spanish_ci, 
-	created DATETIME DEFAULT NULL, 
-	modified DATETIME DEFAULT NULL, 
+	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	mesero_id INT(10) UNSIGNED NOT NULL,
+	serie VARCHAR(10) NOT NULL,
+	puestos VARCHAR(20) NULL DEFAULT NULL,
+	posicion VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
+	created DATETIME NULL DEFAULT NULL,
+	modified DATETIME NULL DEFAULT NULL,
 	CONSTRAINT fk_mesas_meseros FOREIGN KEY(mesero_id) REFERENCES meseros(id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
+DROP TABLE IF EXISTS cocineros;
+CREATE TABLE IF NOT EXISTS cocineros(
+	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	nombres VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+	apellidos VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+	created DATETIME NULL DEFAULT NULL,
+	modified DATETIME NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
+DROP TABLE IF EXISTS platillos;
+CREATE TABLE IF NOT EXISTS platillos(
+	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	categoria_platillo_id INT(10) UNSIGNED NOT NULL,
+	nombre VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+	descripcion TEXT CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
+	precio FLOAT(6, 2) NOT NULL,
+	created DATETIME NULL DEFAULT NULL,
+	modified DATETIME NULL DEFAULT NULL,
+	CONSTRAINT fk_platillos_categoria_platillos FOREIGN KEY(categoria_platillo_id) REFERENCES categoria_platillos(id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
+DROP TABLE IF EXISTS categoria_platillos;
+CREATE TABLE IF NOT EXISTS categoria_platillos(
+	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	categoria VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
+DROP TABLE IF EXISTS cocineros_platillos;
+CREATE TABLE IF NOT EXISTS cocineros_platillos(
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	cocinero_id INT(10) UNSIGNED NOT NULL,
+	platillo_id INT(10) UNSIGNED NOT NULL,
+	CONSTRAINT fk_cocineros_platillos_cocineros FOREIGN KEY(cocinero_id) REFERENCES cocineros(id) ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT fk_cocineros_platillos_platillos FOREIGN KEY(platillo_id) REFERENCES platillos(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 -- ============================================================================================================================================================
 
 INSERT INTO meseros(dui, nombres, apellidos, telefono, created) VALUES
-('035494014', 'William', 'Gutierrez', '77924006', NOW()), 
-('084134880', 'Juan', 'Peréz', '79804894', NOW()), 
-('789040648', 'Pedro', 'Mendoza', '79804167', NOW()), 
+('035494014', 'William', 'Gutierrez', '77924006', NOW()),
+('084134880', 'Juan', 'Peréz', '79804894', NOW()),
+('789040648', 'Pedro', 'Mendoza', '79804167', NOW()),
 ('294804174', 'María', 'Sanchez', '79801607', NOW()), 
 ('846352468', 'Melinda', 'Funes', '20814180', NOW());
 
@@ -135,3 +171,30 @@ INSERT INTO mesas(mesero_id, serie, puestos, posicion, created) VALUES
 (5, '6922', 2, 'Apdo.:563-7237 Auctor, C.', NOW()),
 (3, '0877', 9, 'Apdo.:179-9509 Non, Calle', NOW()),
 (4, '8366', 8, 'Apartado núm.: 738, 1220 Lorem Avda.', NOW());
+
+INSERT INTO cocineros(nombres, apellidos, created) VALUES
+('Lucas', 'Peres', NOW()),
+('Pedro', 'Masiel', NOW()),
+('Juan', 'Toledo', NOW());
+
+INSERT INTO categoria_platillos(categoria) VALUES
+('Entrantes Calientes'),
+('Entrantes Frios'),
+('Sopas y Cremas'),
+('Pastas'),
+('Pescados y Mariscos'),
+('Aves y Carnes'),
+('Postres');
+
+INSERT INTO platillos(nombre, descripcion, precio, created, categoria_platillo_id) VALUES
+('Pica Pica', 'Bombón de pollo con especías de pescado, frituras de cerdo, croquetas de jamón, cebiche y pulpo', 10.00, NOW(), 1),
+('Salmón con Aroma de Vodka', 'Riquísimo', 30.00, NOW(), 4),
+('Papas Picantes', 'Papas de la maldad', 50.00, NOW(), 3);
+
+INSERT INTO cocineros_platillos(cocinero_id, platillo_id) VALUES
+(2, 1),
+(2, 2),
+(3, 2),
+(3, 1),
+(1, 5),
+(3, 5);
