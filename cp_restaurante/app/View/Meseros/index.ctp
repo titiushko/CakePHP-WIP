@@ -1,8 +1,8 @@
 <?php
 $this->Paginator->options(array(
 	'upadte' => '#contenedor-meseros',
-	'before' => $this->Js->get('#procesando')->effect('fadeIn', array('buffer' => false)),
-	'complete' => $this->Js->get('#procesando')->effect('fadeOut', array('buffer' => false))
+	'before' => $this->Js->get('#procesando')->effect('fadeIn', array('buffer' => FALSE)),
+	'complete' => $this->Js->get('#procesando')->effect('fadeOut', array('buffer' => FALSE))
 ));
 ?>
 <div id="contenedor-meseros">
@@ -20,7 +20,7 @@ $this->Paginator->options(array(
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-lg-12">
-							<?= $this->Html->link(__('<i class="fa fa-user-plus"></i> Agregar Mesero'), array('controller' => 'meseros', 'action' => 'nuevo'), array('class' => 'btn btn-success', 'escape' => false)); ?>
+							<?= $this->Html->link(__('<i class="fa fa-user-plus"></i> Agregar Mesero'), array('controller' => 'meseros', 'action' => 'nuevo'), array('class' => 'btn btn-success', 'escape' => FALSE)); ?>
 						</div>
 					</div>
 					<div class="row"><div class="col-lg-12">&nbsp;</div></div>
@@ -42,6 +42,7 @@ $this->Paginator->options(array(
 										<th><?= $this->Paginator->sort('nombres', 'Nombres'); ?></th>
 										<th><?= $this->Paginator->sort('apellidos', 'Apellidos'); ?></th>
 										<th><?= $this->Paginator->sort('created', 'Creado'); ?></th>
+										<th><?= $this->Paginator->sort('modified', 'Modificado'); ?></th>
 										<th class="actions">Acción</th>
 									</tr>
 								</thead>
@@ -52,10 +53,11 @@ $this->Paginator->options(array(
 										<td><?= h($mesero['Mesero']['nombres']); ?></td>
 										<td><?= h($mesero['Mesero']['apellidos']); ?></td>
 										<td><?= $this->Time->format('d/m/Y h:i A', $mesero['Mesero']['created']); ?></td>
+										<td><?= $this->Time->format('d/m/Y h:i A', $mesero['Mesero']['modified']); ?></td>
 										<td>
-											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i> Ver'), array('controller' => 'meseros', 'action' => 'ver', $mesero['Mesero']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => false)); ?>
-											<?= $this->Html->link(__('<i class="fa fa-pencil"></i> Editar'), array('controller' => 'meseros', 'action' => 'editar', $mesero['Mesero']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => false)); ?>
-											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i> Eliminar'), array('controller' => 'meseros', 'action' => 'eliminar', $mesero['Mesero']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => false, 'confirm' => __('¿Eliminar a %s %s?', $mesero['Mesero']['nombres'], $mesero['Mesero']['apellidos']))); ?>
+											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i> Ver'), array('controller' => 'meseros', 'action' => 'ver', $mesero['Mesero']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
+											<?= $this->Html->link(__('<i class="fa fa-pencil"></i> Editar'), array('controller' => 'meseros', 'action' => 'editar', $mesero['Mesero']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
+											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i> Eliminar'), array('controller' => 'meseros', 'action' => 'eliminar', $mesero['Mesero']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'confirm' => __('¿Eliminar a %s?', $mesero['Mesero']['nombre_completo']))); ?>
 										</td>
 									</tr>
 									<?php endforeach; ?>
@@ -67,11 +69,11 @@ $this->Paginator->options(array(
 						<div class="col-lg-12">
 							<p><?= $this->Paginator->counter(array('format' => __('Página {:page} de {:pages}, mostrando {:current} registros de un total de {:count}, del {:start} al {:end}'))); ?></p>
 							<ul class="pagination">
-								<li><?= $this->Paginator->first(__('<< Primero'), array('tag' => false), null, array('class' => 'first disabled')); ?></li>
-								<li><?= $this->Paginator->prev(__('< Anterior'), array('tag' => false), null, array('class' => 'prev disabled')); ?></li>
+								<li><?= $this->Paginator->first(__('<< Primero'), array('tag' => FALSE), null, array('class' => 'first disabled')); ?></li>
+								<li><?= $this->Paginator->prev(__('< Anterior'), array('tag' => FALSE), null, array('class' => 'prev disabled')); ?></li>
 								<?= $this->Paginator->numbers(array('separator' => '', 'tag' => 'li', 'currentTag' => 'a', 'currentClass' => 'active', 'modulus' => 2)); ?>
-								<li><?= $this->Paginator->next(__('Siguiente >'), array('tag' => false), null, array('class' => 'next disabled')); ?></li>
-								<li><?= $this->Paginator->last(__('​Último >>'), array('tag' => false), null, array('class' => 'last disabled')); ?></li>
+								<li><?= $this->Paginator->next(__('Siguiente >'), array('tag' => FALSE), null, array('class' => 'next disabled')); ?></li>
+								<li><?= $this->Paginator->last(__('​Último >>'), array('tag' => FALSE), null, array('class' => 'last disabled')); ?></li>
 							</ul>
 						</div>
 					</div>

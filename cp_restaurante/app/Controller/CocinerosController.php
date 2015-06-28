@@ -16,18 +16,33 @@ class CocinerosController extends AppController {
 		$this->set(array('cocineros' => $this->paginate(), 'opcion_menu' => array('cocineros' => 'active')));
 	}
 	
+	public function ver($id = null) {
+		if (!$id) {
+			throw new NotFoundException(__('Datos incorrectos.'));
+		}
+		elseif (!$this->Cocinero->exists($id)) {
+			throw new NotFoundException(__('Cocinero no existe.'));
+		}
+		else {
+			$opciones = array('conditions' => array('Cocinero.'.$this->Cocinero->primaryKey => $id));
+			$this->set(array('cocinero' => $this->Cocinero->find('first', $opciones), 'opcion_menu' => array('cocineros' => 'active')));
+		}
+	}
+	
 	public function nuevo() {
 		if ($this->request->is('post')) {
 			
 			$this->Cocinero->create();
 			$cocinero = $this->request->data;
 			if ($this->Cocinero->save($cocinero)) {
-				$this->Session->setFlash(__('Se creó cocinero %s %s.', $cocinero['Cocinero']['nombres'], $cocinero['Cocinero']['apellidos']), 'default', array('class' => 'success'));
+				$this->Session->setFlash(__('Se creó cocinero %s.', $cocinero['Cocinero']['nombre_completo']), 'default', array('class' => 'success'));
 				return $this->redirect(array('action' => 'index'));
 			}
 			
 			$this->Session->setFlash(__('No se pudo crear el cocinero.'));
 		}
+		
+		$this->set(array('opcion_menu' => array('cocineros' => 'active')));
 	}
 	
 	public function editar($id = null) {
@@ -44,7 +59,7 @@ class CocinerosController extends AppController {
 			$this->Cocinero->id = $id;
 			if ($this->Cocinero->save($this->request->data)) {
 				$cocinero = $this->Cocinero->findById($id);
-				$this->Session->setFlash(__('Cocinero %s %s.', $cocinero['Cocinero']['nombres'], $cocinero['Cocinero']['apellidos']), 'default', array('class' => 'success'));
+				$this->Session->setFlash(__('Cocinero %s.', $cocinero['Cocinero']['nombre_completo']), 'default', array('class' => 'success'));
 				return $this->redirect(array('action' => 'index'));
 			}
 			

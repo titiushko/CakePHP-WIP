@@ -6,7 +6,13 @@ class CategoriaPlatillo extends AppModel {
 	
 	public $validate = array(
 		'categoria' => array(
-			'rule' => 'notEmpty'
+			'notEmpty' => array(
+				'rule' => 'notEmpty'
+			),
+			'unique' => array(
+				'rule' => 'isUnique',
+				'message' => 'Categoría ya existe.'
+			)
 		)
 	);
 	
@@ -16,7 +22,7 @@ class CategoriaPlatillo extends AppModel {
 			'foreignKey' => 'categoria_platillo_id',
 			'conditions' => '',
 			'order' => 'Platillo.precio DESC',
-			'depend' => false
+			'depend' => FALSE
 		)
 	);
 }

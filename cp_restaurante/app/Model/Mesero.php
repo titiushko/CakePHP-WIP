@@ -42,7 +42,7 @@ class Mesero extends AppModel {
 			'foreignKey' => 'mesero_id',
 			'conditions' => '',
 			'order' => 'Mesa.serie DESC',
-			'depend' => false
+			'depend' => FALSE
 		)
 	);
 }

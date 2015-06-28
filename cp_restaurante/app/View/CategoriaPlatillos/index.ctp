@@ -1,26 +1,26 @@
 <?php
 $this->Paginator->options(array(
-	'upadte' => '#contenedor-cocineros',
+	'upadte' => '#contenedor-categoria_platillos',
 	'before' => $this->Js->get('#procesando')->effect('fadeIn', array('buffer' => FALSE)),
 	'complete' => $this->Js->get('#procesando')->effect('fadeOut', array('buffer' => FALSE))
 ));
 ?>
-<div id="contenedor-cocineros">
+<div id="contenedor-categoria_platillos">
 	<div class="row">
 		<div class="col-lg-12">
-			<h1 class="well page-header"><i class="fa fa-male fa-fw"></i> Módulo de Cocineros</h1>
+			<h1 class="well page-header"><i class="fa fa-random"></i> Módulo de Categoría de Platillos</h1>
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-lg-12">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					Listado de Cocineros
+					Listado de Categoría de Platillos
 				</div>
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-lg-12">
-							<?= $this->Html->link(__('<i class="fa fa-plus-circle"></i> Agregar Cocinero'), array('controller' => 'cocineros', 'action' => 'nuevo'), array('class' => 'btn btn-success', 'escape' => FALSE)); ?>
+							<?= $this->Html->link(__('<i class="fa fa-plus"></i> Agregar Categoría de Platillo'), array('controller' => 'categoriaplatillos', 'action' => 'nuevo'), array('class' => 'btn btn-success', 'escape' => FALSE)); ?>
 						</div>
 					</div>
 					<div class="row"><div class="col-lg-12">&nbsp;</div></div>
@@ -39,25 +39,19 @@ $this->Paginator->options(array(
 								<thead>
 									<tr>
 										<th><?= $this->Paginator->sort('id', 'Identificador'); ?></th>
-										<th><?= $this->Paginator->sort('nombres', 'Nombres'); ?></th>
-										<th><?= $this->Paginator->sort('apellidos', 'Apellidos'); ?></th>
-										<th><?= $this->Paginator->sort('created', 'Creado'); ?></th>
-										<th><?= $this->Paginator->sort('modified', 'Modificado'); ?></th>
+										<th><?= $this->Paginator->sort('categoria', 'Categoría'); ?></th>
 										<th class="actions">Acción</th>
 									</tr>
 								</thead>
 								<tbody>
-									<?php foreach ($cocineros as $cocinero): ?>
+									<?php foreach ($categoria_platillos as $categoria_platillo): ?>
 									<tr>
-										<td><?= $cocinero['Cocinero']['id']; ?></td>
-										<td><?= h($cocinero['Cocinero']['nombres']); ?></td>
-										<td><?= h($cocinero['Cocinero']['apellidos']); ?></td>
-										<td><?= $this->Time->format('d/m/Y h:i A', $cocinero['Cocinero']['created']); ?></td>
-										<td><?= $this->Time->format('d/m/Y h:i A', $cocinero['Cocinero']['modified']); ?></td>
+										<td><?= $categoria_platillo['CategoriaPlatillo']['id']; ?></td>
+										<td><?= h($categoria_platillo['CategoriaPlatillo']['categoria']); ?></td>
 										<td>
-											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i> Ver'), array('controller' => 'cocineros', 'action' => 'ver', $cocinero['Cocinero']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
-											<?= $this->Html->link(__('<i class="fa fa-pencil"></i> Editar'), array('controller' => 'cocineros', 'action' => 'editar', $cocinero['Cocinero']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
-											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i> Eliminar'), array('controller' => 'cocineros', 'action' => 'eliminar', $cocinero['Cocinero']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'confirm' => __('¿Eliminar a %s?', $cocinero['Cocinero']['nombre_completo']))); ?>
+											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i> Ver'), array('controller' => 'categoriaplatillos', 'action' => 'ver', $categoria_platillo['CategoriaPlatillo']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
+											<?= $this->Html->link(__('<i class="fa fa-pencil"></i> Editar'), array('controller' => 'categoriaplatillos', 'action' => 'editar', $categoria_platillo['CategoriaPlatillo']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
+											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i> Eliminar'), array('controller' => 'categoriaplatillos', 'action' => 'eliminar', $categoria_platillo['CategoriaPlatillo']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'confirm' => __('¿Eliminar a %s?', $categoria_platillo['CategoriaPlatillo']['categoria']))); ?>
 										</td>
 									</tr>
 									<?php endforeach; ?>

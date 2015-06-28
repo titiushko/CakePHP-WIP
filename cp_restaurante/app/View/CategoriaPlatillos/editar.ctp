@@ -19,29 +19,28 @@ $etiqueta = array(
 ?>
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="well page-header"><i class="fa fa-male fa-fw"></i> Módulo de Cocineros</h1>
+		<h1 class="well page-header"><i class="fa fa-random"></i> Módulo de Categoría de Platillos</h1>
 	</div>
 </div>
 <div class="row">
 	<div class="col-lg-12">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				Editar Cocinero
+				Editar Categoría de Platillo
 			</div>
 			<div class="panel-body">
 				<div class="row">
 					<div class="col-lg-4 col-lg-offset-4">
-						<?= $this->Form->create('Cocinero', $formulario); ?>
+						<?= $this->Form->create('CategoriaPlatillo', $formulario); ?>
 						<fieldset>
-							<legend>Datos Personales</legend>
-							<?= $this->Form->input('nombres', $etiqueta); ?>
-							<?= $this->Form->input('apellidos', $etiqueta); ?>
+							<legend>Datos</legend>
+							<?= $this->Form->input('categoria', $etiqueta); ?>
 							<div class="form-group">
 								<div class="col-lg-6 text-right submit">
 									<?= $this->Form->button(__('<i class="fa fa-save"></i> Guardar'), array('type' => 'submit', 'class' => 'btn btn-primary', 'escape' => FALSE)); ?>
 								</div>
 								<div class="col-lg-6 text-left">
-									<?= $this->Html->link(__('<i class="fa fa-times-circle"></i> Cancelar'), array('controller' => 'cocineros', 'action' => 'ver', $cocinero['Cocinero']['id']), array('class' => 'btn btn-default', 'escape' => FALSE)); ?>
+									<?= $this->Html->link(__('<i class="fa fa-times-circle"></i> Cancelar'), array('controller' => 'categoriaplatillos', 'action' => 'ver', $categoria_platillo['CategoriaPlatillo']['id']), array('class' => 'btn btn-default', 'escape' => FALSE)); ?>
 								</div>
 							</div>
 						</fieldset>
@@ -52,8 +51,8 @@ $etiqueta = array(
 				<div class="row">
 					<div class="col-lg-12">
 						<fieldset>
-							<legend>Encargado de los Platillos</legend>
-							<?php if (empty($cocinero['Platillo'])) { ?>
+							<legend>Platillos Asociados</legend>
+							<?php if (empty($categoria_platillo['Platillo'])) { ?>
 								<p>No tiene platillos asociados.</p>
 							<?php } else { ?>
 							<table class="table table-striped table-bordered table-hover">
@@ -69,7 +68,7 @@ $etiqueta = array(
 									</tr>
 								</thead>
 								<tbody>
-									<?php foreach ($cocinero['Platillo'] as $platillo): ?>
+									<?php foreach ($categoria_platillo['Platillo'] as $platillo): ?>
 									<tr>
 										<td><?= $platillo['id']; ?></td>
 										<td><?= $platillo['nombre']; ?></td>

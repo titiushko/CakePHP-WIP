@@ -1,14 +1,14 @@
 <?php
 $this->Paginator->options(array(
 	'upadte' => '#contenedor-platillos',
-	'before' => $this->Js->get('#procesando')->effect('fadeIn', array('buffer' => false)),
-	'complete' => $this->Js->get('#procesando')->effect('fadeOut', array('buffer' => false))
+	'before' => $this->Js->get('#procesando')->effect('fadeIn', array('buffer' => FALSE)),
+	'complete' => $this->Js->get('#procesando')->effect('fadeOut', array('buffer' => FALSE))
 ));
 ?>
 <div id="contenedor-platillos">
 	<div class="row">
 		<div class="col-lg-12">
-			<h1 class="well page-header"><i class="fa fa-coffee"></i> Módulo de Platillos</h1>
+			<h1 class="well page-header"><i class="fa fa-cutlery"></i> Módulo de Platillos</h1>
 		</div>
 	</div>
 	<div class="row">
@@ -20,7 +20,7 @@ $this->Paginator->options(array(
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-lg-12">
-							<?= $this->Html->link(__('<i class="fa fa-plus-square"></i> Agregar Platillo'), array('controller' => 'platillos', 'action' => 'nuevo'), array('class' => 'btn btn-success', 'escape' => false)); ?>
+							<?= $this->Html->link(__('<i class="fa fa-plus-square"></i> Agregar Platillo'), array('controller' => 'platillos', 'action' => 'nuevo'), array('class' => 'btn btn-success', 'escape' => FALSE)); ?>
 						</div>
 					</div>
 					<div class="row"><div class="col-lg-12">&nbsp;</div></div>
@@ -38,8 +38,9 @@ $this->Paginator->options(array(
 							<table class="table table-striped table-bordered table-hover">
 								<thead>
 									<tr>
+										<th><?= $this->Paginator->sort('id', 'Identificador'); ?></th>
 										<th><?= $this->Paginator->sort('nombre', 'Nombre'); ?></th>
-										<th width="250px"><?= $this->Paginator->sort('descripcion', 'Descripción'); ?></th>
+										<th><?= $this->Paginator->sort('descripcion', 'Descripción'); ?></th>
 										<th><?= $this->Paginator->sort('precio', 'Precio'); ?></th>
 										<th><?= $this->Paginator->sort('created', 'Creado'); ?></th>
 										<th><?= $this->Paginator->sort('modified', 'Modificado'); ?></th>
@@ -50,16 +51,17 @@ $this->Paginator->options(array(
 								<tbody>
 									<?php foreach ($platillos as $platillo): ?>
 									<tr>
+										<td><?= $platillo['Platillo']['id']; ?></td>
 										<td><?= $platillo['Platillo']['nombre']; ?></td>
-										<td width="250px"><?= $platillo['Platillo']['descripcion']; ?></td>
+										<td><?= $platillo['Platillo']['descripcion']; ?></td>
 										<td><?= $platillo['Platillo']['precio']; ?></td>
 										<td><?= $this->Time->format('d/m/Y h:i A', $platillo['Platillo']['created']); ?></td>
 										<td><?= $this->Time->format('d/m/Y h:i A', $platillo['Platillo']['modified']); ?></td>
 										<td><?= $this->Html->link($platillo['CategoriaPlatillo']['categoria'], array('controller' => 'categoriaplatillos', 'action' => 'ver', $platillo['CategoriaPlatillo']['id'])) ?></td>
 										<td>
-											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i> Ver'), array('controller' => 'platillos', 'action' => 'ver', $platillo['Platillo']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => false)); ?>
-											<?= $this->Html->link(__('<i class="fa fa-pencil"></i> Editar'), array('controller' => 'platillos', 'action' => 'editar', $platillo['Platillo']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => false)); ?>
-											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i> Eliminar'), array('controller' => 'platillos', 'action' => 'eliminar', $platillo['Platillo']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => false, 'confirm' => __('¿Eliminar platillo %s?', $platillo['Platillo']['nombre']))); ?>
+											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i> Ver'), array('controller' => 'platillos', 'action' => 'ver', $platillo['Platillo']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
+											<?= $this->Html->link(__('<i class="fa fa-pencil"></i> Editar'), array('controller' => 'platillos', 'action' => 'editar', $platillo['Platillo']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
+											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i> Eliminar'), array('controller' => 'platillos', 'action' => 'eliminar', $platillo['Platillo']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'confirm' => __('¿Eliminar platillo %s?', $platillo['Platillo']['nombre']))); ?>
 										</td>
 									</tr>
 									<?php endforeach; ?>
@@ -71,11 +73,11 @@ $this->Paginator->options(array(
 						<div class="col-lg-12">
 							<p><?= $this->Paginator->counter(array('format' => __('Página {:page} de {:pages}, mostrando {:current} registros de un total de {:count}, del {:start} al {:end}'))); ?></p>
 							<ul class="pagination">
-								<li><?= $this->Paginator->first(__('<< Primero'), array('tag' => false), null, array('class' => 'first disabled')); ?></li>
-								<li><?= $this->Paginator->prev(__('< Anterior'), array('tag' => false), null, array('class' => 'prev disabled')); ?></li>
+								<li><?= $this->Paginator->first(__('<< Primero'), array('tag' => FALSE), null, array('class' => 'first disabled')); ?></li>
+								<li><?= $this->Paginator->prev(__('< Anterior'), array('tag' => FALSE), null, array('class' => 'prev disabled')); ?></li>
 								<?= $this->Paginator->numbers(array('separator' => '', 'tag' => 'li', 'currentTag' => 'a', 'currentClass' => 'active', 'modulus' => 4)); ?>
-								<li><?= $this->Paginator->next(__('Siguiente >'), array('tag' => false), null, array('class' => 'next disabled')); ?></li>
-								<li><?= $this->Paginator->last(__('​Último >>'), array('tag' => false), null, array('class' => 'last disabled')); ?></li>
+								<li><?= $this->Paginator->next(__('Siguiente >'), array('tag' => FALSE), null, array('class' => 'next disabled')); ?></li>
+								<li><?= $this->Paginator->last(__('​Último >>'), array('tag' => FALSE), null, array('class' => 'last disabled')); ?></li>
 							</ul>
 						</div>
 					</div>

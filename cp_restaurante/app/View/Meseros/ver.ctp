@@ -18,36 +18,36 @@
 							<div class="form-group">
 								<?= $this->Form->label('dui', 'Dui', array('class' => 'col-lg-3 control-label')); ?>
 								<div class="col-lg-9">
-									<?= $this->Form->input('dui', array('label' => false, 'value' => $mesero['Mesero']['dui'], 'disabled' => true, 'class' => 'form-control', 'div' => false)); ?>
+									<?= $this->Form->input('dui', array('label' => FALSE, 'value' => $mesero['Mesero']['dui'], 'disabled' => TRUE, 'class' => 'form-control', 'div' => FALSE)); ?>
 								</div>
 							</div>
 							<div class="form-group">
 								<?= $this->Form->label('nombres', 'Nombres', array('class' => 'col-lg-3 control-label')); ?>
 								<div class="col-lg-9">
-									<?= $this->Form->input('nombres', array('label' => false, 'value' => $mesero['Mesero']['nombres'], 'disabled' => true, 'class' => 'form-control', 'div' => false)); ?>
+									<?= $this->Form->input('nombres', array('label' => FALSE, 'value' => $mesero['Mesero']['nombres'], 'disabled' => TRUE, 'class' => 'form-control', 'div' => FALSE)); ?>
 								</div>
 							</div>
 							<div class="form-group">
 								<?= $this->Form->label('apellidos', 'Apellidos', array('class' => 'col-lg-3 control-label')); ?>
 								<div class="col-lg-9">
-									<?= $this->Form->input('apellidos', array('label' => false, 'value' => $mesero['Mesero']['apellidos'], 'disabled' => true, 'class' => 'form-control', 'div' => false)); ?>
+									<?= $this->Form->input('apellidos', array('label' => FALSE, 'value' => $mesero['Mesero']['apellidos'], 'disabled' => TRUE, 'class' => 'form-control', 'div' => FALSE)); ?>
 								</div>
 							</div>
 							<div class="form-group">
 								<?= $this->Form->label('telefono', 'Teléfono', array('class' => 'col-lg-3 control-label')); ?>
 								<div class="col-lg-9">
-									<?= $this->Form->input('telefono', array('label' => false, 'value' => $mesero['Mesero']['telefono'], 'disabled' => true, 'class' => 'form-control', 'div' => false)); ?>
+									<?= $this->Form->input('telefono', array('label' => FALSE, 'value' => $mesero['Mesero']['telefono'], 'disabled' => TRUE, 'class' => 'form-control', 'div' => FALSE)); ?>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="col-lg-4 text-right">
-									<?= $this->Html->link(__('<i class="fa fa-pencil"></i> Editar'), array('controller' => 'meseros', 'action' => 'editar', $mesero['Mesero']['id']), array('class' => 'btn btn-primary', 'escape' => false)); ?>
+									<?= $this->Html->link(__('<i class="fa fa-pencil"></i> Editar'), array('controller' => 'meseros', 'action' => 'editar', $mesero['Mesero']['id']), array('class' => 'btn btn-primary', 'escape' => FALSE)); ?>
 								</div>
 								<div class="col-lg-4 text-center">
-									<?= $this->Form->postLink(__('<i class="fa fa-trash"></i> Eliminar'), array('controller' => 'meseros', 'action' => 'eliminar', $mesero['Mesero']['id']), array('class' => 'btn btn-danger', 'escape' => false, 'confirm' => __('¿Eliminar a %s %s?', $mesero['Mesero']['nombres'], $mesero['Mesero']['apellidos']))); ?>
+									<?= $this->Form->postLink(__('<i class="fa fa-trash"></i> Eliminar'), array('controller' => 'meseros', 'action' => 'eliminar', $mesero['Mesero']['id']), array('class' => 'btn btn-danger', 'escape' => FALSE, 'confirm' => __('¿Eliminar a %s?', $mesero['Mesero']['nombre_completo']))); ?>
 								</div>
 								<div class="col-lg-4 text-left">
-									<?= $this->Html->link(__('<i class="fa fa-times-circle"></i> Cancelar'), array('controller' => 'meseros', 'action' => 'index'), array('class' => 'btn btn-default', 'escape' => false)); ?>
+									<?= $this->Html->link(__('<i class="fa fa-times-circle"></i> Cancelar'), array('controller' => 'meseros', 'action' => 'index'), array('class' => 'btn btn-default', 'escape' => FALSE)); ?>
 								</div>
 							</div>
 						</fieldset>
@@ -82,8 +82,9 @@
 										<td><?= $this->Time->format('d/m/Y h:i A', $mesa['created']); ?></td>
 										<td><?= $this->Time->format('d/m/Y h:i A', $mesa['modified']); ?></td>
 										<td>
-											<?= $this->Html->link(__('<i class="fa fa-pencil"></i> Editar'), array('controller' => 'mesas', 'action' => 'editar', $mesa['id']), array('class' => 'btn btn-default', 'escape' => false)); ?>
-											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i> Eliminar'), array('controller' => 'mesas', 'action' => 'eliminar', $mesa['id']), array('class' => 'btn btn-default', 'escape' => false, 'confirm' => __('¿Eliminar mesa %s?', $mesa['serie']))); ?>
+											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i> Ver'), array('controller' => 'mesas', 'action' => 'ver', $mesa['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
+											<?= $this->Html->link(__('<i class="fa fa-pencil"></i> Editar'), array('controller' => 'mesas', 'action' => 'editar', $mesa['id']), array('class' => 'btn btn-default', 'escape' => FALSE)); ?>
+											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i> Eliminar'), array('controller' => 'mesas', 'action' => 'eliminar', $mesa['id']), array('class' => 'btn btn-default', 'escape' => FALSE, 'confirm' => __('¿Eliminar mesa %s?', $mesa['serie']))); ?>
 										</td>
 									</tr>
 									<?php endforeach; ?>

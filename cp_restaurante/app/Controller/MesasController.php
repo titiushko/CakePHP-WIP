@@ -17,6 +17,19 @@ class MesasController extends AppController {
 		$this->set(array('mesas' => $this->paginate(), 'opcion_menu' => array('mesas' => 'active')));
 	}
 	
+	public function ver($id = null) {
+		if (!$id) {
+			throw new NotFoundException(__('Datos incorrectos.'));
+		}
+		elseif (!$this->Mesa->exists($id)) {
+			throw new NotFoundException(__('Mesa no existe.'));
+		}
+		else {
+			$opciones = array('conditions' => array('Mesa.'.$this->Mesa->primaryKey => $id));
+			$this->set(array('mesa' => $this->Mesa->find('first', $opciones), 'opcion_menu' => array('mesas' => 'active')));
+		}
+	}
+	
 	public function nuevo() {
 		if ($this->request->is('post')) {
 			

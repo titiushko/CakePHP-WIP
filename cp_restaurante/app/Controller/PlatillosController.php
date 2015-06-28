@@ -42,7 +42,7 @@ class PlatillosController extends AppController {
 			$this->Session->setFlash(__('No se pudo crear el platillo.'));
 		}
 		
-		$this->set(array('categorias_platillos' => $this->Platillo->CategoriaPlatillo->find('list'), 'opcion_menu' => array('platillos' => 'active')));
+		$this->set(array('categoriaPlatillos' => $this->Platillo->CategoriaPlatillo->find('list'), 'cocineros' => $this->Platillo->Cocinero->find('list'), 'opcion_menu' => array('platillos' => 'active')));
 	}
 	
 	public function editar($id = null) {
@@ -71,7 +71,7 @@ class PlatillosController extends AppController {
 			$this->set(array('platillo' => $platillo, 'opcion_menu' => array('platillos' => 'active')));
 		}
 		
-		$this->set(array('categorias_platillos' => $this->Platillo->CategoriaPlatillo->find('list'), 'cocineros' => $this->Platillo->Cocinero->find('list')));
+		$this->set(array('categoriaPlatillos' => $this->Platillo->CategoriaPlatillo->find('list'), 'cocineros' => $this->Platillo->Cocinero->find('list'), 'opcion_menu' => array('platillos' => 'active')));
 	}
 	
 	function eliminar($id) {
