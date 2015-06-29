@@ -22,19 +22,29 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<?= $this->Form->label('precio', 'Precio', array('class' => 'col-lg-3 control-label')); ?>
-								<div class="col-lg-9">
-									<?= $this->Form->input('precio', array('label' => FALSE, 'value' => $platillo['Platillo']['precio'], 'disabled' => TRUE, 'class' => 'form-control', 'div' => FALSE)); ?>
-								</div>
-							</div>
-							<div class="form-group">
 								<?= $this->Form->label('descripcion', 'Descripción', array('class' => 'col-lg-3 control-label')); ?>
 								<div class="col-lg-9">
 									<?= $this->Form->input('descripcion', array('label' => FALSE, 'value' => $platillo['Platillo']['descripcion'], 'disabled' => TRUE, 'rows' => 4, 'class' => 'form-control', 'div' => FALSE)); ?>
 								</div>
 							</div>
 							<div class="form-group">
-								<?= $this->Form->label('cocinero', 'Categoría', array('class' => 'col-lg-3 control-label')); ?>
+								<?= $this->Form->label('precio', 'Precio', array('class' => 'col-lg-3 control-label')); ?>
+								<div class="col-lg-9">
+									<?= $this->Form->input('precio', array('label' => FALSE, 'value' => $platillo['Platillo']['precio'], 'disabled' => TRUE, 'class' => 'form-control', 'div' => FALSE)); ?>
+								</div>
+							</div>
+							<div class="form-group">
+								<?= $this->Form->label('foto', 'Foto', array('class' => 'col-lg-3 control-label')); ?>
+								<div class="col-lg-9" style="margin-top: 6px;">
+									<?php if (empty($platillo['Platillo']['foto'])) { ?>
+									<?= $this->Html->image('../img/plato_vacio/thumb_plato_vacio.jpg'); ?>
+									<?php } else { ?>
+									<?= $this->Html->image('../files/platillo/foto/'.$platillo['Platillo']['foto_dir'].'/'.'thumb_'.$platillo['Platillo']['foto']); ?>
+									<?php } ?>
+								</div>
+							</div>
+							<div class="form-group">
+								<?= $this->Form->label('categoria', 'Categoría', array('class' => 'col-lg-3 control-label')); ?>
 								<div class="col-lg-9" style="margin-top: 6px;">
 									<?php echo $this->Html->link($platillo['CategoriaPlatillo']['categoria'], array('controller' => 'categoriaplatillos', 'action' => 'ver', $platillo['CategoriaPlatillo']['id'])); ?>
 								</div>
@@ -65,7 +75,6 @@
 							<table class="table table-striped table-bordered table-hover">
 								<thead>
 									<tr>
-										<th>Identificador</th>
 										<th>Nombres</th>
 										<th>Apellidos</th>
 										<th>Creado</th>
@@ -76,7 +85,6 @@
 								<tbody>
 									<?php foreach ($platillo['Cocinero'] as $cocinero): ?>
 									<tr>
-										<td><?= $cocinero['id']; ?></td>
 										<td><?= $cocinero['nombres']; ?></td>
 										<td><?= $cocinero['apellidos']; ?></td>
 										<td><?= $this->Time->format('d/m/Y h:i A', $cocinero['created']); ?></td>

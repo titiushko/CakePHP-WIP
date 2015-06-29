@@ -187,8 +187,8 @@ INSERT INTO cocineros(nombres, apellidos, created) VALUES
 ('Daniel Edwin', 'Ortega Valencia', NOW());
 
 INSERT INTO categoria_platillos(categoria) VALUES
-('Carnes‎'),
-('Pasta‎s'),
+('Carnes'),
+('Pastas'),
 ('Ensaladas'),
 ('Pescados y Mariscos'),
 ('Sopas y Cremas'),
@@ -211,7 +211,7 @@ INSERT INTO platillos(nombre, descripcion, precio, created, categoria_platillo_i
 ('Ensalada de Palitos de Cangrejo y Pepino', 'Media libra de palitos de cangrejo, maíz en lata, cilantro finamente picado, mayonesa, pepinos, sal y pimienta y cebolla finamente picada.', 3.50, NOW(), 3),
 ('Guacamole', 'Pasta de aguacates picados con tomate, ajo, cilantro, cebolla, jugo de limón, aceite de oliva, sal y pimienta.', 2.25, NOW(), 3),
 ('Fettuccini a la Crema', 'Fettuccini con lascas de tocino picado, mantequilla, crema agria, sal y pimienta.', 6.40, NOW(), 2),
-('Lasagña de Carne', 'Lasaña con aalsa de carne o boloñesa, salsa bechamel y queso rallado.', 6.50, NOW(), 2),
+('Lasaña de Carne', 'Lasaña con aalsa de carne o boloñesa, salsa bechamel y queso rallado.', 6.50, NOW(), 2),
 ('Arroz en Leche', 'Arroz blanco corriente, leche, azucar, rajas de canela, vainilla, sal, canela molida y pasas.', 2.00, NOW(), 6),
 ('Nuegados de Yuca', 'Yuca grande cortada en cuadros con huevos y queso duro rallado.', 2.00, NOW(), 6),
 ('Flan de Elote', 'Maíz tierno, azucar, yemas de huevo, leche, leche condensada.', 1.75, NOW(), 6);

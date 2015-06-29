@@ -43,7 +43,6 @@ $this->Paginator->options(array(
 							<table class="table table-striped table-bordered table-hover">
 								<thead>
 									<tr>
-										<th><?= $this->Paginator->sort('id', 'Identificador'); ?></th>
 										<th><?= $this->Paginator->sort('categoria', 'Categoría'); ?></th>
 										<th class="actions">Acción</th>
 									</tr>
@@ -51,7 +50,6 @@ $this->Paginator->options(array(
 								<tbody>
 									<?php foreach ($categoria_platillos as $categoria_platillo): ?>
 									<tr>
-										<td><?= $categoria_platillo['CategoriaPlatillo']['id']; ?></td>
 										<td><?= h($categoria_platillo['CategoriaPlatillo']['categoria']); ?></td>
 										<td>
 											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i> Ver'), array('controller' => 'categoriaplatillos', 'action' => 'ver', $categoria_platillo['CategoriaPlatillo']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>

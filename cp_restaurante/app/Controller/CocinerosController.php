@@ -7,7 +7,7 @@ class CocinerosController extends AppController {
 	public $paginate = array(
 		'limit' => 3,
 		'order' => array(
-			'Cocinero.id' => 'asc'
+			'Cocinero.nombres' => 'asc'
 		),
 	);
 	

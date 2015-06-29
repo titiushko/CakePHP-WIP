@@ -1,6 +1,8 @@
 <?php
 $formulario = array(
 	'class' => 'form-horizontal',
+	'type' => 'file',
+	'novalidate' => 'novalidate',
 	'inputDefaults' => array(
 		'format' => array('before', 'label', 'between', 'input', 'error', 'after'),
 		'div' => array('class' => 'form-group'),
@@ -37,8 +39,10 @@ $etiqueta = array('label' => array('class' => $control_label));
 						<fieldset>
 							<legend>Datos</legend>
 							<?= $this->Form->input('nombre', $etiqueta); ?>
-							<?= $this->Form->input('precio', $etiqueta); ?>
 							<?= $this->Form->input('descripcion', array_merge($etiqueta, array('rows' => 4))); ?>
+							<?= $this->Form->input('precio', $etiqueta); ?>
+							<?= $this->Form->input('foto', array('type' => 'file', 'label' => array('text' => 'Foto', 'class' => $control_label))); ?>
+							<?= $this->Form->input('foto_dir', array('type' => 'hidden')); ?>
 							<?= $this->Form->input('categoria_platillo_id', array('label' => array('text' => 'Categoría', 'class' => $control_label))); ?>
 							<?= $this->Form->input('Cocinero', $etiqueta); ?>
 							<div class="form-group">
@@ -64,7 +68,6 @@ $etiqueta = array('label' => array('class' => $control_label));
 							<table class="table table-striped table-bordered table-hover">
 								<thead>
 									<tr>
-										<th>Identificador</th>
 										<th>Nombres</th>
 										<th>Apellidos</th>
 										<th>Creado</th>
@@ -75,7 +78,6 @@ $etiqueta = array('label' => array('class' => $control_label));
 								<tbody>
 									<?php foreach ($platillo['Cocinero'] as $cocinero): ?>
 									<tr>
-										<td><?= $cocinero['id']; ?></td>
 										<td><?= $cocinero['nombres']; ?></td>
 										<td><?= $cocinero['apellidos']; ?></td>
 										<td><?= $this->Time->format('d/m/Y h:i A', $cocinero['created']); ?></td>

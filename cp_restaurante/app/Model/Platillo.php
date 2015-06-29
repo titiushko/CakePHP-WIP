@@ -3,6 +3,22 @@ App::uses('AppModel', 'Model');
 
 class Platillo extends AppModel {
 	public $displayField = 'nombre';
+	public $actsAs = array(
+		'Upload.Upload' => array(
+			'foto' => array(
+				'fields' => array(
+					'dir' => 'foto_dir'
+				),
+				'thumbnailMethod'  => 'php',
+				'thumbnailSizes' => array(
+					'vga' => '640x480',
+					'thumb' => '150x150'
+				),
+				'deleteOnUpdate' => TRUE,
+				'deleteFolderOnDelete' => TRUE
+			)
+		)
+	);
 	
 	public $validate = array(
 		'nombre' => array(
@@ -17,10 +33,50 @@ class Platillo extends AppModel {
 				'message' => 'Sólo números.'
 			)
 		),
+		'foto' => array(
+			'uploadError' => array(
+				'rule' => 'uploadError',
+				'message' => 'Algo anda mal, por favor intente nuevamente.',
+				'on' => 'create'
+			),
+			'isUnderPhpSizeLimit' => array(
+				'rule' => 'isUnderPhpSizeLimit',
+				'message' => 'Archivo excede el límite de tamaño de archivo de subida.'
+			),
+			'isValidMimeType' => array(
+				'rule' => array('isValidMimeType', array('image/jpeg', 'image/png'), FALSE),
+				'message' => 'Solo se permiten archivos JPG o PNG.',
+			),
+			'isBelowMaxSize' => array(
+				'rule' => array('isBelowMaxSize', 1048576),
+				'message' => 'El tamaño de imagen es demasiado grande.'
+			),
+			'isValidExtension' => array(
+				'rule' => array('isValidExtension', array('jpg', 'png'), FALSE),
+				'message' => 'Solo se permiten imagenes JPG o PNG.'
+			),
+			'uniqueImage' => array(
+				'rule' => array('uniqueImage'),
+				'message' => 'La imagen ya existe.',
+				'on' => 'update'
+			)
+			//	TODO: Validar el tipo de caracteres en el nombre de los archivos
+		),
 		'categoria_platillo_id' => array(
 			'rule' => 'notEmpty'
 		),
 	);
+	
+	public function uniqueImage($dato) {
+		//	TODO: Validar si un archivo existe en la base de datos y en el directorio de archivos
+		$isUnique = $this->find('first', array('fields' => array('Platillo.foto'), 'conditions' => array('Platillo.foto' => $dato['foto'], 'Platillo.foto' => 'IS NOT NULL')));
+		if (!empty($isUnique)) {
+			return FALSE;
+		}
+		else {
+			return TRUE;
+		}
+	}
 	
 	public $belongsTo = array(
 		'CategoriaPlatillo' => array(

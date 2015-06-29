@@ -7,7 +7,7 @@ class MesasController extends AppController {
 	public $paginate = array(
 		'limit' => 5,
 		'order' => array(
-			'Mesa.id' => 'asc'
+			'Mesa.serie' => 'asc'
 		),
 	);
 	

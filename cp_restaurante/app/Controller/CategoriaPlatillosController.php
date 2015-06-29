@@ -7,7 +7,7 @@ class CategoriaPlatillosController extends AppController {
 	public $paginate = array(
 		'limit' => 3,
 		'order' => array(
-			'CategoriaPlatillo.id' => 'asc'
+			'CategoriaPlatillo.categoria' => 'asc'
 		),
 	);
 	

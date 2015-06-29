@@ -7,7 +7,7 @@ class MeserosController extends AppController {
 	public $paginate = array(
 		'limit' => 3,
 		'order' => array(
-			'Mesero.id' => 'asc'
+			'Mesero.nombres' => 'asc'
 		),
 	);
 	

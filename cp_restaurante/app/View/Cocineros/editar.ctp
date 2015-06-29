@@ -60,7 +60,6 @@ $etiqueta = array('label' => array('class' => 'col-lg-3 control-label'));
 							<table class="table table-striped table-bordered table-hover">
 								<thead>
 									<tr>
-										<th>Identificador</th>
 										<th>Nombre</th>
 										<th>Precio</th>
 										<th>Categoría</th>
@@ -72,7 +71,6 @@ $etiqueta = array('label' => array('class' => 'col-lg-3 control-label'));
 								<tbody>
 									<?php foreach ($cocinero['Platillo'] as $platillo): ?>
 									<tr>
-										<td><?= $platillo['id']; ?></td>
 										<td><?= $platillo['nombre']; ?></td>
 										<td><?= $platillo['precio']; ?></td>
 										<td><?= $this->Html->link($categoriaPlatillos[$platillo['categoria_platillo_id']], array('controller' => 'categoriaplatillos', 'action' => 'ver', $platillo['id'])) ?></td>

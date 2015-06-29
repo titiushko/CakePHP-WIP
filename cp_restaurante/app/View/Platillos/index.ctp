@@ -43,9 +43,9 @@ $this->Paginator->options(array(
 							<table class="table table-striped table-bordered table-hover">
 								<thead>
 									<tr>
-										<th><?= $this->Paginator->sort('id', 'Identificador'); ?></th>
 										<th><?= $this->Paginator->sort('nombre', 'Nombre'); ?></th>
 										<th><?= $this->Paginator->sort('precio', 'Precio'); ?></th>
+										<th><?= $this->Paginator->sort('foto', 'Foto'); ?></th>
 										<th><?= $this->Paginator->sort('created', 'Creado'); ?></th>
 										<th><?= $this->Paginator->sort('modified', 'Modificado'); ?></th>
 										<th><?= $this->Paginator->sort('CategoriaPlatillo.categoria', 'Categoría'); ?></th>
@@ -55,9 +55,13 @@ $this->Paginator->options(array(
 								<tbody>
 									<?php foreach ($platillos as $platillo): ?>
 									<tr>
-										<td><?= $platillo['Platillo']['id']; ?></td>
 										<td><?= $platillo['Platillo']['nombre']; ?></td>
 										<td><?= $platillo['Platillo']['precio']; ?></td>
+										<?php if (empty($platillo['Platillo']['foto'])) { ?>
+										<td><?= $this->Html->image('../img/plato_vacio/thumb_plato_vacio.jpg'); ?></td>
+										<?php } else { ?>
+										<td><?= $this->Html->image('../files/platillo/foto/'.$platillo['Platillo']['foto_dir'].'/'.'thumb_'.$platillo['Platillo']['foto']); ?></td>
+										<?php } ?>
 										<td><?= $this->Time->format('d/m/Y h:i A', $platillo['Platillo']['created']); ?></td>
 										<td><?= $this->Time->format('d/m/Y h:i A', $platillo['Platillo']['modified']); ?></td>
 										<td><?= $this->Html->link($platillo['CategoriaPlatillo']['categoria'], array('controller' => 'categoriaplatillos', 'action' => 'ver', $platillo['CategoriaPlatillo']['id'])) ?></td>

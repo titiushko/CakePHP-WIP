@@ -43,7 +43,6 @@ $this->Paginator->options(array(
 							<table class="table table-striped table-bordered table-hover">
 								<thead>
 									<tr>
-										<th><?= $this->Paginator->sort('id', 'Identificador'); ?></th>
 										<th><?= $this->Paginator->sort('nombres', 'Nombres'); ?></th>
 										<th><?= $this->Paginator->sort('apellidos', 'Apellidos'); ?></th>
 										<th><?= $this->Paginator->sort('created', 'Creado'); ?></th>
@@ -54,7 +53,6 @@ $this->Paginator->options(array(
 								<tbody>
 									<?php foreach ($cocineros as $cocinero): ?>
 									<tr>
-										<td><?= $cocinero['Cocinero']['id']; ?></td>
 										<td><?= h($cocinero['Cocinero']['nombres']); ?></td>
 										<td><?= h($cocinero['Cocinero']['apellidos']); ?></td>
 										<td><?= $this->Time->format('d/m/Y h:i A', $cocinero['Cocinero']['created']); ?></td>

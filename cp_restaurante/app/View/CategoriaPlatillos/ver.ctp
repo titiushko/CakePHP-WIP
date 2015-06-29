@@ -47,7 +47,6 @@
 							<table class="table table-striped table-bordered table-hover">
 								<thead>
 									<tr>
-										<th>Identificador</th>
 										<th>Nombre</th>
 										<th>Precio</th>
 										<th>Creado</th>
@@ -58,7 +57,6 @@
 								<tbody>
 									<?php foreach ($categoria_platillo['Platillo'] as $platillo): ?>
 									<tr>
-										<td><?= $platillo['id']; ?></td>
 										<td><?= $platillo['nombre']; ?></td>
 										<td><?= $platillo['precio']; ?></td>
 										<td><?= $this->Time->format('d/m/Y h:i A', $platillo['created']); ?></td>
