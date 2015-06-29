@@ -13,6 +13,11 @@ $this->Paginator->options(array(
 	</div>
 	<div class="row">
 		<div class="col-lg-12">
+			<?= $this->Session->flash(); ?>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					Listado de Platillos
@@ -40,7 +45,6 @@ $this->Paginator->options(array(
 									<tr>
 										<th><?= $this->Paginator->sort('id', 'Identificador'); ?></th>
 										<th><?= $this->Paginator->sort('nombre', 'Nombre'); ?></th>
-										<th><?= $this->Paginator->sort('descripcion', 'Descripción'); ?></th>
 										<th><?= $this->Paginator->sort('precio', 'Precio'); ?></th>
 										<th><?= $this->Paginator->sort('created', 'Creado'); ?></th>
 										<th><?= $this->Paginator->sort('modified', 'Modificado'); ?></th>
@@ -53,7 +57,6 @@ $this->Paginator->options(array(
 									<tr>
 										<td><?= $platillo['Platillo']['id']; ?></td>
 										<td><?= $platillo['Platillo']['nombre']; ?></td>
-										<td><?= $platillo['Platillo']['descripcion']; ?></td>
 										<td><?= $platillo['Platillo']['precio']; ?></td>
 										<td><?= $this->Time->format('d/m/Y h:i A', $platillo['Platillo']['created']); ?></td>
 										<td><?= $this->Time->format('d/m/Y h:i A', $platillo['Platillo']['modified']); ?></td>

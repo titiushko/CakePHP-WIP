@@ -25,7 +25,7 @@ class CocinerosController extends AppController {
 		}
 		else {
 			$opciones = array('conditions' => array('Cocinero.'.$this->Cocinero->primaryKey => $id));
-			$this->set(array('cocinero' => $this->Cocinero->find('first', $opciones), 'opcion_menu' => array('cocineros' => 'active')));
+			$this->set(array('cocinero' => $this->Cocinero->find('first', $opciones), 'categoriaPlatillos' => $this->Cocinero->Platillo->CategoriaPlatillo->find('list'), 'opcion_menu' => array('cocineros' => 'active')));
 		}
 	}
 	
@@ -35,11 +35,11 @@ class CocinerosController extends AppController {
 			$this->Cocinero->create();
 			$cocinero = $this->request->data;
 			if ($this->Cocinero->save($cocinero)) {
-				$this->Session->setFlash(__('Se creó cocinero %s.', $cocinero['Cocinero']['nombre_completo']), 'default', array('class' => 'success'));
+				$this->Session->setFlash(__('Se creó cocinero %s %s.', $cocinero['Cocinero']['nombres'], $cocinero['Cocinero']['apellidos']), 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'index'));
 			}
 			
-			$this->Session->setFlash(__('No se pudo crear el cocinero.'));
+			$this->Session->setFlash(__('No se pudo crear cocinero.'), 'default', array('class' => 'alert alert-danger'));
 		}
 		
 		$this->set(array('opcion_menu' => array('cocineros' => 'active')));
@@ -59,17 +59,20 @@ class CocinerosController extends AppController {
 			$this->Cocinero->id = $id;
 			if ($this->Cocinero->save($this->request->data)) {
 				$cocinero = $this->Cocinero->findById($id);
-				$this->Session->setFlash(__('Cocinero %s.', $cocinero['Cocinero']['nombre_completo']), 'default', array('class' => 'success'));
+				$this->Session->setFlash(__('Se actualizó cocinero %s %s.', $cocinero['Cocinero']['nombres'], $cocinero['Cocinero']['apellidos']), 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'index'));
 			}
 			
-			$this->Session->setFlash(__('No se puede modificar cocinero.'));
+			$this->Session->setFlash(__('No se pudo actualizar cocinero.'), 'default', array('class' => 'alert alert-danger'));
+			$this->set('cocinero', $cocinero);
 		}
 		
 		if (!$this->request->data) {
 			$this->request->data = $cocinero;
-			$this->set(array('cocinero' => $cocinero, 'opcion_menu' => array('cocineros' => 'active')));
+			$this->set('cocinero', $cocinero);
 		}
+		
+		$this->set(array('categoriaPlatillos' => $this->Cocinero->Platillo->CategoriaPlatillo->find('list'), 'opcion_menu' => array('cocineros' => 'active')));
 	}
 	
 	function eliminar($id) {
@@ -83,7 +86,7 @@ class CocinerosController extends AppController {
 		}
 		
 		if ($this->Cocinero->delete($id)) {
-			$this->Session->setFlash(__('Cocinero %s %s eliminado.', $cocinero['Cocinero']['nombres'], $cocinero['Cocinero']['apellidos']), 'default', array('class' => 'success'));
+		$this->Session->setFlash(__('Se eliminó cocinero %s.', $cocinero['Cocinero']['nombre_completo']), 'default', array('class' => 'alert alert-success'));
 			return $this->redirect(array('action' => 'index'));
 		}
 	}

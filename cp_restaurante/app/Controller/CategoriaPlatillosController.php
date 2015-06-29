@@ -23,7 +23,7 @@ class CategoriaPlatillosController extends AppController {
 			throw new NotFoundException(__('Datos incorrectos.'));
 		}
 		elseif (!$this->CategoriaPlatillo->exists($id)) {
-			throw new NotFoundException(__('CategoriaPlatillo no existe.'));
+			throw new NotFoundException(__('Categoría no existe.'));
 		}
 		else {
 			$opciones = array('conditions' => array('CategoriaPlatillo.'.$this->CategoriaPlatillo->primaryKey => $id));
@@ -37,11 +37,11 @@ class CategoriaPlatillosController extends AppController {
 			$this->CategoriaPlatillo->create();
 			$categoria_platillo = $this->request->data;
 			if ($this->CategoriaPlatillo->save($categoria_platillo)) {
-				$this->Session->setFlash(__('Se creó categoria_platillo %s.', $categoria_platillo['CategoriaPlatillo']['categoria']), 'default', array('class' => 'success'));
+				$this->Session->setFlash(__('Se creó categoría %s.', $categoria_platillo['CategoriaPlatillo']['categoria']), 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'index'));
 			}
 			
-			$this->Session->setFlash(__('No se pudo crear el categoria_platillo.'));
+			$this->Session->setFlash(__('No se pudo crear categoría.'), 'default', array('class' => 'alert alert-danger'));
 		}
 		
 		$this->set(array('opcion_menu' => array('platillos' => 'active')));
@@ -54,24 +54,27 @@ class CategoriaPlatillosController extends AppController {
 		
 		$categoria_platillo = $this->CategoriaPlatillo->findById($id);
 		if (!$categoria_platillo) {
-			throw new NotFoundException(__('CategoriaPlatillo no existe.'));
+			throw new NotFoundException(__('Categoría no existe.'));
 		}
 		
 		if ($this->request->is(array('post', 'put'))) {
 			$this->CategoriaPlatillo->id = $id;
 			if ($this->CategoriaPlatillo->save($this->request->data)) {
 				$categoria_platillo = $this->CategoriaPlatillo->findById($id);
-				$this->Session->setFlash(__('CategoriaPlatillo %s.', $categoria_platillo['CategoriaPlatillo']['categoria']), 'default', array('class' => 'success'));
+				$this->Session->setFlash(__('Se actualizó categoría %s.', $categoria_platillo['CategoriaPlatillo']['categoria']), 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'index'));
 			}
 			
-			$this->Session->setFlash(__('No se puede modificar categoria_platillo.'));
+			$this->Session->setFlash(__('No se pudo actualizar categoría.'), 'default', array('class' => 'alert alert-danger'));
+			$this->set('categoria_platillo', $categoria_platillo);
 		}
 		
 		if (!$this->request->data) {
 			$this->request->data = $categoria_platillo;
-			$this->set(array('categoria_platillo' => $categoria_platillo, 'opcion_menu' => array('platillos' => 'active')));
+			$this->set('categoria_platillo', $categoria_platillo);
 		}
+		
+		$this->set('opcion_menu', array('platillos' => 'active'));
 	}
 	
 	function eliminar($id) {
@@ -81,11 +84,11 @@ class CategoriaPlatillosController extends AppController {
 		
 		$categoria_platillo = $this->CategoriaPlatillo->findById($id);
 		if (!$categoria_platillo) {
-			throw new NotFoundException(__('CategoriaPlatillo no existe.'));
+			throw new NotFoundException(__('Categoría no existe.'));
 		}
 		
 		if ($this->CategoriaPlatillo->delete($id)) {
-			$this->Session->setFlash(__('CategoriaPlatillo %s eliminado.', $categoria_platillo['CategoriaPlatillo']['categoria']), 'default', array('class' => 'success'));
+			$this->Session->setFlash(__('Se eliminó categoría %s.', $categoria_platillo['CategoriaPlatillo']['categoria']), 'default', array('class' => 'alert alert-success'));
 			return $this->redirect(array('action' => 'index'));
 		}
 	}

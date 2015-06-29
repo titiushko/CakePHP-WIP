@@ -36,11 +36,11 @@ class MesasController extends AppController {
 			$this->Mesa->create();
 			$mesa = $this->request->data;
 			if ($this->Mesa->save($mesa)) {
-				$this->Session->setFlash(__('Se creó mesa %s.', $mesa['Mesa']['serie']), 'default', array('class' => 'success'));
+				$this->Session->setFlash(__('Se creó mesa %s.', $mesa['Mesa']['serie']), 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'index'));
 			}
 			
-			$this->Session->setFlash(__('No se pudo crear el mesa.'));
+			$this->Session->setFlash(__('No se pudo crear mesa.'), 'default', array('class' => 'alert alert-danger'));
 		}
 		
 		$this->set(array('meseros' => $this->Mesa->Mesero->find('list', array('fields' => array('id', 'nombre_completo'))), 'opcion_menu' => array('mesas' => 'active')));
@@ -60,19 +60,20 @@ class MesasController extends AppController {
 			$this->Mesa->id = $id;
 			if ($this->Mesa->save($this->request->data)) {
 				$mesa = $this->Mesa->findById($id);
-				$this->Session->setFlash(__('Mesa %s actualizada.', $mesa['Mesa']['serie']), 'default', array('class' => 'success'));
+				$this->Session->setFlash(__('Se actualizó mesa %s.', $mesa['Mesa']['serie']), 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'index'));
 			}
 			
-			$this->Session->setFlash(__('No se puede modificar mesa.'));
+			$this->Session->setFlash(__('No se pudo actualizar mesa.'), 'default', array('class' => 'alert alert-danger'));
+			$this->set('mesa', $mesa);
 		}
 		
 		if (!$this->request->data) {
 			$this->request->data = $mesa;
-			$this->set(array('mesa' => $mesa, 'opcion_menu' => array('mesas' => 'active')));
+			$this->set('mesa', $mesa);
 		}
 		
-		$this->set('meseros', $this->Mesa->Mesero->find('list', array('fields' => array('id', 'nombre_completo'))));
+		$this->set(array('meseros' => $this->Mesa->Mesero->find('list', array('fields' => array('id', 'nombre_completo'))), 'opcion_menu' => array('mesas' => 'active')));
 	}
 	
 	function eliminar($id) {
@@ -86,7 +87,7 @@ class MesasController extends AppController {
 		}
 		
 		if ($this->Mesa->delete($id)) {
-			$this->Session->setFlash(__('Mesa %s eliminada.', $mesa['Mesa']['serie']), 'default', array('class' => 'success'));
+			$this->Session->setFlash(__('Se eliminaó mesa %s.', $mesa['Mesa']['serie']), 'default', array('class' => 'alert alert-success'));
 			return $this->redirect(array('action' => 'index'));
 		}
 	}

@@ -20,7 +20,12 @@ $etiqueta = array(
 ?>
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="well page-header"><i class="fa fa-users fa-fw"></i> Módulo de Meseros</h1>
+		<h1 class="well page-header"><i class="fa fa-users"></i> Módulo de Meseros</h1>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-12">
+		<?= $this->Session->flash(); ?>
 	</div>
 </div>
 <div class="row">

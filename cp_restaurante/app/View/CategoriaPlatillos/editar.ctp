@@ -11,15 +11,16 @@ $formulario = array(
 		'error' => array('attributes' => array('wrap' => 'span', 'class' => 'help-inline')),
 	)
 );
-$etiqueta = array(
-	'label' => array(
-		'class' => 'col-lg-3 control-label',
-	),
-);
+$etiqueta = array('label' => array('class' => 'col-lg-3 control-label'));
 ?>
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="well page-header"><i class="fa fa-random"></i> Módulo de Categoría de Platillos</h1>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-12">
+		<?= $this->Session->flash(); ?>
 	</div>
 </div>
 <div class="row">
@@ -60,7 +61,6 @@ $etiqueta = array(
 									<tr>
 										<th>Identificador</th>
 										<th>Nombre</th>
-										<th>Descripción</th>
 										<th>Precio</th>
 										<th>Creado</th>
 										<th>Modificado</th>
@@ -72,7 +72,6 @@ $etiqueta = array(
 									<tr>
 										<td><?= $platillo['id']; ?></td>
 										<td><?= $platillo['nombre']; ?></td>
-										<td><?= $platillo['descripcion']; ?></td>
 										<td><?= $platillo['precio']; ?></td>
 										<td><?= $this->Time->format('d/m/Y h:i A', $platillo['created']); ?></td>
 										<td><?= $this->Time->format('d/m/Y h:i A', $platillo['modified']); ?></td>

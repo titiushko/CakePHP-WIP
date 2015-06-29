@@ -35,11 +35,11 @@ class PlatillosController extends AppController {
 			$this->Platillo->create();
 			$platillo = $this->request->data;
 			if ($this->Platillo->save($platillo)) {
-				$this->Session->setFlash(__('Se creó platillo %s.', $platillo['Platillo']['nombre']), 'default', array('class' => 'success'));
+				$this->Session->setFlash(__('Se creó platillo %s.', $platillo['Platillo']['nombre']), 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'index'));
 			}
 			
-			$this->Session->setFlash(__('No se pudo crear el platillo.'));
+			$this->Session->setFlash(__('No se pudo crear platillo.'), 'default', array('class' => 'alert alert-danger'));
 		}
 		
 		$this->set(array('categoriaPlatillos' => $this->Platillo->CategoriaPlatillo->find('list'), 'cocineros' => $this->Platillo->Cocinero->find('list'), 'opcion_menu' => array('platillos' => 'active')));
@@ -59,16 +59,17 @@ class PlatillosController extends AppController {
 			$this->Platillo->id = $id;
 			if ($this->Platillo->save($this->request->data)) {
 				$platillo = $this->Platillo->findById($id);
-				$this->Session->setFlash(__('Platillo %s actualizada.', $platillo['Platillo']['nombre']), 'default', array('class' => 'success'));
+				$this->Session->setFlash(__('Se actualizó platillo %s.', $platillo['Platillo']['nombre']), 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'index'));
 			}
 			
-			$this->Session->setFlash(__('No se puede modificar platillo.'));
+			$this->Session->setFlash(__('No se pudo actualizar platillo.'), 'default', array('class' => 'alert alert-danger'));
+			$this->set('platillo', $platillo);
 		}
 		
 		if (!$this->request->data) {
 			$this->request->data = $platillo;
-			$this->set(array('platillo' => $platillo, 'opcion_menu' => array('platillos' => 'active')));
+			$this->set('platillo', $platillo);
 		}
 		
 		$this->set(array('categoriaPlatillos' => $this->Platillo->CategoriaPlatillo->find('list'), 'cocineros' => $this->Platillo->Cocinero->find('list'), 'opcion_menu' => array('platillos' => 'active')));
@@ -85,7 +86,7 @@ class PlatillosController extends AppController {
 		}
 		
 		if ($this->Platillo->delete($id)) {
-			$this->Session->setFlash(__('Platillo %s eliminada.', $platillo['Platillo']['nombre']), 'default', array('class' => 'success'));
+			$this->Session->setFlash(__('Se eliminadó platillo %s.', $platillo['Platillo']['nombre']), 'default', array('class' => 'alert alert-success'));
 			return $this->redirect(array('action' => 'index'));
 		}
 	}

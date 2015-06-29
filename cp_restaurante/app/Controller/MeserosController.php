@@ -37,11 +37,11 @@ class MeserosController extends AppController {
 			$this->Mesero->create();
 			$mesero = $this->request->data;
 			if ($this->Mesero->save($mesero)) {
-				$this->Session->setFlash(__('Se creó mesero %s.', $mesero['Mesero']['nombre_completo']), 'default', array('class' => 'success'));
+				$this->Session->setFlash(__('Se creó mesero %s %s.', $mesero['Mesero']['nombres'], $mesero['Mesero']['apellidos']), 'default', array('class' => 'alert alert-success'));pr($mesero);
 				return $this->redirect(array('action' => 'index'));
 			}
 			
-			$this->Session->setFlash(__('No se pudo crear el mesero.'));
+			$this->Session->setFlash(__('No se pudo crear mesero.'), 'default', array('class' => 'alert alert-danger'));
 		}
 		
 		$this->set(array('opcion_menu' => array('meseros' => 'active')));
@@ -61,17 +61,20 @@ class MeserosController extends AppController {
 			$this->Mesero->id = $id;
 			if ($this->Mesero->save($this->request->data)) {
 				$mesero = $this->Mesero->findById($id);
-				$this->Session->setFlash(__('Mesero %s.', $mesero['Mesero']['nombre_completo']), 'default', array('class' => 'success'));
+				$this->Session->setFlash(__('Se actualizó mesero %s %s.', $mesero['Mesero']['nombres'], $mesero['Mesero']['apellidos']), 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'index'));
 			}
 			
-			$this->Session->setFlash(__('No se puede modificar mesero.'));
+			$this->Session->setFlash(__('No se pudo actualizar mesero.'), 'default', array('class' => 'alert alert-danger'));
+			$this->set('mesero', $mesero);
 		}
 		
 		if (!$this->request->data) {
 			$this->request->data = $mesero;
-			$this->set(array('mesero' => $mesero, 'opcion_menu' => array('meseros' => 'active')));
+			$this->set('mesero', $mesero);
 		}
+		
+		$this->set('opcion_menu', array('meseros' => 'active'));
 	}
 	
 	function eliminar($id) {
@@ -85,7 +88,7 @@ class MeserosController extends AppController {
 		}
 		
 		if ($this->Mesero->delete($id)) {
-			$this->Session->setFlash(__('Mesero %s eliminado.', $mesero['Mesero']['nombre_completo']), 'default', array('class' => 'success'));
+			$this->Session->setFlash(__('Se eliminó mesero %s.', $mesero['Mesero']['nombre_completo']), 'default', array('class' => 'alert alert-success'));
 			return $this->redirect(array('action' => 'index'));
 		}
 	}

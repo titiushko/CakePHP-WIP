@@ -55,8 +55,8 @@
 									<tr>
 										<th>Identificador</th>
 										<th>Nombre</th>
-										<th>Descripción</th>
 										<th>Precio</th>
+										<th>Categoría</th>
 										<th>Creado</th>
 										<th>Modificado</th>
 										<th>Acción</th>
@@ -67,8 +67,8 @@
 									<tr>
 										<td><?= $platillo['id']; ?></td>
 										<td><?= $platillo['nombre']; ?></td>
-										<td><?= $platillo['descripcion']; ?></td>
 										<td><?= $platillo['precio']; ?></td>
+										<td><?= $this->Html->link($categoriaPlatillos[$platillo['categoria_platillo_id']], array('controller' => 'categoriaplatillos', 'action' => 'ver', $platillo['categoria_platillo_id'])) ?></td>
 										<td><?= $this->Time->format('d/m/Y h:i A', $platillo['created']); ?></td>
 										<td><?= $this->Time->format('d/m/Y h:i A', $platillo['modified']); ?></td>
 										<td>

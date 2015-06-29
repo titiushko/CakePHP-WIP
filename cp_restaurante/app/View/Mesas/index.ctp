@@ -13,6 +13,11 @@ $this->Paginator->options(array(
 	</div>
 	<div class="row">
 		<div class="col-lg-12">
+			<?= $this->Session->flash(); ?>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
 			<div class="panel panel-primary">
 				<div class="panel-heading">
 					Listado de Mesas

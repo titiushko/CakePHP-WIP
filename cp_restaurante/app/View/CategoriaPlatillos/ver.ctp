@@ -49,7 +49,6 @@
 									<tr>
 										<th>Identificador</th>
 										<th>Nombre</th>
-										<th>Descripción</th>
 										<th>Precio</th>
 										<th>Creado</th>
 										<th>Modificado</th>
@@ -61,7 +60,6 @@
 									<tr>
 										<td><?= $platillo['id']; ?></td>
 										<td><?= $platillo['nombre']; ?></td>
-										<td><?= $platillo['descripcion']; ?></td>
 										<td><?= $platillo['precio']; ?></td>
 										<td><?= $this->Time->format('d/m/Y h:i A', $platillo['created']); ?></td>
 										<td><?= $this->Time->format('d/m/Y h:i A', $platillo['modified']); ?></td>
