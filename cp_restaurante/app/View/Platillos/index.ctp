@@ -64,7 +64,7 @@ $this->Paginator->options(array(
 										<?php } ?>
 										<td><?= $this->Time->format('d/m/Y h:i A', $platillo['Platillo']['created']); ?></td>
 										<td><?= $this->Time->format('d/m/Y h:i A', $platillo['Platillo']['modified']); ?></td>
-										<td><?= $this->Html->link($platillo['CategoriaPlatillo']['categoria'], array('controller' => 'categoriaplatillos', 'action' => 'ver', $platillo['CategoriaPlatillo']['id'])) ?></td>
+										<td><?= $this->Html->link($platillo['CategoriaPlatillo']['categoria'], array('controller' => 'categoria_platillos', 'action' => 'ver', $platillo['CategoriaPlatillo']['id'])) ?></td>
 										<td>
 											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i> Ver'), array('controller' => 'platillos', 'action' => 'ver', $platillo['Platillo']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
 											<?= $this->Html->link(__('<i class="fa fa-pencil"></i> Editar'), array('controller' => 'platillos', 'action' => 'editar', $platillo['Platillo']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>

@@ -46,7 +46,7 @@
 							<div class="form-group">
 								<?= $this->Form->label('categoria', 'Categoría', array('class' => 'col-lg-3 control-label')); ?>
 								<div class="col-lg-9" style="margin-top: 6px;">
-									<?php echo $this->Html->link($platillo['CategoriaPlatillo']['categoria'], array('controller' => 'categoriaplatillos', 'action' => 'ver', $platillo['CategoriaPlatillo']['id'])); ?>
+									<?php echo $this->Html->link($platillo['CategoriaPlatillo']['categoria'], array('controller' => 'categoria_platillos', 'action' => 'ver', $platillo['CategoriaPlatillo']['id'])); ?>
 								</div>
 							</div>
 							<div class="form-group">

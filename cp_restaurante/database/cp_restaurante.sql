@@ -194,27 +194,27 @@ INSERT INTO categoria_platillos(categoria) VALUES
 ('Sopas y Cremas'),
 ('Postres');
 
-INSERT INTO platillos(nombre, descripcion, precio, created, categoria_platillo_id) VALUES
-('Albondigas Rellenas con Huevo', 'Carne molida empanizada junto con cebolla, ajo, perejil, comino, jenjibre con arroz, ensalada y salsa.', 7.50, NOW(), 1),
-('Carne a la Plancha', 'Carne en filetes con unas gotitas de salsa inglesa, mostaza, acompañado con chirimol y arroz o casamiento.', 7.00, NOW(), 1),
-('Pollo con Cerveza', 'Pollo dorado con tomates, cebolla, chile verde, cerveza y arroz', 6.75, NOW(), 1),
-('Pollo Empanizado', 'Pechugas de pollo empanizadas con mostaza, sal de ajo, sal y pimienta.', 5.25, NOW(), 1),
-('Carne Guisada', 'Carne Ggisada con papas, zanahoria, tomates, chile verde, cebolla, cilantro fresco, vino y servido con arroz blanco.', 7.60, NOW(), 1),
-('Chuletas de Cerdo Ahumadas con Tomatada', 'Chuletas doradas refrito con tomates, ajos, cebolla, chiles y un chorro de vino.', 8.40, NOW(), 1),
-('Ensalada de Mariscos', 'Atún desmenuzado, Camarones cocidos y picados, aceitunas rellenas, apio picado, curry, mayonesa, salsa inglesa, perejil picado y arroz cocido.', 9.90, NOW(), 4),
-('Lonjas de Pescado al Limón', 'Filete de pescado con jugo de limón decorado con el perejil picado.', 5.80, NOW(), 4),
-('Pescado Frito', 'Pescado dorado servido con ensalada y suficiente limón.', 6.30, NOW(), 4),
-('Crema de Ayote', 'Ayote blando en crema sazonado con sal y pimienta.', 4.70, NOW(), 5),
-('Sopa de Mora', 'Hojas de mora con un diente de ajo, cebolla, tomate y chile verde, huevos, pipian en rodajas y ocres acompañada con unas rodajas de limón.', 4.25, NOW(), 5),
-('Sopa de Gallina', 'Gallina grande con tomates picados, chile verde, guisquil verde picado en cuadros pequeños, zanahorias cortadas en cuadros, papas cortadas en cuadros, dientes de ajos, cebollas, 2 cucharadas de arroz, hiervas aromaticas (apio, hierbabuena, cilantro, alcapate y perejil).', 4.00, NOW(), 5),
-('Pure de Papas', 'Libra de papa con tomatesg randes y maduros, cebolla picada, sazonador de pollo.', 3.00, NOW(), 3),
-('Ensalada de Palitos de Cangrejo y Pepino', 'Media libra de palitos de cangrejo, maíz en lata, cilantro finamente picado, mayonesa, pepinos, sal y pimienta y cebolla finamente picada.', 3.50, NOW(), 3),
-('Guacamole', 'Pasta de aguacates picados con tomate, ajo, cilantro, cebolla, jugo de limón, aceite de oliva, sal y pimienta.', 2.25, NOW(), 3),
-('Fettuccini a la Crema', 'Fettuccini con lascas de tocino picado, mantequilla, crema agria, sal y pimienta.', 6.40, NOW(), 2),
-('Lasaña de Carne', 'Lasaña con aalsa de carne o boloñesa, salsa bechamel y queso rallado.', 6.50, NOW(), 2),
-('Arroz en Leche', 'Arroz blanco corriente, leche, azucar, rajas de canela, vainilla, sal, canela molida y pasas.', 2.00, NOW(), 6),
-('Nuegados de Yuca', 'Yuca grande cortada en cuadros con huevos y queso duro rallado.', 2.00, NOW(), 6),
-('Flan de Elote', 'Maíz tierno, azucar, yemas de huevo, leche, leche condensada.', 1.75, NOW(), 6);
+INSERT INTO platillos(categoria_platillo_id, nombre, descripcion, precio, foto, foto_dir, created) VALUES
+(1, 'Albondigas Rellenas con Huevo', 'Carne molida empanizada junto con cebolla, ajo, perejil, comino, jenjibre con arroz, ensalada y salsa.', 7.50, 'Albondigas Rellenas con Huevo.jpg', '1', NOW()),
+(1, 'Carne a la Plancha', 'Carne en filetes con unas gotitas de salsa inglesa, mostaza, acompañado con chirimol y arroz o casamiento.', 7.00, 'Carne a la Plancha.jpg', '2', NOW()),
+(1, 'Pollo con Cerveza', 'Pollo dorado con tomates, cebolla, chile verde, cerveza y arroz', 6.75, 'Pollo con Cerveza.jpg', '3', NOW()),
+(1, 'Pollo Empanizado', 'Pechugas de pollo empanizadas con mostaza, sal de ajo, sal y pimienta.', 5.25, 'Pollo Empanizado.jpg', '4', NOW()),
+(1, 'Carne Guisada', 'Carne Ggisada con papas, zanahoria, tomates, chile verde, cebolla, cilantro fresco, vino y servido con arroz blanco.', 7.60, 'Carne Guisada.jpg', '5', NOW()),
+(1, 'Chuletas de Cerdo Ahumadas con Tomatada', 'Chuletas doradas refrito con tomates, ajos, cebolla, chiles y un chorro de vino.', 8.40, 'Chuletas de Cerdo Ahumadas con Tomatada.jpg', '6', NOW()),
+(4, 'Ensalada de Mariscos', 'Atún desmenuzado, Camarones cocidos y picados, aceitunas rellenas, apio picado, curry, mayonesa, salsa inglesa, perejil picado y arroz cocido.', 9.90, 'Ensalada de Mariscos.jpg', '7', NOW()),
+(4, 'Lonjas de Pescado al Limón', 'Filete de pescado con jugo de limón decorado con el perejil picado.', 5.80, 'Lonjas de Pescado al Limón.jpg', '8', NOW()),
+(4, 'Pescado Frito', 'Pescado dorado servido con ensalada y suficiente limón.', 6.30, 'Pescado Frito.jpg', '9', NOW()),
+(5, 'Crema de Ayote', 'Ayote blando en crema sazonado con sal y pimienta.', 4.70, 'Crema de Ayote.jpg', '10', NOW()),
+(5, 'Sopa de Mora', 'Hojas de mora con un diente de ajo, cebolla, tomate y chile verde, huevos, pipian en rodajas y ocres acompañada con unas rodajas de limón.', 4.25, 'Sopa de Mora.jpg', '11', NOW()),
+(5, 'Sopa de Gallina', 'Gallina grande con tomates picados, chile verde, guisquil verde picado en cuadros pequeños, zanahorias cortadas en cuadros, papas cortadas en cuadros, dientes de ajos, cebollas, 2 cucharadas de arroz, hiervas aromaticas (apio, hierbabuena, cilantro, alcapate y perejil).', 4.00, 'Sopa de Gallina.jpg', '12', NOW()),
+(3, 'Pure de Papas', 'Libra de papa con tomatesg randes y maduros, cebolla picada, sazonador de pollo.', 3.00, 'Pure de Papas.jpg', '13', NOW()),
+(3, 'Ensalada de Palitos de Cangrejo y Pepino', 'Media libra de palitos de cangrejo, maíz en lata, cilantro finamente picado, mayonesa, pepinos, sal y pimienta y cebolla finamente picada.', 3.50, 'Ensalada de Palitos de Cangrejo y Pepino.jpg', '14', NOW()),
+(3, 'Guacamole', 'Pasta de aguacates picados con tomate, ajo, cilantro, cebolla, jugo de limón, aceite de oliva, sal y pimienta.', 2.25, 'Guacamole.jpg', '15', NOW()),
+(2, 'Fettuccini a la Crema', 'Fettuccini con lascas de tocino picado, mantequilla, crema agria, sal y pimienta.', 6.40, 'Fettuccini a la Crema.jpg', '16', NOW()),
+(2, 'Lasaña de Carne', 'Lasaña con aalsa de carne o boloñesa, salsa bechamel y queso rallado.', 6.50, 'Lasaña de Carne.jpg', '17', NOW()),
+(6, 'Arroz en Leche', 'Arroz blanco corriente, leche, azucar, rajas de canela, vainilla, sal, canela molida y pasas.', 2.00, 'Arroz en Leche.jpg', '18', NOW()),
+(6, 'Nuegados de Yuca', 'Yuca grande cortada en cuadros con huevos y queso duro rallado.', 2.00, 'Nuegados de Yuca.jpg', '19', NOW()),
+(6, 'Flan de Elote', 'Maíz tierno, azucar, yemas de huevo, leche, leche condensada.', 1.75, 'Flan de Elote.jpg', '20', NOW());
 
 INSERT INTO cocineros_platillos(cocinero_id, platillo_id) VALUES
 (4, 17),

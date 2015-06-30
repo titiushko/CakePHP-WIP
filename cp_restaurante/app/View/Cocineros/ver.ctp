@@ -66,7 +66,7 @@
 									<tr>
 										<td><?= $platillo['nombre']; ?></td>
 										<td><?= $platillo['precio']; ?></td>
-										<td><?= $this->Html->link($categoriaPlatillos[$platillo['categoria_platillo_id']], array('controller' => 'categoriaplatillos', 'action' => 'ver', $platillo['categoria_platillo_id'])) ?></td>
+										<td><?= $this->Html->link($categoriaPlatillos[$platillo['categoria_platillo_id']], array('controller' => 'categoria_platillos', 'action' => 'ver', $platillo['categoria_platillo_id'])) ?></td>
 										<td><?= $this->Time->format('d/m/Y h:i A', $platillo['created']); ?></td>
 										<td><?= $this->Time->format('d/m/Y h:i A', $platillo['modified']); ?></td>
 										<td>
