@@ -27,12 +27,15 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	</title>
 	<?php
 		echo $this->Html->meta('icon');
-		echo $this->Html->css(array('style', 'bootstrap.min', 'bootstrap-theme.min', 'font-awesome.min'));
-		echo $this->Html->script(array('jquery.min', 'docs.min', 'bootstrap.min'));
+		echo $this->Html->css(array('style', 'bootstrap.min', 'bootstrap-theme.min', 'font-awesome.min', 'fileinput.min'));
+		echo $this->Html->script(array('jquery.min', 'docs.min', 'bootstrap.min', 'fileinput.min'));
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
 	?>
+	<script type="text/javascript">
+		$("#foto").fileinput();
+	</script>
 </head>
 <body>
 	<?= $this->element('menu'); ?>
