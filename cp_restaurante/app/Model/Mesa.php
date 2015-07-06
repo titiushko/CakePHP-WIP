@@ -14,7 +14,8 @@ class Mesa extends AppModel {
 	public $validate = array(
 		'serie' => array(
 			'notEmpty' => array(
-				'rule' => 'notEmpty'
+				'rule' => 'notEmpty',
+				'message' => 'Serie requerida.'
 			),
 			'numeric' => array(
 				'rule' => 'numeric',
@@ -27,7 +28,8 @@ class Mesa extends AppModel {
 		),
 		'puestos' => array(
 			'notEmpty' => array(
-				'rule' => 'notEmpty'
+				'rule' => 'notEmpty',
+				'message' => 'Puestos requeridos.'
 			),
 			'numeric' => array(
 				'rule' => 'numeric',
@@ -35,10 +37,16 @@ class Mesa extends AppModel {
 			)
 		),
 		'posicion' => array(
-			'rule' => 'notEmpty'
+			'notEmpty' => array(
+				'rule' => 'notEmpty',
+				'message' => 'Posición requerida.'
+			)
 		),
 		'mesero_id' => array(
-			'rule' => 'notEmpty'
+			'notEmpty' => array(
+				'rule' => 'notEmpty',
+				'message' => 'Seleccionar un mesero.'
+			)
 		)
 	);
 }

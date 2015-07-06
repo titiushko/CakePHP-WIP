@@ -22,11 +22,19 @@ class Platillo extends AppModel {
 	
 	public $validate = array(
 		'nombre' => array(
-			'rule' => 'notEmpty'
+			'notEmpty' => array(
+				'rule' => 'notEmpty',
+				'message' => 'Nombre requerido.'
+			),
+			'alphabetic' => array(
+				'rule' => '/^[a-zA-Z[:space:]ñáéíóúÑÁÉÍÓÚ]*$/',
+				'message' => 'Sólo letras.'
+			)
 		),
 		'precio' => array(
 			'notEmpty' => array(
-				'rule' => 'notEmpty'
+				'rule' => 'notEmpty',
+				'message' => 'Precio requerido.'
 			),
 			'numeric' => array(
 				'rule' => 'numeric',
@@ -63,8 +71,17 @@ class Platillo extends AppModel {
 			//	TODO: Validar el tipo de caracteres en el nombre de los archivos
 		),
 		'categoria_platillo_id' => array(
-			'rule' => 'notEmpty'
+			'notEmpty' => array(
+				'rule' => 'notEmpty',
+				'message' => 'Seleccionar una categoría.'
+			)
 		),
+		'cocinero_id' => array(
+			'notEmpty' => array(
+				'rule' => 'notEmpty',
+				'message' => 'Seleccionar un cocinero o varios cocineros.'
+			)
+		)
 	);
 	
 	public function uniqueImage($dato) {

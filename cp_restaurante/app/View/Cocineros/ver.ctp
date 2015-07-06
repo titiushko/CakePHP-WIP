@@ -54,10 +54,9 @@
 								<thead>
 									<tr>
 										<th>Nombre</th>
+										<th>Foto</th>
 										<th>Precio</th>
 										<th>Categoría</th>
-										<th>Creado</th>
-										<th>Modificado</th>
 										<th>Acción</th>
 									</tr>
 								</thead>
@@ -65,10 +64,13 @@
 									<?php foreach ($cocinero['Platillo'] as $platillo): ?>
 									<tr>
 										<td><?= $platillo['nombre']; ?></td>
-										<td><?= $platillo['precio']; ?></td>
+										<?php if (empty($platillo['foto'])) { ?>
+										<td><?= $this->Html->image('../img/plato_vacio/thumb_plato_vacio.jpg'); ?></td>
+										<?php } else { ?>
+										<td><?= $this->Html->image('../files/platillo/foto/'.$platillo['foto_dir'].'/'.'thumb_'.$platillo['foto']); ?></td>
+										<?php } ?>
+										<td>$ <?= number_format($platillo['precio'], 2, '.', ','); ?></td>
 										<td><?= $this->Html->link($categoriaPlatillos[$platillo['categoria_platillo_id']], array('controller' => 'categoria_platillos', 'action' => 'ver', $platillo['categoria_platillo_id'])) ?></td>
-										<td><?= $this->Time->format('d/m/Y h:i A', $platillo['created']); ?></td>
-										<td><?= $this->Time->format('d/m/Y h:i A', $platillo['modified']); ?></td>
 										<td>
 											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i> Ver'), array('controller' => 'platillos', 'action' => 'ver', $platillo['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
 											<?= $this->Html->link(__('<i class="fa fa-pencil"></i> Editar'), array('controller' => 'platillos', 'action' => 'editar', $platillo['id']), array('class' => 'btn btn-default', 'escape' => FALSE)); ?>

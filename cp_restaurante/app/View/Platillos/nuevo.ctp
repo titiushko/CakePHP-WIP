@@ -34,26 +34,27 @@ $etiqueta = array('label' => array('class' => $control_label));
 			</div>
 			<div class="panel-body">
 				<div class="row">
-					<div class="col-lg-4 col-lg-offset-4">
+					<div class="form-horizontal">
 						<?= $this->Form->create('Platillo', $formulario); ?>
-						<fieldset>
-							<legend>Datos</legend>
-							<?= $this->Form->input('nombre', $etiqueta); ?>
-							<?= $this->Form->input('descripcion', array_merge($etiqueta, array('rows' => 4))); ?>
-							<?= $this->Form->input('precio', $etiqueta); ?>
-							<?= $this->Form->input('foto', array('type' => 'file', 'label' => array('text' => 'Foto', 'class' => $control_label))); ?>
-							<?= $this->Form->input('foto_dir', array('type' => 'hidden')); ?>
-							<?= $this->Form->input('categoria_platillo_id', array('label' => array('text' => 'Categoría', 'class' => $control_label))); ?>
-							<?= $this->Form->input('Cocinero', $etiqueta); ?>
-							<div class="form-group">
-								<div class="col-lg-6 text-right submit">
-									<?= $this->Form->button(__('<i class="fa fa-save"></i> Guardar'), array('type' => 'submit', 'class' => 'btn btn-primary', 'escape' => FALSE)); ?>
-								</div>
-								<div class="col-lg-6 text-left">
-									<?= $this->Html->link(__('<i class="fa fa-times-circle"></i> Cancelar'), array('controller' => 'platillos', 'action' => 'index'), array('class' => 'btn btn-default', 'escape' => FALSE)); ?>
+							<div class="col-lg-7">
+								<?= $this->Form->input('foto', array('type' => 'file', 'label' => array('text' => 'Foto', 'class' => $control_label), 'class' => 'file', 'data-show-upload' => 'false', 'data-show-caption' => 'true')); ?>
+								<?= $this->Form->input('foto_dir', array('type' => 'hidden')); ?>
+							</div>
+							<div class="col-lg-5">
+								<?= $this->Form->input('nombre', $etiqueta); ?>
+								<?= $this->Form->input('descripcion', array_merge($etiqueta, array('rows' => 4))); ?>
+								<?= $this->Form->input('precio', $etiqueta); ?>
+								<?= $this->Form->input('categoria_platillo_id', array('label' => array('text' => 'Categoría', 'class' => $control_label))); ?>
+								<?= $this->Form->input('Cocinero', $etiqueta); ?>
+								<div class="form-group">
+									<div class="col-lg-6 text-right submit">
+										<?= $this->Form->button(__('<i class="fa fa-save"></i> Guardar'), array('type' => 'submit', 'class' => 'btn btn-primary', 'escape' => FALSE)); ?>
+									</div>
+									<div class="col-lg-6 text-left">
+										<?= $this->Html->link(__('<i class="fa fa-times-circle"></i> Cancelar'), array('controller' => 'platillos', 'action' => 'index'), array('class' => 'btn btn-default', 'escape' => FALSE)); ?>
+									</div>
 								</div>
 							</div>
-						</fieldset>
 						<?= $this->Form->end(); ?>
 					</div>
 				</div>

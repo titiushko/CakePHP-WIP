@@ -5,7 +5,7 @@ class PlatillosController extends AppController {
 	public $helpers = array('Html', 'Form', 'Time', 'Paginator', 'Js');
 	public $components = array('Session', 'RequestHandler');
 	public $paginate = array(
-		'limit' => 5,
+		'limit' => 12,
 		'order' => array(
 			'Platillo.nombre' => 'asc'
 		),

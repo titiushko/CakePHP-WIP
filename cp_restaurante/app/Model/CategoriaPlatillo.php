@@ -7,11 +7,16 @@ class CategoriaPlatillo extends AppModel {
 	public $validate = array(
 		'categoria' => array(
 			'notEmpty' => array(
-				'rule' => 'notEmpty'
+				'rule' => 'notEmpty',
+				'message' => 'Categoría requerida.'
 			),
 			'unique' => array(
 				'rule' => 'isUnique',
 				'message' => 'Categoría ya existe.'
+			),
+			'alphabetic' => array(
+				'rule' => '/^[a-zA-Z[:space:]ñáéíóúÑÁÉÍÓÚ]*$/',
+				'message' => 'Sólo letras.'
 			)
 		)
 	);

@@ -11,10 +11,15 @@
 			</div>
 			<div class="panel-body">
 				<div class="row">
-					<div class="col-lg-4 col-lg-offset-4">
-						<div class="form-horizontal">
-						<fieldset>
-							<legend>Datos</legend>
+					<div class="form-horizontal">
+						<div class="col-lg-7 text-center">
+							<?php if (empty($platillo['Platillo']['foto'])) { ?>
+							<?= $this->Html->image('../img/plato_vacio/thumb_plato_vacio.jpg'); ?>
+							<?php } else { ?>
+							<?= $this->Html->image('../files/platillo/foto/'.$platillo['Platillo']['foto_dir'].'/'.'vga_'.$platillo['Platillo']['foto']); ?>
+							<?php } ?>
+						</div>
+						<div class="col-lg-5">
 							<div class="form-group">
 								<?= $this->Form->label('nombre', 'Nombre', array('class' => 'col-lg-3 control-label')); ?>
 								<div class="col-lg-9">
@@ -34,22 +39,12 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<?= $this->Form->label('foto', 'Foto', array('class' => 'col-lg-3 control-label')); ?>
-								<div class="col-lg-9" style="margin-top: 6px;">
-									<?php if (empty($platillo['Platillo']['foto'])) { ?>
-									<?= $this->Html->image('../img/plato_vacio/thumb_plato_vacio.jpg'); ?>
-									<?php } else { ?>
-									<?= $this->Html->image('../files/platillo/foto/'.$platillo['Platillo']['foto_dir'].'/'.'thumb_'.$platillo['Platillo']['foto']); ?>
-									<?php } ?>
-								</div>
-							</div>
-							<div class="form-group">
 								<?= $this->Form->label('categoria', 'Categoría', array('class' => 'col-lg-3 control-label')); ?>
-								<div class="col-lg-9" style="margin-top: 6px;">
+								<div class="col-lg-9 margen-superior">
 									<?php echo $this->Html->link($platillo['CategoriaPlatillo']['categoria'], array('controller' => 'categoria_platillos', 'action' => 'ver', $platillo['CategoriaPlatillo']['id'])); ?>
 								</div>
 							</div>
-							<div class="form-group">
+							<div class="row">
 								<div class="col-lg-4 text-right">
 									<?= $this->Html->link(__('<i class="fa fa-pencil"></i> Editar'), array('controller' => 'platillos', 'action' => 'editar', $platillo['Platillo']['id']), array('class' => 'btn btn-primary', 'escape' => FALSE)); ?>
 								</div>
@@ -60,7 +55,6 @@
 									<?= $this->Html->link(__('<i class="fa fa-times-circle"></i> Cancelar'), array('controller' => 'platillos', 'action' => 'index'), array('class' => 'btn btn-default', 'escape' => FALSE)); ?>
 								</div>
 							</div>
-						</fieldset>
 						</div>
 					</div>
 				</div>

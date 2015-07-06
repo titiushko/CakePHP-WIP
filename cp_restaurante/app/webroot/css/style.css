@@ -9,3 +9,17 @@ body {
 .visto {
 	display: inline;
 }
+
+.platillo img{
+	border-radius: 5px;
+	box-shadow: rgba(0,0,0,0.5) 5px 5px 10px;
+}
+
+.margen-superior {
+	margin-top: 6px;
+ }
+
+.margen-inferior {
+	margin-bottom: 10px;
+ }
+ 

@@ -8,7 +8,8 @@ class Mesero extends AppModel {
 	public $validate = array(
 		'dui' => array(
 			'notEmpty' => array(
-				'rule' => 'notEmpty'
+				'rule' => 'notEmpty',
+				'message' => 'DUI requerido.'
 			),
 			'numeric' => array(
 				'rule' => 'numeric',
@@ -17,21 +18,44 @@ class Mesero extends AppModel {
 			'unique' => array(
 				'rule' => 'isUnique',
 				'message' => 'DUI ya existe.'
+			),
+			'formatDui' => array(
+				'rule' => '/^\d{9}$/',
+				'message' => 'DUI inválido. Formato: 9 dígitos sin guión.'
 			)
 		),
 		'nombres' => array(
-			'rule' => 'notEmpty'
+			'notEmpty' => array(
+				'rule' => 'notEmpty',
+				'message' => 'Nombres requeridos.'
+			),
+			'alphabetic' => array(
+				'rule' => '/^[a-zA-Z[:space:]ñáéíóúÑÁÉÍÓÚ]*$/',
+				'message' => 'Sólo letras.'
+			)
 		),
 		'apellidos' => array(
-			'rule' => 'notEmpty'
+			'notEmpty' => array(
+				'rule' => 'notEmpty',
+				'message' => 'Apellidos requeridos.'
+			),
+			'alphabetic' => array(
+				'rule' => '/^[a-zA-Z[:space:]ñáéíóúÑÁÉÍÓÚ]*$/',
+				'message' => 'Sólo letras.'
+			)
 		),
 		'telefono' => array(
 			'notEmpty' => array(
-				'rule' => 'notEmpty'
+				'rule' => 'notEmpty',
+				'message' => 'Teléfono requerida.'
 			),
 			'numeric' => array(
 				'rule' => 'numeric',
 				'message' => 'Sólo números.'
+			),
+			'formatTelefono' => array(
+				'rule' => '/^\d{8}$/',
+				'message' => 'Teléfono inválido. Formato: 8 dígitos sin guiones.'
 			)
 		)
 	);

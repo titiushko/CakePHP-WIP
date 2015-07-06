@@ -7,10 +7,24 @@ class Cocinero extends AppModel {
 	
 	public $validate = array(
 		'nombres' => array(
-			'rule' => 'notEmpty'
+			'notEmpty' => array(
+				'rule' => 'notEmpty',
+				'message' => 'Nombres requeridos.'
+			),
+			'alphabetic' => array(
+				'rule' => '/^[a-zA-Z[:space:]ñáéíóúÑÁÉÍÓÚ]*$/',
+				'message' => 'Sólo letras.'
+			)
 		),
 		'apellidos' => array(
-			'rule' => 'notEmpty'
+			'notEmpty' => array(
+				'rule' => 'notEmpty',
+				'message' => 'Apellidos requeridos.'
+			),
+			'alphabetic' => array(
+				'rule' => '/^[a-zA-Z[:space:]ñáéíóúÑÁÉÍÓÚ]*$/',
+				'message' => 'Sólo letras.'
+			)
 		)
 	);
 	

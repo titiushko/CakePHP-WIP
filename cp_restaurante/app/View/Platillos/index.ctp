@@ -39,42 +39,36 @@ $this->Paginator->options(array(
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-lg-12">
-							<table class="table table-striped table-bordered table-hover">
-								<thead>
-									<tr>
-										<th><?= $this->Paginator->sort('nombre', 'Nombre'); ?></th>
-										<th><?= $this->Paginator->sort('precio', 'Precio'); ?></th>
-										<th><?= $this->Paginator->sort('foto', 'Foto'); ?></th>
-										<th><?= $this->Paginator->sort('created', 'Creado'); ?></th>
-										<th><?= $this->Paginator->sort('modified', 'Modificado'); ?></th>
-										<th><?= $this->Paginator->sort('CategoriaPlatillo.categoria', 'Categoría'); ?></th>
-										<th>Acción</th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php foreach ($platillos as $platillo): ?>
-									<tr>
-										<td><?= $platillo['Platillo']['nombre']; ?></td>
-										<td><?= $platillo['Platillo']['precio']; ?></td>
+						<?php foreach ($platillos as $platillo): ?>
+						<div class="col-lg-3">
+							<div class="row">
+								<div class="col-lg-12">
+									<figure class="platillo margen-inferior">
 										<?php if (empty($platillo['Platillo']['foto'])) { ?>
-										<td><?= $this->Html->image('../img/plato_vacio/thumb_plato_vacio.jpg'); ?></td>
+										<?= $this->Html->image('../img/plato_vacio/thumb_plato_vacio.jpg'); ?>
 										<?php } else { ?>
-										<td><?= $this->Html->image('../files/platillo/foto/'.$platillo['Platillo']['foto_dir'].'/'.'thumb_'.$platillo['Platillo']['foto']); ?></td>
+										<?= $this->Html->link($this->Html->image('../files/platillo/foto/'.$platillo['Platillo']['foto_dir'].'/'.'thumb_'.$platillo['Platillo']['foto']), array('controller' => 'platillos', 'action' => 'ver', $platillo['Platillo']['id']), array('escape' => FALSE)); ?>
 										<?php } ?>
-										<td><?= $this->Time->format('d/m/Y h:i A', $platillo['Platillo']['created']); ?></td>
-										<td><?= $this->Time->format('d/m/Y h:i A', $platillo['Platillo']['modified']); ?></td>
-										<td><?= $this->Html->link($platillo['CategoriaPlatillo']['categoria'], array('controller' => 'categoria_platillos', 'action' => 'ver', $platillo['CategoriaPlatillo']['id'])) ?></td>
-										<td>
-											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i> Ver'), array('controller' => 'platillos', 'action' => 'ver', $platillo['Platillo']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
-											<?= $this->Html->link(__('<i class="fa fa-pencil"></i> Editar'), array('controller' => 'platillos', 'action' => 'editar', $platillo['Platillo']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
-											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i> Eliminar'), array('controller' => 'platillos', 'action' => 'eliminar', $platillo['Platillo']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'confirm' => __('¿Eliminar platillo %s?', $platillo['Platillo']['nombre']))); ?>
-										</td>
-									</tr>
-									<?php endforeach; ?>
-								</tbody>
-							</table>
+									</figure>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-12">
+									<?= $platillo['Platillo']['nombre']; ?>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-lg-12">
+									$ <?= number_format($platillo['Platillo']['precio'], 2, '.', ','); ?>
+								</div>
+							</div>
+							<div class="row margen-inferior">
+								<div class="col-lg-12">
+									<?= $this->Html->link($platillo['CategoriaPlatillo']['categoria'], array('controller' => 'categoria_platillos', 'action' => 'ver', $platillo['CategoriaPlatillo']['id'])) ?>
+								</div>
+							</div>
 						</div>
+						<?php endforeach; ?>
 					</div>
 					<div class="row">
 						<div class="col-lg-12">
