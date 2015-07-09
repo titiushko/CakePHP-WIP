@@ -45,6 +45,9 @@
 					</ul>
 				</li>
 			</ul>
+			<div class="nav navbar-nav navbar-right">
+				<?= $this->Html->link(__('<i class="fa fa-shopping-cart"></i> Pedidos'), array('controller' => 'pedidos', 'action' => 'index'), array('class' => 'btn btn-success navbar-btn', 'escape' => FALSE)); ?>
+			</div>
 		</div>
 	</div>
 </div>

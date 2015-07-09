@@ -117,4 +117,12 @@ class Platillo extends AppModel {
 			'finderQuery' => '',
 		)
 	);
+	
+	public $hasMany = array(
+		'Pedido' => array(
+			'className' => 'Pedido',
+			'foreignKey' => 'platillo_id',
+			'depend' => FALSE
+		)
+	);
 }

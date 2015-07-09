@@ -63,6 +63,17 @@ CREATE TABLE IF NOT EXISTS cocineros_platillos(
 	CONSTRAINT fk_cocineros_platillos_platillos FOREIGN KEY(platillo_id) REFERENCES platillos(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
+DROP TABLE IF EXISTS pedidos;
+CREATE TABLE IF NOT EXISTS pedidos(
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	platillo_id INT(10) UNSIGNED NOT NULL,
+	cantidad INT(2) UNSIGNED NOT NULL,
+	subtotal DECIMAL(6, 2) NOT NULL,
+	created DATETIME NULL DEFAULT NULL,
+	modified DATETIME NULL DEFAULT NULL,
+	CONSTRAINT fk_pedidos_platillos FOREIGN KEY(platillo_id) REFERENCES platillos(id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
 -- ============================================================================================================================================================
 
 INSERT INTO meseros(dui, nombres, apellidos, telefono, created) VALUES

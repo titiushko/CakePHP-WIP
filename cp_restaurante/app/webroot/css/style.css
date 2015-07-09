@@ -23,3 +23,9 @@ body {
 	margin-bottom: 10px;
  }
  
+.flash-mensaje {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	z-index: 10000;
+}

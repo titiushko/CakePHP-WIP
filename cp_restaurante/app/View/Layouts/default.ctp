@@ -35,6 +35,7 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 	?>
 	<script type="text/javascript">
 		$("#foto").fileinput();
+		var url_base = '<?= Router::url('/'); ?>';
 	</script>
 </head>
 <body>
@@ -46,5 +47,6 @@ $cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
 		//echo $this->element('sql_dump');
 		?>
 	</div>
+	<div id="mensaje"></div>
 </body>
 </html>
