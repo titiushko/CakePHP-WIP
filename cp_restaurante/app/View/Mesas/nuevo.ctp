@@ -34,7 +34,7 @@ $etiqueta = array('label' => array('class' => 'col-lg-3 control-label'));
 					<div class="col-lg-4 col-lg-offset-4">
 						<?= $this->Form->create('Mesa', $formulario); ?>
 						<fieldset>
-							<legend>Datos</legend>
+							<legend>Mesa</legend>
 							<?= $this->Form->input('serie', $etiqueta); ?>
 							<?= $this->Form->input('puestos', $etiqueta); ?>
 							<?= $this->Form->input('posicion', array_merge($etiqueta, array('rows' => 3))); ?>

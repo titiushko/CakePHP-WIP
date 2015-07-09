@@ -14,7 +14,7 @@
 					<div class="col-lg-4 col-lg-offset-4">
 						<div class="form-horizontal">
 						<fieldset>
-							<legend>Datos</legend>
+							<legend>Mesa</legend>
 							<div class="form-group">
 								<?= $this->Form->label('serie', 'Serie', array('class' => 'col-lg-3 control-label')); ?>
 								<div class="col-lg-9">

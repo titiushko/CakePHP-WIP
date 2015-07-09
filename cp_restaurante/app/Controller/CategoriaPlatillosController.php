@@ -5,15 +5,22 @@ class CategoriaPlatillosController extends AppController {
 	public $helpers = array('Html', 'Form', 'Time', 'Paginator', 'Js');
 	public $components = array('Session', 'RequestHandler');
 	public $paginate = array(
-		'limit' => 3,
-		'order' => array(
-			'CategoriaPlatillo.categoria' => 'asc'
+		'CategoriaPlatillo' => array(
+			'limit' => 4,
+			'order' => array(
+				'CategoriaPlatillo.categoria' => 'asc'
+			)
 		),
+		'Platillo' => array(
+			'limit' => 3,
+			'order' => array(
+				'Platillo.nombre' => 'asc'
+			)
+		)
 	);
 	
 	public function index() {
 		$this->CategoriaPlatillo->recursive = 0;
-		$this->paginate['CategoriaPlatillo']['limit'] = 5;
 		$this->paginate['CategoriaPlatillo']['order'] = array('CategoriaPlatillo.categoria' => 'asc');
 		$this->set(array('categoria_platillos' => $this->paginate(), 'opcion_menu' => array('platillos' => 'active')));
 	}
@@ -26,8 +33,10 @@ class CategoriaPlatillosController extends AppController {
 			throw new NotFoundException(__('Categoría no existe.'));
 		}
 		else {
-			$opciones = array('conditions' => array('CategoriaPlatillo.'.$this->CategoriaPlatillo->primaryKey => $id));
-			$this->set(array('categoria_platillo' => $this->CategoriaPlatillo->find('first', $opciones), 'opcion_menu' => array('platillos' => 'active')));
+			$categoria_platillo = $this->CategoriaPlatillo->find('first', array('conditions' => array('CategoriaPlatillo.'.$this->CategoriaPlatillo->primaryKey => $id)));
+			$this->paginate['Platillo']['conditions'] = array('Platillo.categoria_platillo_id' => $categoria_platillo['CategoriaPlatillo']['id']);
+			$this->paginate['Platillo']['fields'] = array('Platillo.id', 'Platillo.nombre', 'Platillo.precio', 'Platillo.foto', 'Platillo.foto_dir', 'Platillo.categoria_platillo_id');
+			$this->set(array('platillos' => $this->paginate('Platillo'), 'categoria' => array('nombre' => $categoria_platillo['CategoriaPlatillo']['categoria'], 'id' => $categoria_platillo['CategoriaPlatillo']['id']), 'opcion_menu' => array('platillos' => 'active')));
 		}
 	}
 	
@@ -71,7 +80,9 @@ class CategoriaPlatillosController extends AppController {
 		
 		if (!$this->request->data) {
 			$this->request->data = $categoria_platillo;
-			$this->set('categoria_platillo', $categoria_platillo);
+			$this->paginate['Platillo']['conditions'] = array('Platillo.categoria_platillo_id' => $categoria_platillo['CategoriaPlatillo']['id']);
+			$this->paginate['Platillo']['fields'] = array('Platillo.id', 'Platillo.nombre', 'Platillo.precio', 'Platillo.foto', 'Platillo.foto_dir', 'Platillo.categoria_platillo_id');
+			$this->set(array('platillos' => $this->paginate('Platillo'), 'categoria' => array('nombre' => $categoria_platillo['CategoriaPlatillo']['categoria'], 'id' => $categoria_platillo['CategoriaPlatillo']['id'])));
 		}
 		
 		$this->set('opcion_menu', array('platillos' => 'active'));

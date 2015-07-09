@@ -11,7 +11,8 @@ $formulario = array(
 		'error' => array('attributes' => array('wrap' => 'span', 'class' => 'help-inline')),
 	)
 );
-$etiqueta = array('label' => array('class' => 'col-lg-3 control-label'));
+$control_label = 'col-lg-3 control-label';
+$etiqueta = array('label' => array('class' => $control_label));
 ?>
 <div class="row">
 	<div class="col-lg-12">
@@ -34,8 +35,8 @@ $etiqueta = array('label' => array('class' => 'col-lg-3 control-label'));
 					<div class="col-lg-4 col-lg-offset-4">
 						<?= $this->Form->create('CategoriaPlatillo', $formulario); ?>
 						<fieldset>
-							<legend>Datos</legend>
-							<?= $this->Form->input('categoria', $etiqueta); ?>
+							<legend>Categoría</legend>
+							<?= $this->Form->input('categoria', array('label' => array('text' => 'Nombre', 'class' => $control_label))); ?>
 							<div class="form-group">
 								<div class="col-lg-6 text-right submit">
 									<?= $this->Form->button(__('<i class="fa fa-save"></i> Guardar'), array('type' => 'submit', 'class' => 'btn btn-primary', 'escape' => FALSE)); ?>
