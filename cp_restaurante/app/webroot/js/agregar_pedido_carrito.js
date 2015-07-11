@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	$('.agregar_pedido_carrito').on('click', function(event) {
-		$.ajax( {
+		$.ajax({
 			type: 'POST',
 			url: url_base + 'pedidos/agregar',
 			data: {
@@ -8,7 +8,7 @@ $(document).ready(function() {
 				cantidad: 1
 			},
 			dataType: 'html',
-			success: function(data) {
+			success: function(resultado) {
 				$('#mensaje').html('<div class="alert alert-success flash-mensaje">Platillo agregado al pedido.</div>');
 				$('.flash-mensaje').delay(2000).fadeOut('slow');
 			},

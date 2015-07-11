@@ -65,7 +65,7 @@
 									<tr>
 										<td><?= $platillo['nombre']; ?></td>
 										<?php if (empty($platillo['foto'])) { ?>
-										<td><?= $this->Html->image('../img/plato_vacio/thumb_plato_vacio.jpg'); ?></td>
+										<td><figure><?= $this->Html->image('../img/plato_vacio/thumb_plato_vacio.jpg'); ?></figure></td>
 										<?php } else { ?>
 										<td><?= $this->Html->image('../files/platillo/foto/'.$platillo['foto_dir'].'/'.'thumb_'.$platillo['foto']); ?></td>
 										<?php } ?>

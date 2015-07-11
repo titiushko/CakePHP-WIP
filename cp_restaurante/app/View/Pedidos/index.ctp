@@ -1,3 +1,4 @@
+<?= $this->Html->script(array('carrito', 'jquery.animate-colors-min'), array('inline' => FALSE)); ?>
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="well page-header"><i class="fa fa-cutlery"></i> Módulo de Pedidos</h1>
@@ -30,38 +31,46 @@
 						<?php if (empty($pedidos)) { ?>
 							<p>No tiene pedidos asociados.</p>
 						<?php } else { ?>
-						<table class="table table-striped table-bordered table-hover">
-							<thead>
-								<tr>
-									<th>Nombre</th>
-									<th>Foto</th>
-									<th>Precio</th>
-									<th>Cantidad</th>
-									<th>Sub-Total</th>
-									<th>Acción</th>
-								</tr>
-							</thead>
-							<tbody>
-								<?php foreach ($pedidos as $platillo): ?>
-								<tr>
-									<td><?= $platillo['Platillo']['nombre']; ?></td>
-									<?php if (empty($platillo['Platillo']['foto'])) { ?>
-									<td><?= $this->Html->image('../img/plato_vacio/thumb_plato_vacio.jpg'); ?></td>
-									<?php } else { ?>
-									<td><?= $this->Html->image('../files/platillo/foto/'.$platillo['Platillo']['foto_dir'].'/'.'thumb_'.$platillo['Platillo']['foto']); ?></td>
-									<?php } ?>
-									<td>$ <?= number_format($platillo['Platillo']['precio'], 2, '.', ','); ?></td>
-									<td><?= $this->Form->input('cantidad', array('value' => $platillo['Pedido']['cantidad'], 'label' => FALSE, 'class' => 'form-control', 'div' => array('class' => 'col-xs-4'), 'type' => 'number')); ?></td>
-									<td>$ <?= number_format($platillo['Pedido']['subtotal'], 2, '.', ','); ?></td>
-									<td>
-										<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i> Ver'), array('controller' => 'platillos', 'action' => 'ver', $platillo['Platillo']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
-										<?= $this->Form->postLink(__('<i class="fa fa-trash"></i> Eliminar'), array('controller' => 'pedidos', 'action' => 'eliminar', $platillo['Platillo']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'confirm' => __('¿Eliminar platillo %s?', $platillo['Platillo']['nombre']))); ?>
-									</td>
-								</tr>
-								<?php endforeach; ?>
-							</tbody>
-						</table>
-						<?php } ?>
+						<div class="row">
+							<div class="col-md-7"><strong>Platillo</strong></div>
+							<div class="col-md-1"><strong>Foto</strong></div>
+							<div class="col-md-1"><strong>Precio</strong></div>
+							<div class="col-md-1"><strong>Cantidad</strong></div>
+							<div class="col-md-1"><strong>SubTotal</strong></div>
+							<div class="col-md-1">&nbsp;</div>
+						</div>
+						<?php
+						$indice_tabulador = 1;
+						foreach ($pedidos as $platillo):
+						?>
+						<div class="row margen-superior" id="pedido-<?= $platillo['Pedido']['id']; ?>">
+							<div class="col-md-7"><?= $this->Html->link(__('%s', $platillo['Platillo']['nombre']), array('controller' => 'platillos', 'action' => 'ver', $platillo['Platillo']['id'])); ?></div>
+							<?php if (empty($platillo['Platillo']['foto'])) { ?>
+							<div class="col-md-1"><figure><?= $this->Html->image('../img/plato_vacio/thumb_plato_vacio.jpg', array('class' => 'imagen-pedidos')); ?></figure></div>
+							<?php } else { ?>
+							<div class="col-md-1"><figure><?= $this->Html->image('../files/platillo/foto/'.$platillo['Platillo']['foto_dir'].'/'.'thumb_'.$platillo['Platillo']['foto'], array('class' => 'imagen-pedidos')); ?></figure></div>
+							<?php } ?>
+							<div class="col-md-1" id="precio-<?= $platillo['Pedido']['id']; ?>">$ <?= number_format($platillo['Platillo']['precio'], 2, '.', ','); ?></div>
+							<div class="col-md-1"><?= $this->Form->input($platillo['Pedido']['id'], array('value' => $platillo['Pedido']['cantidad'], 'label' => FALSE, 'div' => FALSE, 'class' => 'cantidad form-control input-small', 'type' => 'number', 'size' => 2, 'minlenght' => 1, 'maxlenght' => 2, 'indice-tabulador' => $indice_tabulador++, 'cantidad-id' => $platillo['Pedido']['id'])); ?></div>
+							<div class="col-md-1" id="subtotal-<?= $platillo['Pedido']['id']; ?>">$ <?= number_format($platillo['Pedido']['subtotal'], 2, '.', ','); ?></div>
+							<div class="col-md-1">
+								<?= $this->Html->link(__('<i class="fa fa-trash"></i>'), '#', array('class' => 'btn btn-default', 'escape' => FALSE, 'title' => __('¿Eliminar platillo %s', $platillo['Platillo']['nombre']), 'escapeTitle' => FALSE, 'id' => $platillo['Pedido']['id'])); ?>
+							</div>
+						</div>
+						<?php
+						endforeach;
+						}
+						?>
+						<hr style="border-color: #000000;">
+						<div class="row">
+							<div class="col-sm-12">
+								<h3 class="pull-right">
+									<strong>
+										Total Orden: <span id="total-orden">$ <?= number_format($total_orden, 2, '.', ','); ?></span>
+									</strong>
+								</h3>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

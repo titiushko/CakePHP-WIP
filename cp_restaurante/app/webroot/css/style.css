@@ -25,7 +25,11 @@ body {
  
 .flash-mensaje {
 	position: absolute;
-	top: 10px;
+	top: 55px;
 	right: 10px;
 	z-index: 10000;
+}
+
+.imagen-pedidos {
+    height: 60px;
 }

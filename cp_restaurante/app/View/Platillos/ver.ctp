@@ -15,7 +15,7 @@
 					<div class="form-horizontal">
 						<div class="col-lg-7 text-center">
 							<?php if (empty($platillo['Platillo']['foto'])) { ?>
-							<?= $this->Html->image('../img/plato_vacio/thumb_plato_vacio.jpg'); ?>
+							<figure><?= $this->Html->image('../img/plato_vacio/thumb_plato_vacio.jpg'); ?></figure>
 							<?php } else { ?>
 							<?= $this->Html->image('../files/platillo/foto/'.$platillo['Platillo']['foto_dir'].'/'.'vga_'.$platillo['Platillo']['foto']); ?>
 							<?php } ?>

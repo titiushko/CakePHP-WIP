@@ -77,9 +77,9 @@ $this->Paginator->options(array(
 										<tr>
 											<td><?= $platillo['Platillo']['nombre']; ?></td>
 											<?php if (empty($platillo['Platillo']['foto'])) { ?>
-											<td><?= $this->Html->image('../img/plato_vacio/thumb_plato_vacio.jpg'); ?></td>
+											<td><figure><?= $this->Html->image('../img/plato_vacio/thumb_plato_vacio.jpg'); ?></figure></td>
 											<?php } else { ?>
-											<td><?= $this->Html->image('../files/platillo/foto/'.$platillo['Platillo']['foto_dir'].'/'.'thumb_'.$platillo['Platillo']['foto']); ?></td>
+											<td><figure><?= $this->Html->image('../files/platillo/foto/'.$platillo['Platillo']['foto_dir'].'/'.'thumb_'.$platillo['Platillo']['foto']); ?></figure></td>
 											<?php } ?>
 											<td>$ <?= number_format($platillo['Platillo']['precio'], 2, '.', ','); ?></td>
 											<td>

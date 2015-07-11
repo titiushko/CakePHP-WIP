@@ -45,7 +45,7 @@ $this->Paginator->options(array(
 								<div class="col-lg-12">
 									<figure class="platillo margen-inferior">
 										<?php if (empty($platillo['Platillo']['foto'])) { ?>
-										<?= $this->Html->image('../img/plato_vacio/thumb_plato_vacio.jpg'); ?>
+										<figure><?= $this->Html->image('../img/plato_vacio/thumb_plato_vacio.jpg'); ?></figure>
 										<?php } else { ?>
 										<?= $this->Html->link($this->Html->image('../files/platillo/foto/'.$platillo['Platillo']['foto_dir'].'/'.'thumb_'.$platillo['Platillo']['foto']), array('controller' => 'platillos', 'action' => 'ver', $platillo['Platillo']['id']), array('escape' => FALSE)); ?>
 										<?php } ?>
