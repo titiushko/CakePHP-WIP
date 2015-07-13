@@ -9,7 +9,7 @@ $(document).ready(function() {
 			},
 			dataType: 'html',
 			success: function(resultado) {
-				$('#mensaje').html('<div class="alert alert-success flash-mensaje">Platillo agregado al pedido.</div>');
+				$('#mensaje').html('<div class="alert alert-success flash-mensaje">Pedido agregado a la orden.</div>');
 				$('.flash-mensaje').delay(2000).fadeOut('slow');
 			},
 			error: function(){

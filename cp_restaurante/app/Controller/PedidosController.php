@@ -9,9 +9,7 @@ class PedidosController extends AppController {
 		if ($this->request->is('ajax')) {
 			$platillo_id = $this->request->data['id'];
 			$cantidad = $this->request->data['cantidad'];
-			
-			$precio = $this->Pedido->Platillo->find('all', array('fields' => array('Platillo.precio'), 'conditions' => array('Platillo.id' => $platillo_id)))[0]['Platillo']['precio'];
-			$subtotal = $cantidad * $precio;
+			$subtotal = $cantidad * $this->Pedido->Platillo->precio_platillo($platillo_id);
 			
 			$pedido = $this->Pedido->find('all', array('fields' => array('Pedido.platillo_id'), 'conditions' => array('Pedido.platillo_id' => $platillo_id)));
 			if (count($pedido) == 0) $this->Pedido->save(array('platillo_id' => $platillo_id, 'cantidad' => $cantidad, 'subtotal' => $subtotal));
@@ -23,35 +21,52 @@ class PedidosController extends AppController {
 	public function index() {
 		$pedidos = $this->Pedido->find('all');
 		if (count($pedidos) == 0) {
-			$this->Session->setFlash(__('No se han agregado platillos a la orden.'), 'default', array('class' => 'alert alert-success'));
+			$this->Session->setFlash(__('No se han agregado pedidos a la orden.'), 'default', array('class' => 'alert alert-success'));
 			return $this->redirect(array('controller' => 'platillos', 'action' => 'index'));
 		}
 		else {
-			$this->set(array('pedidos' => $pedidos, 'total_orden' => $this->Pedido->find('all', array('fields' => array('SUM(Pedido.subtotal) subtotal')))[0][0]['subtotal']));
+			$this->set(array('pedidos' => $pedidos, 'total_orden' => $this->Pedido->total_orden()));
 		}
 	}
 	
-	public function actualizar_orden() {
+	public function actualizar_pedido() {
 		if ($this->request->is('ajax')) {
 			$pedido_id = $this->request->data['id'];
 			$cantidad = isset($this->request->data['cantidad']) ? $this->request->data['cantidad'] : NULL;
 			if ($cantidad == 0) $cantidad = 1;
-			
-			$precio = $this->Pedido->find('all', array('fields' => array('Platillo.precio'), 'conditions' => array('Pedido.id' => $pedido_id)))[0]['Platillo']['precio'];
-			$subtotal = $cantidad * $precio;
+			$subtotal = $cantidad * $this->Pedido->precio_platillo($pedido_id);
 			
 			$this->Pedido->saveAll(array('id' => $pedido_id, 'cantidad' => $cantidad, 'subtotal' => $subtotal));
 			
-			$total_orden = $this->Pedido->find('all', array('fields' => array('SUM(Pedido.subtotal) subtotal')))[0][0]['subtotal'];
-			$pedido = $this->Pedido->find('all', array('fields' => array('Pedido.id', 'Pedido.subtotal'), 'conditions' => array('Pedido.id' => $pedido_id)));
-			
-			$orden = array(
-				'id' => $pedido[0]['Pedido']['id'],
-				'subtotal' => $pedido[0]['Pedido']['subtotal'],
-				'total_orden' => $total_orden
+			$pedido = array(
+				'id' => $pedido_id,
+				'subtotal' => number_format($subtotal, 2, '.', ','),
+				'total_orden' => number_format($this->Pedido->total_orden(), 2, '.', ',')
 			);
-			echo json_encode(compact('orden'));
+			echo json_encode(compact('pedido'));
 			$this->autoRender = FALSE;
 		}
+	}
+	
+	public function eliminar_pedido() {
+		if ($this->request->is('ajax')) {
+			$pedido_id = $this->request->data['id'];
+			
+			$this->Pedido->delete($pedido_id);
+			
+			$total_orden = $this->Pedido->total_orden();
+			if (count($total_orden) == 0) $total_orden = '0';
+			
+			$pedidos = $this->Pedido->find('all');
+			
+			echo json_encode(compact('pedidos', 'total_orden'));
+			$this->autoRender = FALSE;
+		}
+	}
+	
+	public function eliminar_pedidos() {
+		if ($this->Pedido->deleteAll(TRUE, FALSE)) $this->Session->setFlash(__('Se eliminaron todos los pedidos de la orden.'), 'default', array('class' => 'alert alert-success'));
+		else $this->Session->setFlash(__('No se pudieron eliminar todos los pedidos de la orden.'), 'default', array('class' => 'alert alert-danger'));
+		return $this->redirect(array('controller' => 'platillos', 'action' => 'index'));
 	}
 }

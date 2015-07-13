@@ -1,7 +1,7 @@
 <?= $this->Html->script(array('carrito', 'jquery.animate-colors-min'), array('inline' => FALSE)); ?>
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="well page-header"><i class="fa fa-cutlery"></i> Módulo de Pedidos</h1>
+		<h1 class="well page-header"><i class="fa fa-shopping-cart"></i> Módulo de Pedidos</h1>
 	</div>
 </div>
 <div class="row">
@@ -54,13 +54,18 @@
 							<div class="col-md-1"><?= $this->Form->input($platillo['Pedido']['id'], array('value' => $platillo['Pedido']['cantidad'], 'label' => FALSE, 'div' => FALSE, 'class' => 'cantidad form-control input-small', 'type' => 'number', 'size' => 2, 'minlenght' => 1, 'maxlenght' => 2, 'indice-tabulador' => $indice_tabulador++, 'cantidad-id' => $platillo['Pedido']['id'])); ?></div>
 							<div class="col-md-1" id="subtotal-<?= $platillo['Pedido']['id']; ?>">$ <?= number_format($platillo['Pedido']['subtotal'], 2, '.', ','); ?></div>
 							<div class="col-md-1">
-								<?= $this->Html->link(__('<i class="fa fa-trash"></i>'), '#', array('class' => 'btn btn-default', 'escape' => FALSE, 'title' => __('¿Eliminar platillo %s', $platillo['Platillo']['nombre']), 'escapeTitle' => FALSE, 'id' => $platillo['Pedido']['id'])); ?>
+								<?= $this->Html->link(__('<i class="fa fa-trash"></i>'), '#', array('class' => 'btn btn-default eliminar', 'escape' => FALSE, 'title' => __('¿Eliminar pedido de %s?', $platillo['Platillo']['nombre']), 'escapeTitle' => FALSE, 'id' => $platillo['Pedido']['id'])); ?>
 							</div>
 						</div>
 						<?php
 						endforeach;
 						}
 						?>
+						<div class="row">
+							<div class="col-sm-12 text-right">
+								<?= $this->Html->link(__('Quitar Pedidos'), array('controller' => 'pedidos', 'action' => 'eliminar_pedidos'), array('class' => 'btn btn-danger', 'escape' => FALSE, 'confirm' => __('¿Eliminar todos los pedidos de la orden?'))); ?>
+							</div>
+						</div>
 						<hr style="border-color: #000000;">
 						<div class="row">
 							<div class="col-sm-12">

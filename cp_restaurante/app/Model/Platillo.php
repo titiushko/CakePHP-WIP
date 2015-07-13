@@ -125,4 +125,8 @@ class Platillo extends AppModel {
 			'depend' => FALSE
 		)
 	);
+	
+	public function precio_platillo($platillo_id) {
+		return $this->find('all', array('fields' => array('Platillo.precio'), 'conditions' => array('Platillo.id' => $platillo_id)))[0]['Platillo']['precio'];
+	}
 }
