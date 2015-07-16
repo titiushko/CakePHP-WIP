@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	$('.cantidad').on('keyup change', function(event) {
-		if ($(this).val() == 0) $(this).val(1);
+		var cantidad = $(this).val() == 0 ? 1 : $(this).val();
+		if (cantidad < 0) { $(this).val(cantidad * -1); actualizar_pedido($(this).attr('cantidad-id'), Math.round(cantidad * -1)); }
 		else actualizar_pedido($(this).attr('cantidad-id'), Math.round($(this).val()));
 	});
 	
@@ -14,6 +15,7 @@ $(document).ready(function() {
 			},
 			dataType: 'json',
 			success: function(resultado) {
+				$('#' + p_id).val(resultado.pedido.cantidad);
 				if ($('#subtotal-' + resultado.pedido.id).html() != resultado.pedido.subtotal) {
 					$('#subtotal-' + resultado.pedido.id).html('$ ' + resultado.pedido.subtotal).animate({backgroundColor: '#ff8'}, 200).animate({backgroundColor: '#fff'});
 				}

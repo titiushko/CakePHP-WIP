@@ -32,14 +32,15 @@ class PedidosController extends AppController {
 	public function actualizar_pedido() {
 		if ($this->request->is('ajax')) {
 			$pedido_id = $this->request->data['id'];
-			$cantidad = isset($this->request->data['cantidad']) ? $this->request->data['cantidad'] : NULL;
-			if ($cantidad == 0) $cantidad = 1;
+			$cantidad = isset($this->request->data['cantidad']) ? preg_replace('/[^1-9]/', '', $this->request->data['cantidad']) : NULL;
+			if ($cantidad == 0 || $cantidad == '') $cantidad = 1;
 			$subtotal = $cantidad * $this->Pedido->precio_platillo($pedido_id);
 			
 			$this->Pedido->saveAll(array('id' => $pedido_id, 'cantidad' => $cantidad, 'subtotal' => $subtotal));
 			
 			$pedido = array(
 				'id' => $pedido_id,
+				'cantidad' => ''.$cantidad.'',
 				'subtotal' => number_format($subtotal, 2, '.', ','),
 				'total_orden' => number_format($this->Pedido->total_orden(), 2, '.', ',')
 			);

@@ -59,6 +59,8 @@ class PlatillosController extends AppController {
 			$this->Platillo->id = $id;
 			if ($this->Platillo->save($this->request->data)) {
 				$platillo = $this->Platillo->findById($id);
+				$this->loadModel('Pedido');
+				$this->Pedido->updateAll(array('Pedido.subtotal' =>'Pedido.cantidad * '.$platillo['Platillo']['precio']), array('Pedido.platillo_id' => $id));
 				$this->Session->setFlash(__('Se actualizó platillo %s.', $platillo['Platillo']['nombre']), 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'index'));
 			}
@@ -86,6 +88,8 @@ class PlatillosController extends AppController {
 		}
 		
 		if ($this->Platillo->delete($id)) {
+			$this->loadModel('Pedido');
+			$this->Pedido->deleteAll(array('Pedido.platillo_id' => $id));
 			$this->Session->setFlash(__('Se eliminadó platillo %s.', $platillo['Platillo']['nombre']), 'default', array('class' => 'alert alert-success'));
 			return $this->redirect(array('action' => 'index'));
 		}
