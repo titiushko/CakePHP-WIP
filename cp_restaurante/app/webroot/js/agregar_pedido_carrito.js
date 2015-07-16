@@ -13,7 +13,7 @@ $(document).ready(function() {
 				$('.flash-mensaje').delay(2000).fadeOut('slow');
 			},
 			error: function(){
-				alert('¡Error!');
+				alert('Â¡Error!');
 			}
 		});
 		return false;

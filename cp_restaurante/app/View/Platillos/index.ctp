@@ -38,7 +38,7 @@ $this->Paginator->options(array(
 							</div>
 						</div>
 					</div>
-					<div class="row">
+					<div class="row text-center">
 						<?php foreach ($platillos as $platillo): ?>
 						<div class="col-lg-3">
 							<div class="row">

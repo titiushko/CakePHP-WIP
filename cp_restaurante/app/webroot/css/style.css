@@ -24,7 +24,7 @@ body {
  }
  
 .flash-mensaje {
-	position: absolute;
+	position: fixed;
 	top: 55px;
 	right: 10px;
 	z-index: 10000;
@@ -32,4 +32,8 @@ body {
 
 .imagen-pedidos {
     height: 60px;
+}
+
+div.nav.navbar-nav.navbar-right>.btn.btn-success.navbar-btn {
+	margin-left: 10px;
 }

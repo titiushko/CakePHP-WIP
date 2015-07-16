@@ -47,11 +47,9 @@ $etiqueta = array('label' => array('class' => $control_label));
 								<?= $this->Form->input('categoria_platillo_id', array('label' => array('text' => 'Categoría', 'class' => $control_label))); ?>
 								<?= $this->Form->input('Cocinero', $etiqueta); ?>
 								<div class="form-group">
-									<div class="col-lg-6 text-right submit">
-										<?= $this->Form->button(__('<i class="fa fa-save"></i> Guardar'), array('type' => 'submit', 'class' => 'btn btn-primary', 'escape' => FALSE)); ?>
-									</div>
-									<div class="col-lg-6 text-left">
-										<?= $this->Html->link(__('<i class="fa fa-times-circle"></i> Cancelar'), array('controller' => 'platillos', 'action' => 'ver', $platillo['Platillo']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
+									<div class="col-lg-12 text-center">
+										<span class="submit"><?= $this->Form->button(__('<i class="fa fa-save"></i> Guardar'), array('type' => 'submit', 'class' => 'btn btn-primary', 'escape' => FALSE)); ?></span>
+										<?= $this->Html->link(__('<i class="fa fa-times-circle"></i> Cancelar'), array('controller' => 'platillos', 'action' => 'ver', $platillo['Platillo']['id']), array('class' => 'btn btn-default', 'escape' => FALSE)); ?>
 									</div>
 								</div>
 							</div>
@@ -60,7 +58,7 @@ $etiqueta = array('label' => array('class' => $control_label));
 				</div>
 				<div class="row"><div class="col-lg-12">&nbsp;</div></div>
 				<div class="row">
-					<div class="col-lg-12">
+					<div class="col-lg-12 table-responsive">
 						<fieldset>
 							<legend>Cocineros Encargados</legend>
 							<?php if (empty($platillo['Cocinero'])) { ?>
@@ -84,9 +82,9 @@ $etiqueta = array('label' => array('class' => $control_label));
 										<td><?= $this->Time->format('d/m/Y h:i A', $cocinero['created']); ?></td>
 										<td><?= $this->Time->format('d/m/Y h:i A', $cocinero['modified']); ?></td>
 										<td>
-											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i> Ver'), array('controller' => 'cocineros', 'action' => 'ver', $cocinero['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
-											<?= $this->Html->link(__('<i class="fa fa-pencil"></i> Editar'), array('controller' => 'cocineros', 'action' => 'editar', $cocinero['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
-											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i> Eliminar'), array('controller' => 'cocineros', 'action' => 'eliminar', $cocinero['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'confirm' =>  __('¿Eliminar a %s?', $cocinero['nombre_completo']))); ?>
+											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i>'), array('controller' => 'cocineros', 'action' => 'ver', $cocinero['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Ver')); ?>
+											<?= $this->Html->link(__('<i class="fa fa-pencil"></i>'), array('controller' => 'cocineros', 'action' => 'editar', $cocinero['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Editar')); ?>
+											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i>'), array('controller' => 'cocineros', 'action' => 'eliminar', $cocinero['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Eliminar', 'confirm' =>  __('¿Eliminar a %s?', $cocinero['nombre_completo']))); ?>
 										</td>
 									</tr>
 									<?php endforeach; ?>

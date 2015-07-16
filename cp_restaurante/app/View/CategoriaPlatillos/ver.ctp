@@ -30,14 +30,10 @@ $this->Paginator->options(array(
 									</div>
 								</div>
 								<div class="form-group">
-									<div class="col-lg-4 text-right">
+									<div class="col-lg-12 text-center">
 										<?= $this->Html->link(__('<i class="fa fa-pencil"></i> Editar'), array('controller' => 'categoria_platillos', 'action' => 'editar', $categoria['id']), array('class' => 'btn btn-primary', 'escape' => FALSE)); ?>
-									</div>
-									<div class="col-lg-4 text-center">
 										<?= $this->Form->postLink(__('<i class="fa fa-trash"></i> Eliminar'), array('controller' => 'categoria_platillos', 'action' => 'eliminar', $categoria['id']), array('class' => 'btn btn-danger', 'escape' => FALSE, 'confirm' => __('¿Eliminar a %s?', $categoria['nombre']))); ?>
-									</div>
-									<div class="col-lg-4 text-left">
-										<?= $this->Html->link(__('<i class="fa fa-times-circle"></i> Cancelar'), array('controller' => 'categoria_platillos', 'action' => 'index'), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
+										<?= $this->Html->link(__('<i class="fa fa-times-circle"></i> Cancelar'), array('controller' => 'categoria_platillos', 'action' => 'index'), array('class' => 'btn btn-default', 'escape' => FALSE)); ?>
 									</div>
 								</div>
 							</fieldset>
@@ -46,7 +42,7 @@ $this->Paginator->options(array(
 					</div>
 					<div class="row"><div class="col-lg-12">&nbsp;</div></div>
 					<div class="row">
-						<div class="col-lg-12">
+						<div class="col-lg-12 table-responsive">
 							<fieldset>
 								<legend>Platillos Asociados</legend>
 								<?php if (empty($platillos)) { ?>
@@ -72,9 +68,9 @@ $this->Paginator->options(array(
 											<?php } ?>
 											<td>$ <?= number_format($platillo['Platillo']['precio'], 2, '.', ','); ?></td>
 											<td>
-												<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i> Ver'), array('controller' => 'platillos', 'action' => 'ver', $platillo['Platillo']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
-												<?= $this->Html->link(__('<i class="fa fa-pencil"></i> Editar'), array('controller' => 'platillos', 'action' => 'editar', $platillo['Platillo']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
-												<?= $this->Form->postLink(__('<i class="fa fa-trash"></i> Eliminar'), array('controller' => 'platillos', 'action' => 'eliminar', $platillo['Platillo']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'confirm' => __('¿Eliminar platillo %s?', $platillo['Platillo']['nombre']))); ?>
+												<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i>'), array('controller' => 'platillos', 'action' => 'ver', $platillo['Platillo']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Ver')); ?>
+												<?= $this->Html->link(__('<i class="fa fa-pencil"></i>'), array('controller' => 'platillos', 'action' => 'editar', $platillo['Platillo']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Editar')); ?>
+												<?= $this->Form->postLink(__('<i class="fa fa-trash"></i>'), array('controller' => 'platillos', 'action' => 'eliminar', $platillo['Platillo']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Eliminar', 'confirm' => __('¿Eliminar platillo %s?', $platillo['Platillo']['nombre']))); ?>
 											</td>
 										</tr>
 										<?php endforeach; ?>

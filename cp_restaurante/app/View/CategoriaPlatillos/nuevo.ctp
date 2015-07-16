@@ -38,11 +38,9 @@ $etiqueta = array('label' => array('class' => $control_label));
 							<legend>Categoría</legend>
 							<?= $this->Form->input('categoria', array('label' => array('text' => 'Nombre', 'class' => $control_label))); ?>
 							<div class="form-group">
-								<div class="col-lg-6 text-right submit">
-									<?= $this->Form->button(__('<i class="fa fa-save"></i> Guardar'), array('type' => 'submit', 'class' => 'btn btn-primary', 'escape' => FALSE)); ?>
-								</div>
-								<div class="col-lg-6 text-left">
-									<?= $this->Html->link(__('<i class="fa fa-times-circle"></i> Cancelar'), array('controller' => 'categoria_platillos', 'action' => 'index'), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
+								<div class="col-lg-12 text-center">
+									<span class="submit"><?= $this->Form->button(__('<i class="fa fa-save"></i> Guardar'), array('type' => 'submit', 'class' => 'btn btn-primary', 'escape' => FALSE)); ?></span>
+									<?= $this->Html->link(__('<i class="fa fa-times-circle"></i> Cancelar'), array('controller' => 'categoria_platillos', 'action' => 'index'), array('class' => 'btn btn-default', 'escape' => FALSE)); ?>
 								</div>
 							</div>
 						</fieldset>

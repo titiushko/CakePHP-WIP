@@ -47,11 +47,9 @@ $etiqueta = array('label' => array('class' => $control_label));
 								<?= $this->Form->input('categoria_platillo_id', array('label' => array('text' => 'Categoría', 'class' => $control_label))); ?>
 								<?= $this->Form->input('Cocinero', $etiqueta); ?>
 								<div class="form-group">
-									<div class="col-lg-6 text-right submit">
-										<?= $this->Form->button(__('<i class="fa fa-save"></i> Guardar'), array('type' => 'submit', 'class' => 'btn btn-primary', 'escape' => FALSE)); ?>
-									</div>
-									<div class="col-lg-6 text-left">
-										<?= $this->Html->link(__('<i class="fa fa-times-circle"></i> Cancelar'), array('controller' => 'platillos', 'action' => 'index'), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
+									<div class="col-lg-12 text-center">
+										<span class="submit"><?= $this->Form->button(__('<i class="fa fa-save"></i> Guardar'), array('type' => 'submit', 'class' => 'btn btn-primary', 'escape' => FALSE)); ?></span>
+										<?= $this->Html->link(__('<i class="fa fa-times-circle"></i> Cancelar'), array('controller' => 'platillos', 'action' => 'index'), array('class' => 'btn btn-default', 'escape' => FALSE)); ?>
 									</div>
 								</div>
 							</div>

@@ -40,14 +40,10 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<div class="col-lg-4 text-right">
+								<div class="col-lg-12 text-center">
 									<?= $this->Html->link(__('<i class="fa fa-pencil"></i> Editar'), array('controller' => 'meseros', 'action' => 'editar', $mesero['Mesero']['id']), array('class' => 'btn btn-primary', 'escape' => FALSE)); ?>
-								</div>
-								<div class="col-lg-4 text-center">
 									<?= $this->Form->postLink(__('<i class="fa fa-trash"></i> Eliminar'), array('controller' => 'meseros', 'action' => 'eliminar', $mesero['Mesero']['id']), array('class' => 'btn btn-danger', 'escape' => FALSE, 'confirm' => __('¿Eliminar a %s?', $mesero['Mesero']['nombre_completo']))); ?>
-								</div>
-								<div class="col-lg-4 text-left">
-									<?= $this->Html->link(__('<i class="fa fa-times-circle"></i> Cancelar'), array('controller' => 'meseros', 'action' => 'index'), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
+									<?= $this->Html->link(__('<i class="fa fa-times-circle"></i> Cancelar'), array('controller' => 'meseros', 'action' => 'index'), array('class' => 'btn btn-default', 'escape' => FALSE)); ?>
 								</div>
 							</div>
 						</fieldset>
@@ -56,7 +52,7 @@
 				</div>
 				<div class="row"><div class="col-lg-12">&nbsp;</div></div>
 				<div class="row">
-					<div class="col-lg-12">
+					<div class="col-lg-12 table-responsive">
 						<fieldset>
 							<legend>Encargado de las Mesas</legend>
 							<?php if (empty($mesero['Mesa'])) { ?>
@@ -82,9 +78,9 @@
 										<td><?= $this->Time->format('d/m/Y h:i A', $mesa['created']); ?></td>
 										<td><?= $this->Time->format('d/m/Y h:i A', $mesa['modified']); ?></td>
 										<td>
-											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i> Ver'), array('controller' => 'mesas', 'action' => 'ver', $mesa['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
-											<?= $this->Html->link(__('<i class="fa fa-pencil"></i> Editar'), array('controller' => 'mesas', 'action' => 'editar', $mesa['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
-											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i> Eliminar'), array('controller' => 'mesas', 'action' => 'eliminar', $mesa['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'confirm' => __('¿Eliminar mesa %s?', $mesa['serie']))); ?>
+											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i>'), array('controller' => 'mesas', 'action' => 'ver', $mesa['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Ver')); ?>
+											<?= $this->Html->link(__('<i class="fa fa-pencil"></i>'), array('controller' => 'mesas', 'action' => 'editar', $mesa['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Editar')); ?>
+											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i>'), array('controller' => 'mesas', 'action' => 'eliminar', $mesa['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Eliminar', 'confirm' => __('¿Eliminar mesa %s?', $mesa['serie']))); ?>
 										</td>
 									</tr>
 									<?php endforeach; ?>

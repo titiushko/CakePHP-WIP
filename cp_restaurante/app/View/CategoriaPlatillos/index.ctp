@@ -52,9 +52,9 @@ $this->Paginator->options(array(
 									<tr>
 										<td><?= h($categoria_platillo['CategoriaPlatillo']['categoria']); ?></td>
 										<td>
-											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i> Ver'), array('controller' => 'categoria_platillos', 'action' => 'ver', $categoria_platillo['CategoriaPlatillo']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
-											<?= $this->Html->link(__('<i class="fa fa-pencil"></i> Editar'), array('controller' => 'categoria_platillos', 'action' => 'editar', $categoria_platillo['CategoriaPlatillo']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
-											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i> Eliminar'), array('controller' => 'categoria_platillos', 'action' => 'eliminar', $categoria_platillo['CategoriaPlatillo']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'confirm' => __('¿Eliminar a %s?', $categoria_platillo['CategoriaPlatillo']['categoria']))); ?>
+											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i>'), array('controller' => 'categoria_platillos', 'action' => 'ver', $categoria_platillo['CategoriaPlatillo']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Ver')); ?>
+											<?= $this->Html->link(__('<i class="fa fa-pencil"></i>'), array('controller' => 'categoria_platillos', 'action' => 'editar', $categoria_platillo['CategoriaPlatillo']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Editar')); ?>
+											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i>'), array('controller' => 'categoria_platillos', 'action' => 'eliminar', $categoria_platillo['CategoriaPlatillo']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Eliminar', 'confirm' => __('¿Eliminar a %s?', $categoria_platillo['CategoriaPlatillo']['categoria']))); ?>
 										</td>
 									</tr>
 									<?php endforeach; ?>

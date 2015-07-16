@@ -58,9 +58,9 @@ $this->Paginator->options(array(
 										<td><?= $this->Time->format('d/m/Y h:i A', $cocinero['Cocinero']['created']); ?></td>
 										<td><?= $this->Time->format('d/m/Y h:i A', $cocinero['Cocinero']['modified']); ?></td>
 										<td>
-											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i> Ver'), array('controller' => 'cocineros', 'action' => 'ver', $cocinero['Cocinero']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
-											<?= $this->Html->link(__('<i class="fa fa-pencil"></i> Editar'), array('controller' => 'cocineros', 'action' => 'editar', $cocinero['Cocinero']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
-											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i> Eliminar'), array('controller' => 'cocineros', 'action' => 'eliminar', $cocinero['Cocinero']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'confirm' => __('¿Eliminar a %s?', $cocinero['Cocinero']['nombre_completo']))); ?>
+											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i>'), array('controller' => 'cocineros', 'action' => 'ver', $cocinero['Cocinero']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Ver')); ?>
+											<?= $this->Html->link(__('<i class="fa fa-pencil"></i>'), array('controller' => 'cocineros', 'action' => 'editar', $cocinero['Cocinero']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Editar')); ?>
+											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i>'), array('controller' => 'cocineros', 'action' => 'eliminar', $cocinero['Cocinero']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Eliminar', 'confirm' => __('¿Eliminar a %s?', $cocinero['Cocinero']['nombre_completo']))); ?>
 										</td>
 									</tr>
 									<?php endforeach; ?>

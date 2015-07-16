@@ -15,12 +15,21 @@
  */
 
 $cakeDescription = __d('cake_dev', 'Restaurante');
-$cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version())
+$cakeVersion = __d('cake_dev', 'CakePHP %s', Configure::version());
+$this->Html->docType('html5');
 ?>
-<!DOCTYPE html>
 <html>
 <head>
-	<?= $this->Html->charset(); ?>
+	<?php
+	echo $this->Html->meta(array('name' => 'robots', 'content' => 'no-cache'));
+	echo $this->Html->meta(array('name' => 'description', 'content' => 'Práctica de CakePHP: Desarrollando una aplicación completa de restaurante.'));
+	echo $this->Html->meta(array('name' => 'keywords', 'content' => 'cakephp, restaurante, práctica, aplicación'));
+	echo $this->Html->meta(array('name' => 'X-UA-Compatible', 'content' => 'IE=edge', 'type' => 'equiv'));
+	echo $this->Html->meta(array('name' => 'viewport', 'content' => 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'));
+	echo $this->Html->meta(array('name' => 'Content-type', 'content' => 'text/html; charset=utf-8', 'type' => 'equiv'));
+	echo $this->Html->meta(array('name' => 'expires', 'content' => '0', 'type' => 'equiv'));
+	echo $this->Html->meta(array('name' => 'pragma', 'content' => 'no-cache', 'type' => 'equiv'));
+	?>
 	<title>
 		<?= $cakeDescription ?>:
 		<?= $this->fetch('title'); ?>

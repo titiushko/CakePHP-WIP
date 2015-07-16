@@ -13,7 +13,7 @@
 			<div class="panel-body">
 				<div class="row">
 					<div class="form-horizontal">
-						<div class="col-lg-7 text-center">
+						<div class="col-lg-7 text-center table-responsive">
 							<?php if (empty($platillo['Platillo']['foto'])) { ?>
 							<figure><?= $this->Html->image('../img/plato_vacio/thumb_plato_vacio.jpg'); ?></figure>
 							<?php } else { ?>
@@ -46,14 +46,10 @@
 								</div>
 							</div>
 							<div class="row">
-								<div class="col-lg-4 text-right">
+								<div class="col-lg-12 text-center">
 									<?= $this->Html->link(__('<i class="fa fa-pencil"></i> Editar'), array('controller' => 'platillos', 'action' => 'editar', $platillo['Platillo']['id']), array('class' => 'btn btn-primary', 'escape' => FALSE)); ?>
-								</div>
-								<div class="col-lg-4 text-center">
 									<?= $this->Form->postLink(__('<i class="fa fa-trash"></i> Eliminar'), array('controller' => 'platillos', 'action' => 'eliminar', $platillo['Platillo']['id']), array('class' => 'btn btn-danger', 'escape' => FALSE, 'confirm' => __('¿Eliminar %s?', $platillo['Platillo']['nombre']))); ?>
-								</div>
-								<div class="col-lg-4 text-left">
-									<?= $this->Html->link(__('<i class="fa fa-times-circle"></i> Cancelar'), array('controller' => 'platillos', 'action' => 'index'), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
+									<?= $this->Html->link(__('<i class="fa fa-times-circle"></i> Cancelar'), array('controller' => 'platillos', 'action' => 'index'), array('class' => 'btn btn-default', 'escape' => FALSE)); ?>
 								</div>
 							</div>
 							<div class="row margen-superior">
@@ -66,7 +62,7 @@
 				</div>
 				<div class="row"><div class="col-lg-12">&nbsp;</div></div>
 				<div class="row">
-					<div class="col-lg-12">
+					<div class="col-lg-12 table-responsive">
 						<fieldset>
 							<legend>Cocineros Encargados</legend>
 							<?php if (empty($platillo['Cocinero'])) { ?>
@@ -90,9 +86,9 @@
 										<td><?= $this->Time->format('d/m/Y h:i A', $cocinero['created']); ?></td>
 										<td><?= $this->Time->format('d/m/Y h:i A', $cocinero['modified']); ?></td>
 										<td>
-											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i> Ver'), array('controller' => 'cocineros', 'action' => 'ver', $cocinero['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
-											<?= $this->Html->link(__('<i class="fa fa-pencil"></i> Editar'), array('controller' => 'cocineros', 'action' => 'editar', $cocinero['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
-											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i> Eliminar'), array('controller' => 'cocineros', 'action' => 'eliminar', $cocinero['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'confirm' =>  __('¿Eliminar a %s?', $cocinero['nombre_completo']))); ?>
+											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i>'), array('controller' => 'cocineros', 'action' => 'ver', $cocinero['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Ver')); ?>
+											<?= $this->Html->link(__('<i class="fa fa-pencil"></i>'), array('controller' => 'cocineros', 'action' => 'editar', $cocinero['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Editar')); ?>
+											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i>'), array('controller' => 'cocineros', 'action' => 'eliminar', $cocinero['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Eliminar', 'confirm' =>  __('¿Eliminar a %s?', $cocinero['nombre_completo']))); ?>
 										</td>
 									</tr>
 									<?php endforeach; ?>

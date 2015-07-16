@@ -39,7 +39,7 @@ $this->Paginator->options(array(
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-lg-12">
+						<div class="col-lg-12 table-responsive">
 							<table class="table table-striped table-bordered table-hover">
 								<thead>
 									<tr>
@@ -62,9 +62,9 @@ $this->Paginator->options(array(
 										<td><?= $this->Time->format('d/m/Y h:i A', $mesa['Mesa']['modified']); ?></td>
 										<td><?= $this->Html->link(__('%s', $mesa['Mesero']['nombre_completo']), array('controller' => 'meseros', 'action' => 'ver', $mesa['Mesero']['id'])) ?></td>
 										<td>
-											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i> Ver'), array('controller' => 'mesas', 'action' => 'ver', $mesa['Mesa']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
-											<?= $this->Html->link(__('<i class="fa fa-pencil"></i> Editar'), array('controller' => 'mesas', 'action' => 'editar', $mesa['Mesa']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE)); ?>
-											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i> Eliminar'), array('controller' => 'mesas', 'action' => 'eliminar', $mesa['Mesa']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'confirm' => __('¿Eliminar mesa %s?', $mesa['Mesa']['serie']))); ?>
+											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i>'), array('controller' => 'mesas', 'action' => 'ver', $mesa['Mesa']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Ver')); ?>
+											<?= $this->Html->link(__('<i class="fa fa-pencil"></i>'), array('controller' => 'mesas', 'action' => 'editar', $mesa['Mesa']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Editar')); ?>
+											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i>'), array('controller' => 'mesas', 'action' => 'eliminar', $mesa['Mesa']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Eliminar', 'confirm' => __('¿Eliminar mesa %s?', $mesa['Mesa']['serie']))); ?>
 										</td>
 									</tr>
 									<?php endforeach; ?>

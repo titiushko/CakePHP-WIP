@@ -37,7 +37,7 @@
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cutlery"></i> Platillos <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li><?= $this->Html->link(__('<i class="fa fa-list-alt"></i> Lista Platillos'), array('controller' => 'platillos', 'action' => 'index'), array('escape' => FALSE)); ?></li>
-						<li><?= $this->Html->link(__('<i class="fa fa-plus-square"></i> Nueva Platillo'), array('controller' => 'platillos', 'action' => 'nuevo'), array('escape' => FALSE)); ?></li>
+						<li><?= $this->Html->link(__('<i class="fa fa-plus-square"></i> Nuevo Platillo'), array('controller' => 'platillos', 'action' => 'nuevo'), array('escape' => FALSE)); ?></li>
 						<li class="divider"></li>
 						<li class="dropdown-header">Categorías</li>
 						<li><?= $this->Html->link(__('<i class="fa fa-list-alt"></i> Lista Categorías'), array('controller' => 'categoria_platillos', 'action' => 'index'), array('escape' => FALSE)); ?></li>
