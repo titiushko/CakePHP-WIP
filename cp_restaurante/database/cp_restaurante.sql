@@ -74,6 +74,31 @@ CREATE TABLE IF NOT EXISTS pedidos(
 	CONSTRAINT fk_pedidos_platillos FOREIGN KEY(platillo_id) REFERENCES platillos(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
+DROP TABLE IF EXISTS ordenes;
+CREATE TABLE IF NOT EXISTS ordenes(
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	mesa_id INT(10) UNSIGNED NOT NULL,
+	total DECIMAL(6, 2) NOT NULL,
+	cliente VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+	dui VARCHAR(9) NOT NULL,
+	created DATETIME NULL DEFAULT NULL,
+	modified DATETIME NULL DEFAULT NULL,
+	CONSTRAINT fk_ordenes_mesas FOREIGN KEY(mesa_id) REFERENCES mesas(id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
+DROP TABLE IF EXISTS platillos_ordenes;
+CREATE TABLE IF NOT EXISTS platillos_ordenes(
+	id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	platillo_id INT(10) UNSIGNED NOT NULL,
+	orden_id INT(10) UNSIGNED NOT NULL,
+	cantidad INT(2) UNSIGNED NOT NULL,
+	subtotal DECIMAL(6, 2) NOT NULL,
+	created DATETIME NULL DEFAULT NULL,
+	modified DATETIME NULL DEFAULT NULL,
+	CONSTRAINT fk_platillos_ordenes_platillos FOREIGN KEY(platillo_id) REFERENCES platillos(id) ON DELETE CASCADE ON UPDATE CASCADE,
+	CONSTRAINT fk_platillos_ordenes_ordenes FOREIGN KEY(orden_id) REFERENCES ordenes(id) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
 -- ============================================================================================================================================================
 
 INSERT INTO meseros(dui, nombres, apellidos, telefono, created) VALUES
@@ -278,3 +303,21 @@ INSERT INTO cocineros_platillos(cocinero_id, platillo_id) VALUES
 (2, 9),
 (5, 20),
 (2, 8);
+
+INSERT INTO pedidos(platillo_id, cantidad, subtotal, created) VALUES
+(19, 3, '6.00', NOW()),
+(7, 2, '19.80', NOW()),
+(15, 2, '4.50', NOW());
+
+INSERT INTO ordenes( mesa_id, total, cliente, dui, created) VALUES
+(14, '22.30', 'Javier Galdámez', '326598741', NOW()),
+(41, '52.60', 'Tito Miguel', '124578301', NOW());
+
+INSERT INTO platillos_ordenes(platillo_id, orden_id, cantidad, subtotal, created) VALUES
+(16, 1, 1, '6.40', NOW()),
+(1, 1, 1, '7.50', NOW()),
+(6, 1, 1, '8.40', NOW()),
+(20, 2, 6, '10.50', NOW()),
+(5, 2, 3, '22.80', NOW()),
+(8, 2, 1, '5.80', NOW()),
+(3, 2, 2, '13.50', NOW());

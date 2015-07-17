@@ -27,7 +27,7 @@ class CategoriaPlatillo extends AppModel {
 			'foreignKey' => 'categoria_platillo_id',
 			'conditions' => '',
 			'order' => 'Platillo.precio DESC',
-			'depend' => FALSE
+			'dependent' => FALSE
 		)
 	);
 }

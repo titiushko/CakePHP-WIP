@@ -25,10 +25,10 @@
 							<thead>
 								<tr>
 									<th>Platillo</th>
-									<th><strong>Foto</th>
-									<th><strong>Precio</th>
-									<th><strong>Cantidad</th>
-									<th><strong>SubTotal</th>
+									<th>Foto</th>
+									<th>Precio</th>
+									<th>Cantidad</th>
+									<th>SubTotal</th>
 									<th>&nbsp;</th>
 								</tr>
 							</thead>
@@ -58,18 +58,23 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-sm-12 text-right">
-						<?= $this->Html->link(__('Quitar Pedidos'), array('controller' => 'pedidos', 'action' => 'eliminar_pedidos'), array('class' => 'btn btn-danger', 'escape' => FALSE, 'confirm' => __('¿Eliminar todos los pedidos de la orden?'))); ?>
+					<div class="col-lg-12 text-right">
+						<?= $this->Html->link(__('<i class="fa fa-trash-o"></i> Quitar Pedidos'), array('controller' => 'pedidos', 'action' => 'eliminar_pedidos'), array('class' => 'btn btn-danger', 'escape' => FALSE, 'confirm' => __('¿Eliminar todos los pedidos de la orden?'))); ?>
 					</div>
 				</div>
 				<hr style="border-color: #000000;">
 				<div class="row">
-					<div class="col-sm-12">
+					<div class="col-lg-12">
 						<h3 class="pull-right">
 							<strong>
 								Total Orden: <span id="total-orden">$ <?= number_format($total_orden, 2, '.', ','); ?></span>
 							</strong>
 						</h3>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12 text-right">
+						<?= $this->Html->link(__('<i class="fa fa-money"></i> Procesar Orden'), array('controller' => 'ordenes', 'action' => 'agregar'), array('class' => 'btn btn-success', 'escape' => FALSE)); ?>
 					</div>
 				</div>
 			</div>

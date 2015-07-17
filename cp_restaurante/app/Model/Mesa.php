@@ -4,13 +4,6 @@ App::uses('AppModel', 'Model');
 class Mesa extends AppModel {
 	public $displayField = 'serie';
 	
-	public $belongsTo = array(
-		'Mesero' => array(
-			'className' => 'Mesero',
-			'foreignKey' => 'mesero_id'
-		)
-	);
-	
 	public $validate = array(
 		'serie' => array(
 			'notEmpty' => array(
@@ -47,6 +40,21 @@ class Mesa extends AppModel {
 				'rule' => 'notEmpty',
 				'message' => 'Seleccionar un mesero.'
 			)
+		)
+	);
+	
+	public $belongsTo = array(
+		'Mesero' => array(
+			'className' => 'Mesero',
+			'foreignKey' => 'mesero_id'
+		)
+	);
+	
+	public $hasMany = array(
+		'Orden' => array(
+			'className' => 'Orden',
+			'foreignKey' => 'mesa_id',
+			'dependent' => FALSE
 		)
 	);
 }
