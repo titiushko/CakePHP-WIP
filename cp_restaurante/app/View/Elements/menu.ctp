@@ -44,6 +44,9 @@
 						<li><?= $this->Html->link(__('<i class="fa fa-plus-square"></i> Nueva Categoría'), array('controller' => 'categoria_platillos', 'action' => 'nuevo'), array('escape' => FALSE)); ?></li>
 					</ul>
 				</li>
+				<li class="dropdown <?= @$opcion_menu['ordenes']; ?>">
+					<?= $this->Html->link(__('<i class="fa fa-archive"></i> Ordenes'), array('controller' => 'ordenes', 'action' => 'index'), array('escape' => FALSE)); ?>
+				</li>
 			</ul>
 			<div class="nav navbar-nav navbar-right">
 				<?= $this->Html->link(__('<i class="fa fa-shopping-cart"></i> Pedidos'), array('controller' => 'pedidos', 'action' => 'index'), array('class' => 'btn btn-success navbar-btn', 'escape' => FALSE)); ?>

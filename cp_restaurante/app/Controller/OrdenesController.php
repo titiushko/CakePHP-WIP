@@ -2,15 +2,25 @@
 App::uses('AppController', 'Controller');
 
 class OrdenesController extends AppController {
-	public $helpers = array('Html', 'Form', 'Time');
+	public $uses = array('Orden', 'Pedido');
+	public $helpers = array('Html', 'Form', 'Time', 'Paginator', 'Js');
 	public $components = array('Session', 'RequestHandler');
+	public $paginate = array(
+		'limit' => 4,
+		'order' => array(
+			'Orden.id' => 'asc'
+		)
+	);
+	
+	public function index() {
+		$this->Orden->recursive = 0;
+		$this->set(array('ordenes' => $this->paginate(), 'opcion_menu' => array('ordenes' => 'active')));
+	}
 	
 	public function agregar() {
-		$this->loadModel('Pedido');
 		$pedidos = $this->Pedido->find('all', array('order' => 'Pedido.id ASC'));
 		if (count($pedidos) > 0) {
 			$total_orden = $this->Pedido->total_orden();
-			$this->loadModel('Orden');
 			$mesas = $this->Orden->Mesa->find('list', array('order' => 'Mesa.serie ASC'));
 			$this->set(compact('pedidos', 'total_orden', 'mesas'));
 		}
@@ -20,7 +30,6 @@ class OrdenesController extends AppController {
 		}
 		
 		if ($this->request->is('post')) {
-			$this->loadModel('Orden');
 			$this->Orden->create();
 			if ($this->Orden->save($this->request->data)) {
 				$orden_id = $this->Orden->id;
@@ -30,7 +39,6 @@ class OrdenesController extends AppController {
 					$subtotal = $pedidos[$i]['Pedido']['subtotal'];
 					$this->Orden->PlatillosOrden->saveAll(array('platillo_id' => $platillo_id, 'orden_id' => $orden_id, 'cantidad' => $cantidad, 'subtotal' => $subtotal));
 				}
-				$this->loadModel('Pedido');
 				$this->Pedido->deleteAll(TRUE, FALSE);
 				$this->Session->setFlash(__('Se procesó la orden.'), 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('controller' => 'platillos', 'action' => 'index'));
