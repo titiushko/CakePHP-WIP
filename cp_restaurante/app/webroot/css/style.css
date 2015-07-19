@@ -35,5 +35,9 @@ body {
 }
 
 div.nav.navbar-nav.navbar-right>.btn.btn-success.navbar-btn {
-	margin-left: 10px;
+	margin-left: 15px;
+}
+
+.ui-front {
+	z-index: 1000000000 !important;
 }

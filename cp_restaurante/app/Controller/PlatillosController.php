@@ -77,7 +77,7 @@ class PlatillosController extends AppController {
 		$this->set(array('categoriaPlatillos' => $this->Platillo->CategoriaPlatillo->find('list'), 'cocineros' => $this->Platillo->Cocinero->find('list', array('fields' => array('id', 'nombre_completo'))), 'opcion_menu' => array('platillos' => 'active')));
 	}
 	
-	function eliminar($id) {
+	public function eliminar($id) {
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException(__('Incorrecto.'));
 		}
@@ -92,6 +92,42 @@ class PlatillosController extends AppController {
 			$this->Pedido->deleteAll(array('Pedido.platillo_id' => $id));
 			$this->Session->setFlash(__('Se eliminadó platillo %s.', $platillo['Platillo']['nombre']), 'default', array('class' => 'alert alert-success'));
 			return $this->redirect(array('action' => 'index'));
+		}
+	}
+	
+	public function busqueda() {
+		$busqueda = NULL;
+		if (!empty($this->request->query['busqueda'])) {
+			$busqueda = $this->request->query['busqueda'];
+			$terminos_busqueda = explode(' ', trim($busqueda));
+			$terminos_busqueda = array_diff($terminos_busqueda, array(''));
+			foreach($terminos_busqueda as $termino) $filtro[] = array('Platillo.nombre LIKE' => '%'.$termino.'%');
+			$platillos = $this->Platillo->find('all', array('recursive' => -1, 'fields' => array('Platillo.id, Platillo.nombre, Platillo.foto, Platillo.foto_dir'), 'conditions' => $filtro, 'limit' => 10));
+		}
+		echo json_encode($platillos);
+		$this->autoRender = FALSE;
+	}
+	
+	public function buscar() {
+		$busqueda = NULL;
+		if ($this->request->is(array('post', 'put'))) {
+			$busqueda = $this->request->data['Platillo']['busqueda'];
+			$busqueda = preg_replace('/[^a-zA-ZñÑáéíóúÁÉÍÓÚ0-9 ]/', '', $busqueda);
+			$terminos_busqueda = explode(' ', trim($busqueda));
+			$terminos_busqueda = array_diff($terminos_busqueda, array(''));
+			$filtro = NULL;
+			foreach($terminos_busqueda as $termino) $filtro[] = array('Platillo.nombre LIKE' => '%'.$termino.'%');
+			$platillos = $this->Platillo->find('all', array('recursive' => 0, 'conditions' => $filtro, 'order' => array('Platillo.nombre' => 'asc'), 'limit' => 100));
+			if (count($platillos) == 1) return $this->redirect(array('action' => 'ver', $platillos[0]['Platillo']['id']));
+			$this->set(array('platillos' => $platillos, 'opcion_menu' => array('platillos' => 'active')));
+		}
+		$this->set(compact('busqueda'));
+		if ($this->request->is('ajax')) {
+			$this->layout = FALSE;
+			$this->set('ajax', TRUE);
+		}
+		else {
+			$this->set('ajax', FALSE);
 		}
 	}
 }
