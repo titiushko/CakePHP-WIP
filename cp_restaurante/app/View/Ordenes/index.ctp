@@ -8,7 +8,7 @@ $this->Paginator->options(array(
 <div id="contenedor-ordenes">
 	<div class="row">
 		<div class="col-lg-12">
-			<h1 class="well page-header"><i class="fa fa-coffee"></i> Módulo de Ordenes</h1>
+			<h1 class="well page-header"><i class="fa fa-coffee"></i> MÃ³dulo de Ordenes</h1>
 		</div>
 	</div>
 	<div class="row">
@@ -43,7 +43,7 @@ $this->Paginator->options(array(
 										<th><?= $this->Paginator->sort('total', 'Total'); ?></th>
 										<th><?= $this->Paginator->sort('created', 'Creado'); ?></th>
 										<th><?= $this->Paginator->sort('modified', 'Modificado'); ?></th>
-										<th>Acción</th>
+										<th>AcciÃ³n</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -66,13 +66,13 @@ $this->Paginator->options(array(
 					</div>
 					<div class="row">
 						<div class="col-lg-12">
-							<p><?= $this->Paginator->counter(array('format' => __('Página {:page} de {:pages}, mostrando {:current} registros de un total de {:count}, del {:start} al {:end}'))); ?></p>
+							<p><?= $this->Paginator->counter(array('format' => __('PÃ¡gina {:page} de {:pages}, mostrando {:current} registros de un total de {:count}, del {:start} al {:end}'))); ?></p>
 							<ul class="pagination">
 								<li><?= $this->Paginator->first(__('<< Primero'), array('tag' => FALSE), null, array('class' => 'first disabled')); ?></li>
 								<li><?= $this->Paginator->prev(__('< Anterior'), array('tag' => FALSE), null, array('class' => 'prev disabled')); ?></li>
 								<?= $this->Paginator->numbers(array('separator' => '', 'tag' => 'li', 'currentTag' => 'a', 'currentClass' => 'active', 'modulus' => 4)); ?>
 								<li><?= $this->Paginator->next(__('Siguiente >'), array('tag' => FALSE), null, array('class' => 'next disabled')); ?></li>
-								<li><?= $this->Paginator->last(__('?Último >>'), array('tag' => FALSE), null, array('class' => 'last disabled')); ?></li>
+								<li><?= $this->Paginator->last(__('Ãšltimo >>'), array('tag' => FALSE), null, array('class' => 'last disabled')); ?></li>
 							</ul>
 						</div>
 					</div>

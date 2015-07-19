@@ -45,7 +45,7 @@
 									<td><figure><?= $this->Html->image('../files/platillo/foto/'.$platillo['Platillo']['foto_dir'].'/'.'thumb_'.$platillo['Platillo']['foto'], array('class' => 'imagen-pedidos')); ?></figure></td>
 									<?php } ?>
 									<td id="precio-<?= $platillo['Pedido']['id']; ?>">$ <?= number_format($platillo['Platillo']['precio'], 2, '.', ','); ?></td>
-									<td><?= $this->Form->input($platillo['Pedido']['id'], array('value' => $platillo['Pedido']['cantidad'], 'label' => FALSE, 'div' => FALSE, 'class' => 'cantidad form-control', 'type' => 'number', 'size' => 2, 'minlenght' => 1, 'maxlenght' => 2, 'indice-tabulador' => $indice_tabulador++, 'cantidad-id' => $platillo['Pedido']['id'])); ?></td>
+									<td><?= $this->Form->input($platillo['Pedido']['id'], array('value' => $platillo['Pedido']['cantidad'], 'label' => FALSE, 'div' => FALSE, 'class' => 'cantidad form-control', 'type' => 'number', 'size' => 2, 'minlenght' => 1, 'maxlenght' => 2, 'tabindex' => $indice_tabulador++, 'cantidad-id' => $platillo['Pedido']['id'])); ?></td>
 									<td id="subtotal-<?= $platillo['Pedido']['id']; ?>">$ <?= number_format($platillo['Pedido']['subtotal'], 2, '.', ','); ?></td>
 									<td><?= $this->Html->link(__('<i class="fa fa-trash"></i>'), '#', array('class' => 'btn btn-default eliminar', 'escape' => FALSE, 'title' => __('¿Eliminar pedido de %s?', $platillo['Platillo']['nombre']), 'escapeTitle' => FALSE, 'id' => $platillo['Pedido']['id'])); ?></td>
 								</tr>

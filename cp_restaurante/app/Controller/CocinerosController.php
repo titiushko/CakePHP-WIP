@@ -13,7 +13,7 @@ class CocinerosController extends AppController {
 	
 	public function index() {
 		$this->Cocinero->recursive = 0;
-		$this->set(array('cocineros' => $this->paginate(), 'opcion_menu' => array('cocineros' => 'active')));
+		$this->set(array('cocineros' => $this->paginate(), 'opcion_menu' => array('empleados' => 'active')));
 	}
 	
 	public function ver($id = null) {
@@ -25,7 +25,7 @@ class CocinerosController extends AppController {
 		}
 		else {
 			$opciones = array('conditions' => array('Cocinero.'.$this->Cocinero->primaryKey => $id));
-			$this->set(array('cocinero' => $this->Cocinero->find('first', $opciones), 'categoriaPlatillos' => $this->Cocinero->Platillo->CategoriaPlatillo->find('list'), 'opcion_menu' => array('cocineros' => 'active')));
+			$this->set(array('cocinero' => $this->Cocinero->find('first', $opciones), 'categoriaPlatillos' => $this->Cocinero->Platillo->CategoriaPlatillo->find('list'), 'opcion_menu' => array('empleados' => 'active')));
 		}
 	}
 	
@@ -42,7 +42,7 @@ class CocinerosController extends AppController {
 			$this->Session->setFlash(__('No se pudo crear cocinero.'), 'default', array('class' => 'alert alert-danger'));
 		}
 		
-		$this->set(array('opcion_menu' => array('cocineros' => 'active')));
+		$this->set(array('opcion_menu' => array('empleados' => 'active')));
 	}
 	
 	public function editar($id = null) {
@@ -72,10 +72,10 @@ class CocinerosController extends AppController {
 			$this->set('cocinero', $cocinero);
 		}
 		
-		$this->set(array('categoriaPlatillos' => $this->Cocinero->Platillo->CategoriaPlatillo->find('list'), 'opcion_menu' => array('cocineros' => 'active')));
+		$this->set(array('categoriaPlatillos' => $this->Cocinero->Platillo->CategoriaPlatillo->find('list'), 'opcion_menu' => array('empleados' => 'active')));
 	}
 	
-	function eliminar($id) {
+	public function eliminar($id) {
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException(__('Incorrecto.'));
 		}

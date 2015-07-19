@@ -76,7 +76,7 @@ class MesasController extends AppController {
 		$this->set(array('meseros' => $this->Mesa->Mesero->find('list', array('fields' => array('id', 'nombre_completo'))), 'opcion_menu' => array('mesas' => 'active')));
 	}
 	
-	function eliminar($id) {
+	public function eliminar($id) {
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException(__('Incorrecto.'));
 		}

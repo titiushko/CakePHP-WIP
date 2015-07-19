@@ -15,7 +15,7 @@ class MeserosController extends AppController {
 		$this->Mesero->recursive = 0;
 		$this->paginate['Mesero']['limit'] = 5;
 		$this->paginate['Mesero']['order'] = array('Mesero.nombres' => 'asc');
-		$this->set(array('meseros' => $this->paginate(), 'opcion_menu' => array('meseros' => 'active')));
+		$this->set(array('meseros' => $this->paginate(), 'opcion_menu' => array('empleados' => 'active')));
 	}
 	
 	public function ver($id = null) {
@@ -27,7 +27,7 @@ class MeserosController extends AppController {
 		}
 		else {
 			$opciones = array('conditions' => array('Mesero.'.$this->Mesero->primaryKey => $id));
-			$this->set(array('mesero' => $this->Mesero->find('first', $opciones), 'opcion_menu' => array('meseros' => 'active')));
+			$this->set(array('mesero' => $this->Mesero->find('first', $opciones), 'opcion_menu' => array('empleados' => 'active')));
 		}
 	}
 	
@@ -44,7 +44,7 @@ class MeserosController extends AppController {
 			$this->Session->setFlash(__('No se pudo crear mesero.'), 'default', array('class' => 'alert alert-danger'));
 		}
 		
-		$this->set(array('opcion_menu' => array('meseros' => 'active')));
+		$this->set(array('opcion_menu' => array('empleados' => 'active')));
 	}
 	
 	public function editar($id = null) {
@@ -74,10 +74,10 @@ class MeserosController extends AppController {
 			$this->set('mesero', $mesero);
 		}
 		
-		$this->set('opcion_menu', array('meseros' => 'active'));
+		$this->set('opcion_menu', array('empleados' => 'active'));
 	}
 	
-	function eliminar($id) {
+	public function eliminar($id) {
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException(__('Incorrecto.'));
 		}

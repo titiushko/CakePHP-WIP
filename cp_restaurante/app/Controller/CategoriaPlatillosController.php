@@ -88,7 +88,7 @@ class CategoriaPlatillosController extends AppController {
 		$this->set('opcion_menu', array('platillos' => 'active'));
 	}
 	
-	function eliminar($id) {
+	public function eliminar($id) {
 		if (!$this->request->is('post')) {
 			throw new MethodNotAllowedException(__('Incorrecto.'));
 		}
