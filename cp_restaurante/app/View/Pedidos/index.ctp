@@ -1,4 +1,4 @@
-<?= $this->Html->script(array('carrito', 'jquery.animate-colors-min'), array('inline' => FALSE)); ?>
+<?= $this->Html->script(array('pedidos', 'jquery.animate-colors-min'), array('inline' => FALSE)); ?>
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="well page-header"><i class="fa fa-shopping-cart"></i> Módulo de Pedidos</h1>

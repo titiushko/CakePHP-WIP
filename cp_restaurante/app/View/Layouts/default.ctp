@@ -37,7 +37,7 @@ $this->Html->docType('html5');
 	<?php
 		echo $this->Html->meta('icon');
 		echo $this->Html->css(array('style', 'bootstrap.min', 'bootstrap-theme.min', 'font-awesome.min', 'fileinput.min', 'jquery-ui.min'));
-		echo $this->Html->script(array('jquery.min', 'docs.min', 'bootstrap.min', 'fileinput.min', 'jquery-ui.min', 'buscar'));
+		echo $this->Html->script(array('jquery.min', 'docs.min', 'bootstrap.min', 'fileinput.min', 'jquery-ui.min', 'buscar_platillo'));
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');

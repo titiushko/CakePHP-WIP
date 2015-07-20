@@ -1,4 +1,4 @@
-<?= $this->Html->script(array('meseros-mesas'), array('inline' => FALSE)); ?>
+<?= $this->Html->script(array('meseros_mesas'), array('inline' => FALSE)); ?>
 <?php
 $formulario = array(
 	'class' => 'form-horizontal',

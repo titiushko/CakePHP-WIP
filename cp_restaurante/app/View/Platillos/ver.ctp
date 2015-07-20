@@ -1,4 +1,4 @@
-<?= $this->Html->script(array('agregar_pedido_carrito'), array('inline' => FALSE)); ?>
+<?= $this->Html->script(array('agregar_pedido'), array('inline' => FALSE)); ?>
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="well page-header"><i class="fa fa-cutlery"></i> Módulo de Platillos</h1>
