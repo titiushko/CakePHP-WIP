@@ -15,7 +15,7 @@
 				<li class="dropdown <?= @$opcion_menu['empleados']; ?>">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-briefcase"></i> Empleados <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li class="dropdown-header"><i class="fa fa-users"></i> Meseros</li>
+						<li class="dropdown-header"><i class="fa fa-user"></i> Meseros</li>
 						<li><?= $this->Html->link(__('<i class="fa fa-list-alt"></i> Lista Meseros'), array('controller' => 'meseros', 'action' => 'index'), array('escape' => FALSE)); ?></li>
 						<li><?= $this->Html->link(__('<i class="fa fa-plus-square"></i> Nuevo Mesero'), array('controller' => 'meseros', 'action' => 'nuevo'), array('escape' => FALSE)); ?></li>
 						<li class="divider"></li>
@@ -47,7 +47,7 @@
 					<?= $this->Html->link(__('<i class="fa fa-archive"></i> Ordenes'), array('controller' => 'ordenes', 'action' => 'index'), array('escape' => FALSE)); ?>
 				</li>
 				<li class="dropdown <?= @$opcion_menu['usuarios']; ?>">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-coffee"></i> Usuarios <span class="caret"></span></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users"></i> Usuarios <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li><?= $this->Html->link(__('<i class="fa fa-list-alt"></i> Lista Usuarios'), array('controller' => 'usuarios', 'action' => 'index'), array('escape' => FALSE)); ?></li>
 						<li><?= $this->Html->link(__('<i class="fa fa-plus-square"></i> Nueva Usuario'), array('controller' => 'usuarios', 'action' => 'nuevo'), array('escape' => FALSE)); ?></li>
