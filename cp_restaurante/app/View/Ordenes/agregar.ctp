@@ -1,3 +1,4 @@
+<?= $this->Html->script(array('meseros-mesas'), array('inline' => FALSE)); ?>
 <?php
 $formulario = array(
 	'class' => 'form-horizontal',
@@ -38,6 +39,7 @@ $etiqueta = array('label' => array('class' => $control_label));
 							<legend>Orden</legend>
 							<?= $this->Form->input('cliente', $etiqueta); ?>
 							<?= $this->Form->input('dui', $etiqueta); ?>
+							<?= $this->Form->input('mesero_id', $etiqueta); ?>
 							<?= $this->Form->input('mesa_id', $etiqueta); ?>
 							<?= $this->Form->input('total', array('type' => 'hidden', 'value' => $total_orden)); ?>
 							<div class="form-group">

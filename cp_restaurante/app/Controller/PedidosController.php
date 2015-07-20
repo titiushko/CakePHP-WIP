@@ -21,7 +21,7 @@ class PedidosController extends AppController {
 	public function index() {
 		$pedidos = $this->Pedido->find('all');
 		if (count($pedidos) == 0) {
-			$this->Session->setFlash(__('No se han agregado pedidos a la orden.'), 'default', array('class' => 'alert alert-success'));
+			$this->Session->setFlash(__('No se han agregado pedidos a la orden.'), 'default', array('class' => 'alert alert-danger'));
 			return $this->redirect(array('controller' => 'platillos', 'action' => 'index'));
 		}
 		else {

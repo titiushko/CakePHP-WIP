@@ -49,7 +49,7 @@
 			</ul>
 			<?= $this->Form->create('Platillo', array('class' => 'navbar-form navbar-left', 'role' => 'search', 'url' => array('controller' => 'platillos', 'action' => 'buscar'))); ?>
 				<div class="input-group">
-					<?= $this->Form->input('busqueda', array('label' => FALSE, 'div' => FALSE, 'id' => 'buscar-platillo', 'class' => 'form-control buscar-platillo', 'autocomplete' => 'off', 'placeholder' => 'Buscar Platillo...')); ?>
+					<?= $this->Form->input('busqueda', array('label' => FALSE, 'div' => FALSE, 'id' => 'buscar-platillo', 'class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'Buscar Platillo...')); ?>
 					<span class="input-group-btn">
 						<?= $this->Form->button(__('<i class="fa fa-search"></i> Buscar'), array('div' => FALSE, 'class' => 'btn btn-primary', 'escape' => FALSE)); ?>
 					</span>

@@ -67,6 +67,11 @@ class Mesero extends AppModel {
 			'conditions' => '',
 			'order' => 'Mesa.serie DESC',
 			'dependent' => FALSE
+		),
+		'Orden' => array(
+			'className' => 'Orden',
+			'foreignKey' => 'mesa_id',
+			'dependent' => FALSE
 		)
 	);
 }

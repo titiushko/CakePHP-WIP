@@ -40,6 +40,10 @@ class Orden extends AppModel {
 		'Mesa' => array(
 			'className' => 'Mesa',
 			'foreignKey' => 'mesa_id'
+		),
+		'Mesero' => array(
+			'className' => 'Mesero',
+			'foreignKey' => 'mesero_id'
 		)
 	);
 	

@@ -14,7 +14,14 @@ class OrdenesController extends AppController {
 	
 	public function index() {
 		$this->Orden->recursive = 0;
-		$this->set(array('ordenes' => $this->paginate(), 'opcion_menu' => array('ordenes' => 'active')));
+		$ordenes = $this->paginate();
+		if (count($ordenes) == 0) {
+			$this->Session->setFlash(__('No se ha procesado ninguna orden.'), 'default', array('class' => 'alert alert-danger'));
+			return $this->redirect(array('controller' => 'platillos', 'action' => 'index'));
+		}
+		else {
+			$this->set(array('ordenes' => $ordenes, 'opcion_menu' => array('ordenes' => 'active')));
+		}
 	}
 	
 	public function agregar() {
@@ -22,7 +29,8 @@ class OrdenesController extends AppController {
 		if (count($pedidos) > 0) {
 			$total_orden = $this->Pedido->total_orden();
 			$mesas = $this->Orden->Mesa->find('list', array('order' => 'Mesa.serie ASC'));
-			$this->set(compact('pedidos', 'total_orden', 'mesas'));
+			$meseros = $this->Orden->Mesero->find('list', array('fields' => array('id', 'nombre_completo'), 'order' => 'Mesero.nombre_completo ASC'));
+			$this->set(compact('pedidos', 'total_orden', 'mesas', 'meseros'));
 		}
 		else {
 			$this->Session->setFlash(__('No se ha procesado ninguna orden.'), 'default', array('class' => 'alert alert-danger'));
@@ -41,7 +49,7 @@ class OrdenesController extends AppController {
 				}
 				$this->Pedido->deleteAll(TRUE, FALSE);
 				$this->Session->setFlash(__('Se procesó la orden.'), 'default', array('class' => 'alert alert-success'));
-				return $this->redirect(array('controller' => 'platillos', 'action' => 'index'));
+				return $this->redirect(array('action' => 'index'));
 			}
 			else {
 				$this->Session->setFlash(__('No se pudo procesar la orden.'), 'default', array('class' => 'alert alert-danger'));

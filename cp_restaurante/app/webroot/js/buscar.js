@@ -1,8 +1,8 @@
 $(document).ready(function() {
-	$('#buscar-platillo').autocomplete( {
+	$('#buscar-platillo, .buscar-platillo').autocomplete( {
 		minLenght: 2,
 		select: function(evento, objeto) {
-			$('#buscar-platillo').val(objeto.item.lable);
+			$('#buscar-platillo, .buscar-platillo').val(objeto.item.lable);
 		},
 		source: function(peticion, respuesta) {
 			$.ajax( {

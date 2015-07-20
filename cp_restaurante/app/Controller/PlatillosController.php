@@ -119,9 +119,9 @@ class PlatillosController extends AppController {
 			foreach($terminos_busqueda as $termino) $filtro[] = array('Platillo.nombre LIKE' => '%'.$termino.'%');
 			$platillos = $this->Platillo->find('all', array('recursive' => 0, 'conditions' => $filtro, 'order' => array('Platillo.nombre' => 'asc'), 'limit' => 100));
 			if (count($platillos) == 1) return $this->redirect(array('action' => 'ver', $platillos[0]['Platillo']['id']));
-			$this->set(array('platillos' => $platillos, 'opcion_menu' => array('platillos' => 'active')));
+			$this->set(compact('platillos'));
 		}
-		$this->set(compact('busqueda'));
+		$this->set(array('busqueda' => $busqueda, 'opcion_menu' => array('platillos' => 'active')));
 		if ($this->request->is('ajax')) {
 			$this->layout = FALSE;
 			$this->set('ajax', TRUE);

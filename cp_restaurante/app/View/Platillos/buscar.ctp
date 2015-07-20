@@ -25,7 +25,7 @@ if (!$ajax) {
 			'format' => array('before', 'label', 'between', 'input', 'error', 'after'),
 			'div' => array('class' => 'form-group'),
 			'label' => array('class' => 'control-label'),
-			'class' => 'form-control',
+			'class' => 'form-control buscar-platillo',
 			'between' => '<div class="col-lg-9">',
 			'after' => '</div>',
 			'error' => array('attributes' => array('wrap' => 'span', 'class' => 'help-inline')),

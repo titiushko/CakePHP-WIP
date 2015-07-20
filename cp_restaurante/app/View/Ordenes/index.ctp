@@ -37,6 +37,7 @@ $this->Paginator->options(array(
 							<table class="table table-striped table-bordered table-hover">
 								<thead>
 									<tr>
+										<th><?= $this->Paginator->sort('mesero_id', 'Mesero'); ?></th>
 										<th><?= $this->Paginator->sort('mesa_id', 'Mesa'); ?></th>
 										<th><?= $this->Paginator->sort('cliente', 'Cliente'); ?></th>
 										<th><?= $this->Paginator->sort('dui', 'DUI'); ?></th>
@@ -49,6 +50,7 @@ $this->Paginator->options(array(
 								<tbody>
 									<?php foreach ($ordenes as $orden): ?>
 									<tr>
+										<td><?= $orden['Mesero']['nombre_completo']; ?></td>
 										<td><?= $orden['Mesa']['serie']; ?></td>
 										<td><?= $orden['Orden']['cliente']; ?></td>
 										<td><?= $orden['Orden']['dui']; ?></td>

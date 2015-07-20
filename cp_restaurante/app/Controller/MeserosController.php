@@ -92,4 +92,13 @@ class MeserosController extends AppController {
 			return $this->redirect(array('action' => 'index'));
 		}
 	}
+	
+	public function mesas() {
+		if ($this->request->is('ajax')) {
+			$mesero_id = $this->request->data['mesero_id'];
+			$mesas = $this->Mesero->Mesa->find('all', array('fields' => array('Mesa.id', 'Mesa.serie'), 'conditions' => array('Mesa.mesero_id' => $mesero_id), 'order' => 'Mesa.serie ASC'));
+			echo json_encode(compact('mesas'));
+			$this->autoRender = FALSE;
+		}
+	}
 }
