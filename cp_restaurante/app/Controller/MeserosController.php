@@ -37,7 +37,7 @@ class MeserosController extends AppController {
 			$this->Mesero->create();
 			$mesero = $this->request->data;
 			if ($this->Mesero->save($mesero)) {
-				$this->Session->setFlash(__('Se creó mesero %s %s.', $mesero['Mesero']['nombres'], $mesero['Mesero']['apellidos']), 'default', array('class' => 'alert alert-success'));pr($mesero);
+				$this->Session->setFlash(__('Se creó mesero %s %s.', $mesero['Mesero']['nombres'], $mesero['Mesero']['apellidos']), 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'index'));
 			}
 			

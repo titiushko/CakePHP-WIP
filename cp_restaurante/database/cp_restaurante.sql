@@ -101,6 +101,17 @@ CREATE TABLE IF NOT EXISTS platillos_ordenes(
 	CONSTRAINT fk_platillos_ordenes_ordenes FOREIGN KEY(orden_id) REFERENCES ordenes(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
+DROP TABLE IF EXISTS usuarios;
+CREATE TABLE IF NOT EXISTS usuarios(
+	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	nombre_completo VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+	usuario VARCHAR(50) NOT NULL,
+	contrasena VARCHAR(255) NOT NULL,
+	rol VARCHAR(10) NOT NULL,
+	created DATETIME NULL DEFAULT NULL,
+	modified DATETIME NULL DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
 -- ============================================================================================================================================================
 
 INSERT INTO meseros(dui, nombres, apellidos, telefono, created) VALUES
@@ -323,3 +334,7 @@ INSERT INTO platillos_ordenes(platillo_id, orden_id, cantidad, subtotal, created
 (5, 2, 3, '22.80', NOW()),
 (8, 2, 1, '5.80', NOW()),
 (3, 2, 2, '13.50', NOW());
+
+INSERT INTO usuarios(nombre_completo, usuario, contrasena, rol, created) VALUES
+('Javier Galdámez', 'jgaldamez', '$2a$10$SwB9eYCwNgZ0UyXoUL1XHu1A6NyyOL2H8i2zn7yVotj19exyxffWy', 'admin', NOW()),
+('Tito Miguel', 'titiushko', '$2a$10$bBi6684a.KhrCAvvmgMt1.EoDgufrCcmRutKJFInJsXH74ncXFQO.', 'user', NOW());

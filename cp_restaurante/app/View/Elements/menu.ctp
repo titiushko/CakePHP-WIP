@@ -11,7 +11,7 @@
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li class="<?= @$opcion_menu['inicio']; ?>"><?= $this->Html->link(__('<i class="fa fa-home"></i> Inicio'), array('controller' => 'pages', 'action' => 'display', 'home'), array('escape' => FALSE)); ?></li>
+				<!--<li class="<?= @$opcion_menu['inicio']; ?>"><?= $this->Html->link(__('<i class="fa fa-home"></i> Inicio'), array('controller' => 'pages', 'action' => 'display', 'home'), array('escape' => FALSE)); ?></li>-->
 				<li class="dropdown <?= @$opcion_menu['empleados']; ?>">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-briefcase"></i> Empleados <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
@@ -46,10 +46,17 @@
 				<li class="dropdown <?= @$opcion_menu['ordenes']; ?>">
 					<?= $this->Html->link(__('<i class="fa fa-archive"></i> Ordenes'), array('controller' => 'ordenes', 'action' => 'index'), array('escape' => FALSE)); ?>
 				</li>
+				<li class="dropdown <?= @$opcion_menu['usuarios']; ?>">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-coffee"></i> Usuarios <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><?= $this->Html->link(__('<i class="fa fa-list-alt"></i> Lista Usuarios'), array('controller' => 'usuarios', 'action' => 'index'), array('escape' => FALSE)); ?></li>
+						<li><?= $this->Html->link(__('<i class="fa fa-plus-square"></i> Nueva Usuario'), array('controller' => 'usuarios', 'action' => 'nuevo'), array('escape' => FALSE)); ?></li>
+					</ul>
+				</li>
 			</ul>
 			<?= $this->Form->create('Platillo', array('class' => 'navbar-form navbar-left', 'role' => 'search', 'url' => array('controller' => 'platillos', 'action' => 'buscar'))); ?>
 				<div class="input-group">
-					<?= $this->Form->input('busqueda', array('label' => FALSE, 'div' => FALSE, 'id' => 'buscar-platillo', 'class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'Buscar Platillo...')); ?>
+					<?= $this->Form->input('busqueda', array('label' => FALSE, 'div' => FALSE, 'id' => 'buscar-platillo', 'class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'Buscar Platillo...', 'size' => 19)); ?>
 					<span class="input-group-btn">
 						<?= $this->Form->button(__('<i class="fa fa-search"></i> Buscar'), array('div' => FALSE, 'class' => 'btn btn-primary', 'escape' => FALSE)); ?>
 					</span>
