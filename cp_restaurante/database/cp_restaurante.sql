@@ -322,9 +322,9 @@ INSERT INTO pedidos(platillo_id, cantidad, subtotal, created) VALUES
 (7, 2, '19.80', NOW()),
 (15, 2, '4.50', NOW());
 
-INSERT INTO ordenes( mesa_id, total, cliente, dui, created) VALUES
-(14, '22.30', 'Javier Galdámez', '326598741', NOW()),
-(41, '52.60', 'Tito Miguel', '124578301', NOW());
+INSERT INTO ordenes(mesero_id, mesa_id, total, cliente, dui, created) VALUES
+(1, 14, '22.30', 'Javier Galdámez', '326598741', NOW()),
+(1, 41, '52.60', 'Tito Miguel', '124578301', NOW());
 
 INSERT INTO platillos_ordenes(platillo_id, orden_id, cantidad, subtotal, created) VALUES
 (16, 1, 1, '6.40', NOW()),

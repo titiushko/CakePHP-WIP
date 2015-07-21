@@ -1,95 +1,30 @@
 <?php
-$formulario = array(
-	'class' => 'form-horizontal',
-	'inputDefaults' => array(
-		'format' => array('before', 'label', 'between', 'input', 'error', 'after'),
-		'div' => array('class' => 'form-group'),
-		'label' => array('class' => 'control-label'),
-		'class' => 'form-control',
-		'between' => '<div class="col-lg-9">',
-		'after' => '</div>',
-		'error' => array('attributes' => array('wrap' => 'span', 'class' => 'help-inline')),
+$lista_asociacion = array(); $contador = 0;
+foreach ($mesero['Mesa'] as $mesa) {
+	$lista_asociacion[$contador]['id'] = $mesa['id'];
+	$lista_asociacion[$contador]['serie'] = h($mesa['serie']);
+	$lista_asociacion[$contador]['puestos'] = h($mesa['puestos']);
+	$lista_asociacion[$contador]['posicion'] = h($mesa['posicion']);
+	$lista_asociacion[$contador]['creado'] = $this->Time->format('d/m/Y h:i A', $mesa['created']);
+	$lista_asociacion[$contador]['modificado'] = $this->Time->format('d/m/Y h:i A', $mesa['modified']);
+	$lista_asociacion[$contador]['elemento_eliminar'] = h($mesa['serie']);
+	$contador++;
+}
+echo $this->element(
+	'editar', array(
+		'id' => $mesero['Mesero']['id'],
+		'alias_singular' => 'mesero',
+		'alias_plural' => 'meseros',
+		'campos' => array(
+			'dui' => array(),
+			'nombres' => array(),
+			'apellidos' => array(),
+			'telefono' => array()
+		),
+		'lista_asociacion' => $lista_asociacion,
+		'asociacion_singular' => 'mesa',
+		'asociacion_plural' => 'mesas',
+		'campos_asociacion' => array('serie', 'puestos', 'posicion', 'creado', 'modificado')
 	)
 );
-$etiqueta = array('label' => array('class' => 'col-lg-3 control-label'));
 ?>
-<div class="row">
-	<div class="col-lg-12">
-		<h1 class="well page-header"><i class="fa fa-user"></i> Módulo de Meseros</h1>
-	</div>
-</div>
-<div class="row">
-	<div class="col-lg-12">
-		<?= $this->Session->flash(); ?>
-	</div>
-</div>
-<div class="row">
-	<div class="col-lg-12">
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				Editar Mesero
-			</div>
-			<div class="panel-body">
-				<div class="row">
-					<div class="col-lg-4 col-lg-offset-4">
-						<?= $this->Form->create('Mesero', $formulario); ?>
-						<fieldset>
-							<legend>Datos Personales</legend>
-							<?= $this->Form->input('dui', $etiqueta); ?>
-							<?= $this->Form->input('nombres', $etiqueta); ?>
-							<?= $this->Form->input('apellidos', $etiqueta); ?>
-							<?= $this->Form->input('telefono', $etiqueta); ?>
-							<div class="form-group">
-								<div class="col-lg-12 text-center">
-									<span class="submit"><?= $this->Form->button(__('<i class="fa fa-save"></i> Guardar'), array('type' => 'submit', 'class' => 'btn btn-primary', 'escape' => FALSE)); ?></span>
-									<?= $this->Html->link(__('<i class="fa fa-times-circle"></i> Cancelar'), array('controller' => 'meseros', 'action' => 'ver', $mesero['Mesero']['id']), array('class' => 'btn btn-default', 'escape' => FALSE)); ?>
-								</div>
-							</div>
-						</fieldset>
-						<?= $this->Form->end(); ?>
-					</div>
-				</div>
-				<div class="row"><div class="col-lg-12">&nbsp;</div></div>
-				<div class="row">
-					<div class="col-lg-12 table-responsive">
-						<fieldset>
-							<legend>Encargado de las Mesas</legend>
-							<?php if (empty($mesero['Mesa'])) { ?>
-								<p>No tiene mesas asociadas.</p>
-							<?php } else { ?>
-							<table class="table table-striped table-bordered table-hover">
-								<thead>
-									<tr>
-										<th>Serie</th>
-										<th>Puestos</th>
-										<th>Posición</th>
-										<th>Creado</th>
-										<th>Modificado</th>
-										<th>Acción</th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php foreach ($mesero['Mesa'] as $mesa): ?>
-									<tr>
-										<td><?= $mesa['serie']; ?></td>
-										<td><?= $mesa['puestos']; ?></td>
-										<td><?= $mesa['posicion']; ?></td>
-										<td><?= $this->Time->format('d/m/Y h:i A', $mesa['created']); ?></td>
-										<td><?= $this->Time->format('d/m/Y h:i A', $mesa['modified']); ?></td>
-										<td>
-											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i>'), array('controller' => 'mesas', 'action' => 'ver', $mesa['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Ver')); ?>
-											<?= $this->Html->link(__('<i class="fa fa-pencil"></i>'), array('controller' => 'mesas', 'action' => 'editar', $mesa['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Editar')); ?>
-											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i>'), array('controller' => 'mesas', 'action' => 'eliminar', $mesa['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Eliminar', 'confirm' => __('¿Eliminar mesa %s?', $mesa['serie']))); ?>
-										</td>
-									</tr>
-									<?php endforeach; ?>
-								</tbody>
-							</table>
-							<?php } ?>
-						</fieldset>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>

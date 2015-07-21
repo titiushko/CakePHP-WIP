@@ -2,8 +2,6 @@
 App::uses('AppController', 'Controller');
 
 class UsuariosController extends AppController {
-	public $helpers = array('Html', 'Form', 'Time', 'Paginator', 'Js', 'Funciones');
-	public $components = array('Session', 'RequestHandler');
 	public $paginate = array(
 		'limit' => 3,
 		'order' => array(

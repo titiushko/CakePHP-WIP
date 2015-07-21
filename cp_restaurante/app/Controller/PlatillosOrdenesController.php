@@ -3,8 +3,6 @@ App::uses('AppController', 'Controller');
 
 class PlatillosOrdenesController extends AppController {
 	public $uses = array('PlatillosOrden');
-	public $helpers = array('Html', 'Form', 'Time', 'Paginator', 'Js');
-	public $components = array('Session', 'RequestHandler');
 	public $paginate = array(
 		'limit' => 4,
 		'order' => array(

@@ -2,9 +2,6 @@
 App::uses('AppController', 'Controller');
 
 class PedidosController extends AppController {
-	public $helpers = array('Html', 'Form', 'Time');
-	public $components = array('Session', 'RequestHandler');
-	
 	public function agregar() {
 		if ($this->request->is('ajax')) {
 			$platillo_id = $this->request->data['id'];

@@ -2,8 +2,6 @@
 App::uses('AppController', 'Controller');
 
 class PlatillosController extends AppController {
-	public $helpers = array('Html', 'Form', 'Time', 'Paginator', 'Js');
-	public $components = array('Session', 'RequestHandler');
 	public $paginate = array(
 		'limit' => 12,
 		'order' => array(
@@ -97,31 +95,44 @@ class PlatillosController extends AppController {
 	
 	public function busqueda() {
 		$busqueda = NULL;
+		
 		if (!empty($this->request->query['busqueda'])) {
 			$busqueda = $this->request->query['busqueda'];
+			
 			$terminos_busqueda = explode(' ', trim($busqueda));
 			$terminos_busqueda = array_diff($terminos_busqueda, array(''));
+			
+			$filtro = NULL;
 			foreach($terminos_busqueda as $termino) $filtro[] = array('Platillo.nombre LIKE' => '%'.$termino.'%');
+			
 			$platillos = $this->Platillo->find('all', array('recursive' => -1, 'fields' => array('Platillo.id, Platillo.nombre, Platillo.foto, Platillo.foto_dir'), 'conditions' => $filtro, 'limit' => 10));
 		}
+		
 		echo json_encode($platillos);
 		$this->autoRender = FALSE;
 	}
 	
 	public function buscar() {
 		$busqueda = NULL;
+		
 		if ($this->request->is(array('post', 'put'))) {
 			$busqueda = $this->request->data['Platillo']['busqueda'];
 			$busqueda = preg_replace('/[^a-zA-ZñÑáéíóúÁÉÍÓÚ0-9 ]/', '', $busqueda);
+			
 			$terminos_busqueda = explode(' ', trim($busqueda));
 			$terminos_busqueda = array_diff($terminos_busqueda, array(''));
+			
 			$filtro = NULL;
 			foreach($terminos_busqueda as $termino) $filtro[] = array('Platillo.nombre LIKE' => '%'.$termino.'%');
+			
 			$platillos = $this->Platillo->find('all', array('recursive' => 0, 'conditions' => $filtro, 'order' => array('Platillo.nombre' => 'asc'), 'limit' => 100));
 			if (count($platillos) == 1) return $this->redirect(array('action' => 'ver', $platillos[0]['Platillo']['id']));
+			
 			$this->set(compact('platillos'));
 		}
+		
 		$this->set(array('busqueda' => $busqueda, 'opcion_menu' => array('platillos' => 'active')));
+		
 		if ($this->request->is('ajax')) {
 			$this->layout = FALSE;
 			$this->set('ajax', TRUE);

@@ -2,8 +2,6 @@
 App::uses('AppController', 'Controller');
 
 class MesasController extends AppController {
-	public $helpers = array('Html', 'Form', 'Time', 'Paginator', 'Js');
-	public $components = array('Session', 'RequestHandler');
 	public $paginate = array(
 		'limit' => 5,
 		'order' => array(

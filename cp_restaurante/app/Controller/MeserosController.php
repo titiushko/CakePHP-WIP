@@ -2,8 +2,6 @@
 App::uses('AppController', 'Controller');
 
 class MeserosController extends AppController {
-	public $helpers = array('Html', 'Form', 'Time', 'Paginator', 'Js');
-	public $components = array('Session', 'RequestHandler');
 	public $paginate = array(
 		'limit' => 3,
 		'order' => array(

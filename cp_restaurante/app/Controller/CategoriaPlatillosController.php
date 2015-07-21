@@ -2,8 +2,6 @@
 App::uses('AppController', 'Controller');
 
 class CategoriaPlatillosController extends AppController {
-	public $helpers = array('Html', 'Form', 'Time', 'Paginator', 'Js');
-	public $components = array('Session', 'RequestHandler');
 	public $paginate = array(
 		'CategoriaPlatillo' => array(
 			'limit' => 4,
