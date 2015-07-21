@@ -12,6 +12,13 @@
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<!--<li class="<?= @$opcion_menu['inicio']; ?>"><?= $this->Html->link(__('<i class="fa fa-home"></i> Inicio'), array('controller' => 'pages', 'action' => 'display', 'home'), array('escape' => FALSE)); ?></li>-->
+				<li class="dropdown <?= @$opcion_menu['usuarios']; ?>">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users"></i> Usuarios <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><?= $this->Html->link(__('<i class="fa fa-list-alt"></i> Lista Usuarios'), array('controller' => 'usuarios', 'action' => 'index'), array('escape' => FALSE)); ?></li>
+						<li><?= $this->Html->link(__('<i class="fa fa-plus-square"></i> Nueva Usuario'), array('controller' => 'usuarios', 'action' => 'nuevo'), array('escape' => FALSE)); ?></li>
+					</ul>
+				</li>
 				<li class="dropdown <?= @$opcion_menu['empleados']; ?>">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-briefcase"></i> Empleados <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
@@ -45,13 +52,6 @@
 				</li>
 				<li class="dropdown <?= @$opcion_menu['ordenes']; ?>">
 					<?= $this->Html->link(__('<i class="fa fa-archive"></i> Ordenes'), array('controller' => 'ordenes', 'action' => 'index'), array('escape' => FALSE)); ?>
-				</li>
-				<li class="dropdown <?= @$opcion_menu['usuarios']; ?>">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users"></i> Usuarios <span class="caret"></span></a>
-					<ul class="dropdown-menu" role="menu">
-						<li><?= $this->Html->link(__('<i class="fa fa-list-alt"></i> Lista Usuarios'), array('controller' => 'usuarios', 'action' => 'index'), array('escape' => FALSE)); ?></li>
-						<li><?= $this->Html->link(__('<i class="fa fa-plus-square"></i> Nueva Usuario'), array('controller' => 'usuarios', 'action' => 'nuevo'), array('escape' => FALSE)); ?></li>
-					</ul>
 				</li>
 			</ul>
 			<?= $this->Form->create('Platillo', array('class' => 'navbar-form navbar-left', 'role' => 'search', 'url' => array('controller' => 'platillos', 'action' => 'buscar'))); ?>

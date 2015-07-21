@@ -59,7 +59,12 @@ class UsuariosController extends AppController {
 		
 		if ($this->request->is(array('post', 'put'))) {
 			$this->Usuario->id = $id;
-			if ($this->Usuario->save($this->request->data)) {
+			
+			$formulario = $this->request->data;
+			$evaluar_contrasena = $this->Usuario->find('all', array('conditions' => array('Usuario.id' => $id, 'Usuario.contrasena' => $formulario['Usuario']['contrasena'])));
+			if($formulario['Usuario']['contrasena'] && !empty($evaluar_contrasena)) unset($formulario['Usuario']['contrasena']);
+			
+			if ($this->Usuario->save($formulario)) {
 				$usuario = $this->Usuario->findById($id);
 				$this->Session->setFlash(__('Se actualizó usuario %s.', $usuario['Usuario']['usuario']), 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'index'));
