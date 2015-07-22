@@ -17,7 +17,7 @@ $etiqueta = array('label' => array('class' => $control_label));
 ?>
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="well page-header"><i class="fa fa-cutlery"></i> Módulo de Ordenes</h1>
+		<h1 class="well page-header"><i class="fa fa-archive"></i> Módulo de Ordenes</h1>
 	</div>
 </div>
 <div class="row">
@@ -44,7 +44,7 @@ $etiqueta = array('label' => array('class' => $control_label));
 							<?= $this->Form->input('total', array('type' => 'hidden', 'value' => $total_orden)); ?>
 							<div class="form-group">
 								<div class="col-lg-12 text-center">
-									<span class="submit"><?= $this->Form->button(__('<i class="fa fa-money"></i> Procesar Orden'), array('type' => 'submit', 'class' => 'btn btn-primary', 'escape' => FALSE)); ?></span>
+									<span class="submit"><?= $this->Form->button(__('<i class="fa fa-money"></i> Procesar'), array('type' => 'submit', 'class' => 'btn btn-primary', 'escape' => FALSE)); ?></span>
 									<?= $this->Html->link(__('<i class="fa fa-times-circle"></i> Cancelar'), array('controller' => 'pedidos', 'action' => 'index'), array('class' => 'btn btn-default', 'escape' => FALSE)); ?>
 								</div>
 							</div>

@@ -63,15 +63,17 @@ class MesasController extends AppController {
 			}
 			
 			$this->Session->setFlash(__('No se pudo actualizar mesa.'), 'default', array('class' => 'alert alert-danger'));
-			$this->set('mesa', $mesa);
 		}
 		
 		if (!$this->request->data) {
 			$this->request->data = $mesa;
-			$this->set('mesa', $mesa);
 		}
 		
-		$this->set(array('meseros' => $this->Mesa->Mesero->find('list', array('fields' => array('id', 'nombre_completo'))), 'opcion_menu' => array('mesas' => 'active')));
+		$this->set(array(
+			'mesa' => $mesa,
+			'meseros' => $this->Mesa->Mesero->find('list', array('fields' => array('id', 'nombre_completo'))),
+			'opcion_menu' => array('mesas' => 'active')
+		));
 	}
 	
 	public function eliminar($id) {

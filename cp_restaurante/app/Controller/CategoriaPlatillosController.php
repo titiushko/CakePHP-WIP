@@ -32,9 +32,7 @@ class CategoriaPlatillosController extends AppController {
 		}
 		else {
 			$categoria_platillo = $this->CategoriaPlatillo->find('first', array('conditions' => array('CategoriaPlatillo.'.$this->CategoriaPlatillo->primaryKey => $id)));
-			$this->paginate['Platillo']['conditions'] = array('Platillo.categoria_platillo_id' => $categoria_platillo['CategoriaPlatillo']['id']);
-			$this->paginate['Platillo']['fields'] = array('Platillo.id', 'Platillo.nombre', 'Platillo.precio', 'Platillo.foto', 'Platillo.foto_dir', 'Platillo.categoria_platillo_id');
-			$this->set(array('platillos' => $this->paginate('Platillo'), 'categoria' => array('nombre' => $categoria_platillo['CategoriaPlatillo']['categoria'], 'id' => $categoria_platillo['CategoriaPlatillo']['id']), 'opcion_menu' => array('platillos' => 'active')));
+			$this->set(array('categoria_platillo' => $categoria_platillo, 'opcion_menu' => array('platillos' => 'active')));
 		}
 	}
 	
@@ -73,17 +71,12 @@ class CategoriaPlatillosController extends AppController {
 			}
 			
 			$this->Session->setFlash(__('No se pudo actualizar categoría.'), 'default', array('class' => 'alert alert-danger'));
-			$this->set('categoria_platillo', $categoria_platillo);
 		}
 		
 		if (!$this->request->data) {
 			$this->request->data = $categoria_platillo;
-			$this->paginate['Platillo']['conditions'] = array('Platillo.categoria_platillo_id' => $categoria_platillo['CategoriaPlatillo']['id']);
-			$this->paginate['Platillo']['fields'] = array('Platillo.id', 'Platillo.nombre', 'Platillo.precio', 'Platillo.foto', 'Platillo.foto_dir', 'Platillo.categoria_platillo_id');
-			$this->set(array('platillos' => $this->paginate('Platillo'), 'categoria' => array('nombre' => $categoria_platillo['CategoriaPlatillo']['categoria'], 'id' => $categoria_platillo['CategoriaPlatillo']['id'])));
 		}
-		
-		$this->set('opcion_menu', array('platillos' => 'active'));
+		$this->set(array('categoria_platillo' => $categoria_platillo, 'opcion_menu' => array('platillos' => 'active')));
 	}
 	
 	public function eliminar($id) {

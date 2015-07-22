@@ -7,9 +7,10 @@ foreach ($categoria_platillos as $categoria_platillo) {
 	$contador++;
 }
 echo $this->element('index', array(
-		'alias_singular' => 'categoria_platillo',
-		'alias_plural' => 'categoria_platillos',
-		'lista_valores' => $lista_valores,
-		'campos' => array('categoria')
-	));
+	'icono' => 'random',
+	'alias_singular' => 'categoria_platillo',
+	'alias_plural' => 'categoria_platillos',
+	'lista_valores' => $lista_valores,
+	'campos' => array('categoria')
+));
 ?>

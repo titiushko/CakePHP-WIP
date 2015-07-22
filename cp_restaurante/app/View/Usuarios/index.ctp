@@ -11,9 +11,10 @@ foreach ($usuarios as $usuario) {
 	$contador++;
 }
 echo $this->element('index', array(
-		'alias_singular' => 'usuario',
-		'alias_plural' => 'usuarios',
-		'lista_valores' => $lista_valores,
-		'campos' => array('nombre_completo', 'usuario', 'rol', 'creado', 'modificado')
-	));
+	'icono' => 'users',
+	'alias_singular' => 'usuario',
+	'alias_plural' => 'usuarios',
+	'lista_valores' => $lista_valores,
+	'campos' => array('nombre_completo', 'usuario', 'rol', 'creado', 'modificado')
+));
 ?>

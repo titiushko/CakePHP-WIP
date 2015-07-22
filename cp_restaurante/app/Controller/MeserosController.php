@@ -24,8 +24,11 @@ class MeserosController extends AppController {
 			throw new NotFoundException(__('Mesero no existe.'));
 		}
 		else {
-			$opciones = array('conditions' => array('Mesero.'.$this->Mesero->primaryKey => $id));
-			$this->set(array('mesero' => $this->Mesero->find('first', $opciones), 'opcion_menu' => array('empleados' => 'active')));
+			$this->set(array(
+				'mesero' => $this->Mesero->find('first', array('conditions' => array('Mesero.'.$this->Mesero->primaryKey => $id))),
+				'ordenes' => $this->Mesero->Orden->find('all', array('conditions' => array('Orden.mesero_id' => $id))),
+				'opcion_menu' => array('empleados' => 'active')
+			));
 		}
 	}
 	
@@ -64,15 +67,17 @@ class MeserosController extends AppController {
 			}
 			
 			$this->Session->setFlash(__('No se pudo actualizar mesero.'), 'default', array('class' => 'alert alert-danger'));
-			$this->set('mesero', $mesero);
 		}
 		
 		if (!$this->request->data) {
 			$this->request->data = $mesero;
-			$this->set('mesero', $mesero);
 		}
 		
-		$this->set('opcion_menu', array('empleados' => 'active'));
+		$this->set(array(
+			'opcion_menu' => array('empleados' => 'active'),
+			'ordenes' => $this->Mesero->Orden->find('all', array('conditions' => array('Orden.mesero_id' => $id))),
+			'mesero' => $mesero
+		));
 	}
 	
 	public function eliminar($id) {

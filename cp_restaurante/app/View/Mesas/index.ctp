@@ -12,10 +12,10 @@ foreach ($mesas as $mesa) {
 	$contador++;
 }
 echo $this->element('index', array(
-		'alias_singular' => 'mesa',
-		'alias_plural' => 'mesas',
-		'lista_valores' => $lista_valores,
-		'campos' => array('serie', 'puestos', 'posicion', 'creado', 'modificado', 'Mesero.nombres')
-	));
-//'Mesero.nombres', 'Mesero'
+	'icono' => 'coffee',
+	'alias_singular' => 'mesa',
+	'alias_plural' => 'mesas',
+	'lista_valores' => $lista_valores,
+	'campos' => array('serie', 'puestos', 'posicion', 'creado', 'modificado', 'Mesero.nombres')
+));
 ?>

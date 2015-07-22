@@ -62,15 +62,17 @@ class CocinerosController extends AppController {
 			}
 			
 			$this->Session->setFlash(__('No se pudo actualizar cocinero.'), 'default', array('class' => 'alert alert-danger'));
-			$this->set('cocinero', $cocinero);
 		}
 		
 		if (!$this->request->data) {
 			$this->request->data = $cocinero;
-			$this->set('cocinero', $cocinero);
 		}
 		
-		$this->set(array('categoriaPlatillos' => $this->Cocinero->Platillo->CategoriaPlatillo->find('list'), 'opcion_menu' => array('empleados' => 'active')));
+		$this->set(array(
+			'cocinero' => $cocinero,
+			'categoriaPlatillos' => $this->Cocinero->Platillo->CategoriaPlatillo->find('list'),
+			'opcion_menu' => array('empleados' => 'active')
+		));
 	}
 	
 	public function eliminar($id) {

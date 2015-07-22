@@ -69,15 +69,13 @@ class UsuariosController extends AppController {
 			}
 			
 			$this->Session->setFlash(__('No se pudo actualizar usuario.'), 'default', array('class' => 'alert alert-danger'));
-			$this->set('usuario', $usuario);
 		}
 		
 		if (!$this->request->data) {
 			$this->request->data = $usuario;
-			$this->set('usuario', $usuario);
 		}
 		
-		$this->set('opcion_menu', array('usuarios' => 'active'));
+		$this->set(array('usuario' => $usuario, 'opcion_menu' => array('usuarios' => 'active')));
 	}
 	
 	public function eliminar($id) {

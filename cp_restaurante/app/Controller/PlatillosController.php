@@ -64,15 +64,18 @@ class PlatillosController extends AppController {
 			}
 			
 			$this->Session->setFlash(__('No se pudo actualizar platillo.'), 'default', array('class' => 'alert alert-danger'));
-			$this->set('platillo', $platillo);
 		}
 		
 		if (!$this->request->data) {
 			$this->request->data = $platillo;
-			$this->set('platillo', $platillo);
 		}
 		
-		$this->set(array('categoriaPlatillos' => $this->Platillo->CategoriaPlatillo->find('list'), 'cocineros' => $this->Platillo->Cocinero->find('list', array('fields' => array('id', 'nombre_completo'))), 'opcion_menu' => array('platillos' => 'active')));
+		$this->set(array(
+			'platillo' => $platillo,
+			'categoriaPlatillos' => $this->Platillo->CategoriaPlatillo->find('list'),
+			'cocineros' => $this->Platillo->Cocinero->find('list', array('fields' => array('id', 'nombre_completo'))),
+			'opcion_menu' => array('platillos' => 'active')
+		));
 	}
 	
 	public function eliminar($id) {

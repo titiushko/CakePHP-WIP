@@ -17,7 +17,7 @@ $modelo = ''; foreach ($modelo_palabras as $modelo_palabra) $modelo .= ucwords($
 ?>
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="well page-header"><i class="fa fa-user"></i> Módulo de <?= ucwords($alias_plural); ?></h1>
+		<h1 class="well page-header"><i class="fa fa-<?= $icono; ?>"></i> Módulo de <?= ucwords(str_replace('_', ' ', $alias_plural)); ?></h1>
 	</div>
 </div>
 <div class="row">
@@ -29,7 +29,7 @@ $modelo = ''; foreach ($modelo_palabras as $modelo_palabra) $modelo .= ucwords($
 	<div class="col-lg-12">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				Editar <?= ucwords($alias_singular); ?>
+				Editar <?= ucwords(str_replace('_', ' ', $alias_singular)); ?>
 			</div>
 			<div class="panel-body">
 				<div class="row">
@@ -75,6 +75,41 @@ $modelo = ''; foreach ($modelo_palabras as $modelo_palabra) $modelo .= ucwords($
 											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i>'), array('controller' => $asociacion_plural, 'action' => 'ver', $valor['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Ver')); ?>
 											<?= $this->Html->link(__('<i class="fa fa-pencil"></i>'), array('controller' => $asociacion_plural, 'action' => 'editar', $valor['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Editar')); ?>
 											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i>'), array('controller' => $asociacion_plural, 'action' => 'eliminar', $valor['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Eliminar', 'confirm' => __('¿Eliminar %$ %s?', $asociacion_singular, $valor['elemento_eliminar']))); ?>
+										</td>
+									</tr>
+									<?php endforeach; ?>
+								</tbody>
+							</table>
+							<?php } ?>
+						</fieldset>
+					</div>
+				</div>
+				<?php endif; ?>
+				<?php if (isset($singular) && isset($plural)): ?>
+				<div class="row"><div class="col-lg-12">&nbsp;</div></div>
+				<div class="row">
+					<div class="col-lg-12 table-responsive">
+						<fieldset>
+							<legend><?= ucwords(str_replace('_', ' ', $plural)); ?></legend>
+							<?php if (empty($lista)) { ?>
+								<p>No tiene <?= str_replace('_', ' ', $plural); ?>.</p>
+							<?php } else { ?>
+							<table class="table table-striped table-bordered table-hover">
+								<thead>
+									<tr>
+										<?php
+										foreach ($titulos as $campo)
+											echo '<th>'.ucwords(str_replace(array('_id', '_'), array('', ' '), $this->Funciones->extraer($campo, '.'))).'</th>';
+										?>
+										<th>Acción</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php foreach ($lista as $valor): ?>
+									<tr>
+										<?php foreach ($titulos as $campo) echo '<td>'.$valor[$campo].'</td>'; ?>
+										<td>
+											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i>'), array('controller' => 'platillos_'.$plural, 'action' => 'ver', $valor['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Ver')); ?>
 										</td>
 									</tr>
 									<?php endforeach; ?>

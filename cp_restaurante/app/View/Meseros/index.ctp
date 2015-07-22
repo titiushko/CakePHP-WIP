@@ -10,6 +10,7 @@ foreach ($meseros as $mesero) {
 	$contador++;
 }
 echo $this->element('index', array(
+		'icono' => 'user',
 		'alias_singular' => 'mesero',
 		'alias_plural' => 'meseros',
 		'lista_valores' => $lista_valores,

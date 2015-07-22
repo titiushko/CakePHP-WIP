@@ -1,95 +1,27 @@
 <?php
-$formulario = array(
-	'class' => 'form-horizontal',
-	'inputDefaults' => array(
-		'format' => array('before', 'label', 'between', 'input', 'error', 'after'),
-		'div' => array('class' => 'form-group'),
-		'label' => array('class' => 'control-label'),
-		'class' => 'form-control',
-		'between' => '<div class="col-lg-9">',
-		'after' => '</div>',
-		'error' => array('attributes' => array('wrap' => 'span', 'class' => 'help-inline')),
+$lista_asociacion = array(); $contador = 0;
+foreach ($cocinero['Platillo'] as $platillo) {
+	$lista_asociacion[$contador]['id'] = $platillo['id'];
+	$lista_asociacion[$contador]['foto'] = empty($platillo['foto']) ? '<figure>'.$this->Html->image('../img/plato_vacio/thumb_plato_vacio.jpg').'</figure>' : '<figure>'.$this->Html->image('../files/platillo/foto/'.$platillo['foto_dir'].'/'.'thumb_'.$platillo['foto']).'</figure>';
+	$lista_asociacion[$contador]['nombre'] = h($platillo['nombre']);
+	$lista_asociacion[$contador]['precio'] = '$ '.number_format($platillo['precio'], 2, '.', ',');
+	$lista_asociacion[$contador]['elemento_eliminar'] = h($platillo['nombre']);
+	$contador++;
+}
+echo $this->element(
+	'editar', array(
+		'icono' => 'male',
+		'id' => $cocinero['Cocinero']['id'],
+		'alias_singular' => 'cocinero',
+		'alias_plural' => 'cocineros',
+		'campos' => array(
+			'nombres' => array(),
+			'apellidos' => array()
+		),
+		'lista_asociacion' => $lista_asociacion,
+		'asociacion_singular' => 'platillo',
+		'asociacion_plural' => 'platillos',
+		'campos_asociacion' => array('foto', 'nombre', 'precio')
 	)
 );
-$etiqueta = array('label' => array('class' => 'col-lg-3 control-label'));
 ?>
-<div class="row">
-	<div class="col-lg-12">
-		<h1 class="well page-header"><i class="fa fa-male"></i> Módulo de Cocineros</h1>
-	</div>
-</div>
-<div class="row">
-	<div class="col-lg-12">
-		<?= $this->Session->flash(); ?>
-	</div>
-</div>
-<div class="row">
-	<div class="col-lg-12">
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				Editar Cocinero
-			</div>
-			<div class="panel-body">
-				<div class="row">
-					<div class="col-lg-4 col-lg-offset-4">
-						<?= $this->Form->create('Cocinero', $formulario); ?>
-						<fieldset>
-							<legend>Datos Personales</legend>
-							<?= $this->Form->input('nombres', $etiqueta); ?>
-							<?= $this->Form->input('apellidos', $etiqueta); ?>
-							<div class="form-group">
-								<div class="col-lg-12 text-center">
-									<span class="submit"><?= $this->Form->button(__('<i class="fa fa-save"></i> Guardar'), array('type' => 'submit', 'class' => 'btn btn-primary', 'escape' => FALSE)); ?></span>
-									<?= $this->Html->link(__('<i class="fa fa-times-circle"></i> Cancelar'), array('controller' => 'cocineros', 'action' => 'ver', $cocinero['Cocinero']['id']), array('class' => 'btn btn-default', 'escape' => FALSE)); ?>
-								</div>
-							</div>
-						</fieldset>
-						<?= $this->Form->end(); ?>
-					</div>
-				</div>
-				<div class="row"><div class="col-lg-12">&nbsp;</div></div>
-				<div class="row">
-					<div class="col-lg-12 table-responsive">
-						<fieldset>
-							<legend>Encargado de los Platillos</legend>
-							<?php if (empty($cocinero['Platillo'])) { ?>
-								<p>No tiene platillos asociados.</p>
-							<?php } else { ?>
-							<table class="table table-striped table-bordered table-hover">
-								<thead>
-									<tr>
-										<th>Nombre</th>
-										<th>Foto</th>
-										<th>Precio</th>
-										<th>Categoría</th>
-										<th>Acción</th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php foreach ($cocinero['Platillo'] as $platillo): ?>
-									<tr>
-										<td><?= $platillo['nombre']; ?></td>
-										<?php if (empty($platillo['foto'])) { ?>
-										<td><figure><?= $this->Html->image('../img/plato_vacio/thumb_plato_vacio.jpg'); ?></figure></td>
-										<?php } else { ?>
-										<td><?= $this->Html->image('../files/platillo/foto/'.$platillo['foto_dir'].'/'.'thumb_'.$platillo['foto']); ?></td>
-										<?php } ?>
-										<td>$ <?= number_format($platillo['precio'], 2, '.', ','); ?></td>
-										<td><?= $this->Html->link($categoriaPlatillos[$platillo['categoria_platillo_id']], array('controller' => 'categoria_platillos', 'action' => 'ver', $platillo['categoria_platillo_id'])) ?></td>
-										<td>
-											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i>'), array('controller' => 'platillos', 'action' => 'ver', $platillo['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Ver')); ?>
-											<?= $this->Html->link(__('<i class="fa fa-pencil"></i>'), array('controller' => 'platillos', 'action' => 'editar', $platillo['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Editar')); ?>
-											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i>'), array('controller' => 'platillos', 'action' => 'eliminar', $platillo['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'Eliminar' => 'Ver', 'confirm' => __('¿Eliminar platillo %s?', $platillo['nombre']))); ?>
-										</td>
-									</tr>
-									<?php endforeach; ?>
-								</tbody>
-							</table>
-							<?php } ?>
-						</fieldset>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>

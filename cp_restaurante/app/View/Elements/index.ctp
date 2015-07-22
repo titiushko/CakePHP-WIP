@@ -8,7 +8,7 @@ $this->Paginator->options(array(
 <div id="contenedor-<?= $alias_plural; ?>">
 	<div class="row">
 		<div class="col-lg-12">
-			<h1 class="well page-header"><i class="fa fa-user"></i> Módulo de <?= ucwords(str_replace('_', ' ', $alias_plural)); ?></h1>
+			<h1 class="well page-header"><i class="fa fa-<?= $icono; ?>"></i> Módulo de <?= ucwords(str_replace('_', ' ', $alias_plural)); ?></h1>
 		</div>
 	</div>
 	<div class="row">
@@ -25,7 +25,7 @@ $this->Paginator->options(array(
 				<div class="panel-body">
 					<div class="row">
 						<div class="col-lg-12">
-							<?= $this->Html->link(__('<i class="fa fa-user-plus"></i> Agregar %s', ucwords(str_replace('_', ' ', $alias_singular))), array('controller' => $alias_plural, 'action' => 'nuevo'), array('class' => 'btn btn-success', 'escape' => FALSE)); ?>
+							<?= $this->Html->link(__('<i class="fa fa-plus-square"></i> Agregar %s', ucwords(str_replace('_', ' ', $alias_singular))), array('controller' => $alias_plural, 'action' => 'nuevo'), array('class' => 'btn btn-success', 'escape' => FALSE)); ?>
 						</div>
 					</div>
 					<div class="row"><div class="col-lg-12">&nbsp;</div></div>
@@ -57,7 +57,7 @@ $this->Paginator->options(array(
 										<td>
 											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i>'), array('controller' => $alias_plural, 'action' => 'ver', $valor['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Ver')); ?>
 											<?= $this->Html->link(__('<i class="fa fa-pencil"></i>'), array('controller' => $alias_plural, 'action' => 'editar', $valor['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Editar')); ?>
-											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i>'), array('controller' => $alias_plural, 'action' => 'eliminar', $valor['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Eliminar', 'confirm' => __('¿Eliminar %$ %s?', $alias_singular, $valor['elemento_eliminar']))); ?>
+											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i>'), array('controller' => $alias_plural, 'action' => 'eliminar', $valor['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Eliminar', 'confirm' => __('¿Eliminar %s %s?', $alias_singular, $valor['elemento_eliminar']))); ?>
 										</td>
 									</tr>
 									<?php endforeach; ?>

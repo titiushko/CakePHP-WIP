@@ -17,7 +17,7 @@ $modelo = ''; foreach ($modelo_palabras as $modelo_palabra) $modelo .= ucwords($
 ?>
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="well page-header"><i class="fa fa-user"></i> Módulo de <?= ucwords(str_replace('_', ' ', $alias_plural)); ?></h1>
+		<h1 class="well page-header"><i class="fa fa-<?= $icono; ?>"></i> Módulo de <?= ucwords(str_replace('_', ' ', $alias_plural)); ?></h1>
 	</div>
 </div>
 <div class="row">
