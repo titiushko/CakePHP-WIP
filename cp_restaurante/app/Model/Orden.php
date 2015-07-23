@@ -6,16 +6,6 @@ class Orden extends AppModel {
 	public $useTable = 'ordenes';
 	
 	public $validate = array(
-		'cliente' => array(
-			'notEmpty' => array(
-				'rule' => 'notEmpty',
-				'message' => 'Cliente requerido.'
-			),
-			'alphabetic' => array(
-				'rule' => '/^[a-zA-Z[:space:]ñáéíóúÑÁÉÍÓÚ]*$/',
-				'message' => 'Sólo letras.'
-			)
-		),
 		'dui' => array(
 			'notEmpty' => array(
 				'rule' => 'notEmpty',
@@ -33,6 +23,26 @@ class Orden extends AppModel {
 				'rule' => '/^\d{9}$/',
 				'message' => 'DUI inválido. Formato: 9 dígitos sin guión.'
 			)
+		),
+		'nombres' => array(
+			'notEmpty' => array(
+				'rule' => 'notEmpty',
+				'message' => 'Nombres requeridos.'
+			),
+			'alphabetic' => array(
+				'rule' => '/^[a-zA-Z[:space:]ñáéíóúÑÁÉÍÓÚ]*$/',
+				'message' => 'Sólo letras.'
+			)
+		),
+		'apellidos' => array(
+			'notEmpty' => array(
+				'rule' => 'notEmpty',
+				'message' => 'Apellidos requeridos.'
+			),
+			'alphabetic' => array(
+				'rule' => '/^[a-zA-Z[:space:]ñáéíóúÑÁÉÍÓÚ]*$/',
+				'message' => 'Sólo letras.'
+			)
 		)
 	);
 	
@@ -41,9 +51,13 @@ class Orden extends AppModel {
 			'className' => 'Mesa',
 			'foreignKey' => 'mesa_id'
 		),
-		'Mesero' => array(
-			'className' => 'Mesero',
+		'Persona' => array(
+			'className' => 'Persona',
 			'foreignKey' => 'mesero_id'
+		),
+		'Cliente' => array(
+			'className' => 'Persona',
+			'foreignKey' => 'cliente_id'
 		)
 	);
 	

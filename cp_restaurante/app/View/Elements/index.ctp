@@ -8,7 +8,7 @@ $this->Paginator->options(array(
 <div id="contenedor-<?= $alias_plural; ?>">
 	<div class="row">
 		<div class="col-lg-12">
-			<h1 class="well page-header"><i class="fa fa-<?= $icono; ?>"></i> Módulo de <?= ucwords(str_replace('_', ' ', $alias_plural)); ?></h1>
+			<h1 class="well page-header"><?= $this->Funciones->icono_modulo($alias_plural); ?> Módulo de <?= ucwords(str_replace('_', ' ', $alias_plural)); ?></h1>
 		</div>
 	</div>
 	<div class="row">

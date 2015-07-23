@@ -38,14 +38,14 @@ class Mesa extends AppModel {
 		'mesero_id' => array(
 			'notEmpty' => array(
 				'rule' => 'notEmpty',
-				'message' => 'Seleccionar un mesero.'
+				'message' => 'Seleccionar un persona.'
 			)
 		)
 	);
 	
 	public $belongsTo = array(
-		'Mesero' => array(
-			'className' => 'Mesero',
+		'Persona' => array(
+			'className' => 'Persona',
 			'foreignKey' => 'mesero_id'
 		)
 	);

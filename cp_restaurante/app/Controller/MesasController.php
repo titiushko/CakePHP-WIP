@@ -2,6 +2,7 @@
 App::uses('AppController', 'Controller');
 
 class MesasController extends AppController {
+	public $uses = array('Mesa', 'Persona', 'Orden');
 	public $paginate = array(
 		'limit' => 5,
 		'order' => array(
@@ -11,7 +12,6 @@ class MesasController extends AppController {
 	
 	public function index() {
 		$this->Mesa->recursive = 0;
-		//$this->paginate['Mesa']['conditions'] = array('Mesa.mesero_id' => 2);
 		$this->set(array('mesas' => $this->paginate(), 'opcion_menu' => array('mesas' => 'active')));
 	}
 	
@@ -23,8 +23,11 @@ class MesasController extends AppController {
 			throw new NotFoundException(__('Mesa no existe.'));
 		}
 		else {
-			$opciones = array('conditions' => array('Mesa.'.$this->Mesa->primaryKey => $id));
-			$this->set(array('mesa' => $this->Mesa->find('first', $opciones), 'opcion_menu' => array('mesas' => 'active')));
+			$this->set(array(
+				'mesa' => $this->Mesa->find('first', array('conditions' => array('Mesa.'.$this->Mesa->primaryKey => $id))),
+				'ordenes' => $this->Mesa->Orden->find('all', array('conditions' => array('Orden.mesa_id' => $id))),
+				'opcion_menu' => array('mesas' => 'active')
+			));
 		}
 	}
 	
@@ -41,7 +44,10 @@ class MesasController extends AppController {
 			$this->Session->setFlash(__('No se pudo crear mesa.'), 'default', array('class' => 'alert alert-danger'));
 		}
 		
-		$this->set(array('meseros' => $this->Mesa->Mesero->find('list', array('fields' => array('id', 'nombre_completo'))), 'opcion_menu' => array('mesas' => 'active')));
+		$this->set(array(
+			'meseros' => $this->Mesa->Persona->find('list', array('fields' => array('id', 'nombre_completo'))),
+			'opcion_menu' => array('mesas' => 'active')
+		));
 	}
 	
 	public function editar($id = null) {
@@ -71,7 +77,8 @@ class MesasController extends AppController {
 		
 		$this->set(array(
 			'mesa' => $mesa,
-			'meseros' => $this->Mesa->Mesero->find('list', array('fields' => array('id', 'nombre_completo'))),
+			'meseros' => $this->Mesa->Persona->find('list', array('fields' => array('id', 'nombre_completo'))),
+			'ordenes' => $this->Mesa->Orden->find('all', array('conditions' => array('Orden.mesa_id' => $id))),
 			'opcion_menu' => array('mesas' => 'active')
 		));
 	}

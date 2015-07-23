@@ -10,7 +10,6 @@ foreach ($cocinero['Platillo'] as $platillo) {
 }
 echo $this->element(
 	'editar', array(
-		'icono' => 'male',
 		'id' => $cocinero['Cocinero']['id'],
 		'alias_singular' => 'cocinero',
 		'alias_plural' => 'cocineros',

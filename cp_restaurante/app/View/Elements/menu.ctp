@@ -20,15 +20,10 @@
 					</ul>
 				</li>
 				<li class="dropdown <?= @$opcion_menu['empleados']; ?>">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-briefcase"></i> Empleados <span class="caret"></span></a>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-male"></i> Empleados <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
-						<li class="dropdown-header"><i class="fa fa-user"></i> Meseros</li>
-						<li><?= $this->Html->link(__('<i class="fa fa-list-alt"></i> Lista Meseros'), array('controller' => 'meseros', 'action' => 'index'), array('escape' => FALSE)); ?></li>
-						<li><?= $this->Html->link(__('<i class="fa fa-plus-square"></i> Nuevo Mesero'), array('controller' => 'meseros', 'action' => 'nuevo'), array('escape' => FALSE)); ?></li>
-						<li class="divider"></li>
-						<li class="dropdown-header"><i class="fa fa-male"></i> Cocineros</li>
-						<li><?= $this->Html->link(__('<i class="fa fa-list-alt"></i> Lista Cocineros'), array('controller' => 'cocineros', 'action' => 'index'), array('escape' => FALSE)); ?></li>
-						<li><?= $this->Html->link(__('<i class="fa fa-plus-square"></i> Nuevo Cocinero'), array('controller' => 'cocineros', 'action' => 'nuevo'), array('escape' => FALSE)); ?></li>
+						<li><?= $this->Html->link(__('<i class="fa fa-list-alt"></i> Lista Empleados'), array('controller' => 'empleados', 'action' => 'index'), array('escape' => FALSE)); ?></li>
+						<li><?= $this->Html->link(__('<i class="fa fa-plus-square"></i> Nuevo Empleado'), array('controller' => 'empleados', 'action' => 'nuevo'), array('escape' => FALSE)); ?></li>
 					</ul>
 				</li>
 				<li class="dropdown <?= @$opcion_menu['mesas']; ?>">

@@ -6,15 +6,14 @@ $formulario = array(
 	'inputDefaults' => array(
 		'format' => array('before', 'label', 'between', 'input', 'error', 'after'),
 		'div' => array('class' => 'form-group'),
-		'label' => array('class' => 'control-label'),
+		'label' => array('class' => 'col-lg-3 control-label'),
+		'autocomplete' => 'off',
 		'class' => 'form-control',
 		'between' => '<div class="col-lg-9">',
 		'after' => '</div>',
 		'error' => array('attributes' => array('wrap' => 'span', 'class' => 'help-inline')),
 	)
 );
-$control_label = 'col-lg-3 control-label';
-$etiqueta = array('label' => array('class' => $control_label));
 ?>
 <div class="row">
 	<div class="col-lg-12">
@@ -37,15 +36,15 @@ $etiqueta = array('label' => array('class' => $control_label));
 					<div class="form-horizontal">
 						<?= $this->Form->create('Platillo', $formulario); ?>
 							<div class="col-lg-7">
-								<?= $this->Form->input('foto', array('type' => 'file', 'label' => array('text' => 'Foto', 'class' => $control_label), 'class' => 'file', 'data-show-upload' => 'false', 'data-show-caption' => 'true')); ?>
+								<?= $this->Form->input('foto', array('type' => 'file', 'label' => array('text' => 'Foto', 'class' => 'col-lg-3 control-label'), 'class' => 'file', 'data-show-upload' => 'false', 'data-show-caption' => 'true')); ?>
 								<?= $this->Form->input('foto_dir', array('type' => 'hidden')); ?>
 							</div>
 							<div class="col-lg-5">
-								<?= $this->Form->input('nombre', $etiqueta); ?>
-								<?= $this->Form->input('descripcion', array_merge($etiqueta, array('rows' => 4))); ?>
-								<?= $this->Form->input('precio', $etiqueta); ?>
-								<?= $this->Form->input('categoria_platillo_id', array('label' => array('text' => 'Categoría', 'class' => $control_label))); ?>
-								<?= $this->Form->input('Cocinero', $etiqueta); ?>
+								<?= $this->Form->input('nombre'); ?>
+								<?= $this->Form->input('descripcion', array('rows' => 4)); ?>
+								<?= $this->Form->input('precio'); ?>
+								<?= $this->Form->input('categoria_platillo_id', array('label' => array('text' => 'Categoría', 'class' => 'col-lg-3 control-label'))); ?>
+								<?= $this->Form->input('Persona'); ?>
 								<div class="form-group">
 									<div class="col-lg-12 text-center">
 										<span class="submit"><?= $this->Form->button(__('<i class="fa fa-save"></i> Guardar'), array('type' => 'submit', 'class' => 'btn btn-primary', 'escape' => FALSE)); ?></span>

@@ -103,8 +103,8 @@ class Platillo extends AppModel {
 	);
 	
 	public $hasAndBelongsToMany = array(
-		'Cocinero' => array(
-			'className' => 'Cocinero',
+		'Persona' => array(
+			'className' => 'Persona',
 			'joinTable' => 'cocineros_platillos',
 			'foreignKey' => 'platillo_id',
 			'associationForeignKey' => 'cocinero_id',

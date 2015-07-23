@@ -1,6 +1,5 @@
 <?= $this->element(
 	'nuevo', array(
-		'icono' => 'coffee',
 		'alias_singular' => 'mesa',
 		'alias_plural' => 'mesas',
 		'campos' => array(

@@ -7,6 +7,10 @@ class FuncionesHelper extends AppHelper {
 		'admin' => 'Administrador',
 		'user' => 'Usuario'
 	);
+	public $cargos = array(
+		'mesero' => 'Mesero',
+		'cocinero' => 'Cocinero'
+	);
 	
 	/* Devuelve el listado de roles */
 	public function roles() {
@@ -16,6 +20,18 @@ class FuncionesHelper extends AppHelper {
 	/* Devuelve el nombre completo de un rol */
 	public function rol($rol) {
 		return $this->roles[$rol];
+	}
+	
+	/* Devuelve el listado de cargos */
+	public function cargos() {
+		return $this->cargos;
+	}
+	
+	/* Devuelve el nombre completo de un cargo */
+	public function cargo($cargo) {
+		$cargo = empty($cargo) ? '' : $cargo;
+		if ($cargo == 'cliente' || $cargo == '') return '';
+		else return $this->cargos[$cargo];
 	}
 	
 	/*
@@ -35,10 +51,24 @@ class FuncionesHelper extends AppHelper {
 	
 	/* Devuelve un enlace con estilo de bootstrap para ser utilizado en un formulario. */
 	public function campo_enlace($alias_singular, $enlace) {
-		$alias = str_replace('_', ' ', $alias_singular);
+		$etiqueta = str_replace('_', ' ', $alias_singular);
 		return '<div class="form-group">'.
-					$this->Form->label($alias, ucwords($alias), array('class' => 'col-lg-3 control-label')).
+					$this->Form->label($etiqueta, ucwords($etiqueta), array('class' => 'col-lg-3 control-label')).
 					'<div class="col-lg-9" style="margin-top: 6px;">'.$enlace.'</div>
 				</div>';
+	}
+	
+	/* Devuelve ícono del módluo. */
+	public function icono_modulo($alias_plural) {
+		$icono = array(
+			'usuarios' => 'users',
+			'empleados' => 'male',
+			'mesas' => 'coffee',
+			'platillos' => 'cutlery',
+			'categoria_platillos' => 'random',
+			'ordenes' => 'archive',
+			'pedidos' => 'shopping-cart'
+		);
+		return '<i class="fa fa-'.$icono[$alias_plural].'"></i>';
 	}
 }

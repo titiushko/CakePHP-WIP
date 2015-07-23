@@ -2,7 +2,7 @@
 App::uses('AppController', 'Controller');
 
 class OrdenesController extends AppController {
-	public $uses = array('Orden', 'Pedido');
+	public $uses = array('Orden', 'Pedido', 'Persona');
 	public $paginate = array(
 		'limit' => 4,
 		'order' => array(
@@ -27,7 +27,7 @@ class OrdenesController extends AppController {
 		if (count($pedidos) > 0) {
 			$total_orden = $this->Pedido->total_orden();
 			$mesas = $this->Orden->Mesa->find('list', array('order' => 'Mesa.serie ASC'));
-			$meseros = $this->Orden->Mesero->find('list', array('fields' => array('id', 'nombre_completo'), 'order' => 'Mesero.nombre_completo ASC'));
+			$meseros = $this->Orden->Persona->find('list', array('fields' => array('id', 'nombre_completo'), 'conditions' => array('Persona.cargo' => 'mesero'), 'order' => 'Persona.nombre_completo ASC'));
 			$this->set(compact('pedidos', 'total_orden', 'mesas', 'meseros'));
 		}
 		else {
@@ -36,8 +36,31 @@ class OrdenesController extends AppController {
 		}
 		
 		if ($this->request->is('post')) {
+			//$this->Orden->create();
+			$datos_persona = array(
+				'Persona' => array(
+					'dui' => $this->request->data['Orden']['dui'],
+					'nombres' => $this->request->data['Orden']['nombres'],
+					'apellidos' => $this->request->data['Orden']['apellidos'],
+					//'cargo' => $this->request->data['Orden']['cargo']
+					'cargo' => 'cliente'
+				)
+			);
+			$this->Persona->create();
+			$nueva_persona = $this->Persona->save($datos_persona);
+			
+			$datos_orden = array(
+				'Orden' => array(
+					'cliente_id' => $this->Persona->getLastInsertID(),
+					'mesa_id' => $this->request->data['Orden']['mesa_id'],
+					'mesero_id' => $this->request->data['Orden']['mesero_id'],
+					'total' => $this->request->data['Orden']['total']
+				)
+			);
 			$this->Orden->create();
-			if ($this->Orden->save($this->request->data)) {
+			$nueva_orden = $this->Orden->save($datos_orden);
+			
+			if ($nueva_persona && $nueva_orden) {
 				$orden_id = $this->Orden->id;
 				for($i = 0; $i < count($pedidos); $i++) {
 					$platillo_id = $pedidos[$i]['Pedido']['platillo_id'];

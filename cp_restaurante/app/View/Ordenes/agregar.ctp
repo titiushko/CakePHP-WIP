@@ -5,15 +5,14 @@ $formulario = array(
 	'inputDefaults' => array(
 		'format' => array('before', 'label', 'between', 'input', 'error', 'after'),
 		'div' => array('class' => 'form-group'),
-		'label' => array('class' => 'control-label'),
+		'label' => array('class' => 'col-lg-3 control-label'),
+		'autocomplete' => 'off',
 		'class' => 'form-control',
 		'between' => '<div class="col-lg-9">',
 		'after' => '</div>',
 		'error' => array('attributes' => array('wrap' => 'span', 'class' => 'help-inline')),
 	)
 );
-$control_label = 'col-lg-3 control-label';
-$etiqueta = array('label' => array('class' => $control_label));
 ?>
 <div class="row">
 	<div class="col-lg-12">
@@ -36,11 +35,12 @@ $etiqueta = array('label' => array('class' => $control_label));
 					<div class="col-lg-4 col-lg-offset-4">
 						<?= $this->Form->create('Orden', $formulario); ?>
 						<fieldset>
-							<legend>Orden</legend>
-							<?= $this->Form->input('cliente', $etiqueta); ?>
-							<?= $this->Form->input('dui', $etiqueta); ?>
-							<?= $this->Form->input('mesero_id', $etiqueta); ?>
-							<?= $this->Form->input('mesa_id', $etiqueta); ?>
+							<legend>Orden Cliente</legend>
+							<?= $this->Form->input('nombres'); ?>
+							<?= $this->Form->input('apellidos'); ?>
+							<?= $this->Form->input('dui'); ?>
+							<?= $this->Form->input('mesero_id'); ?>
+							<?= $this->Form->input('mesa_id'); ?>
 							<?= $this->Form->input('total', array('type' => 'hidden', 'value' => $total_orden)); ?>
 							<div class="form-group">
 								<div class="col-lg-12 text-center">

@@ -1,16 +1,15 @@
 <?php
 $lista = array(); $contador = 0;
-foreach ($mesa['Orden'] as $orden) {
-	$lista[$contador]['id'] = $orden['id'];
-	$lista[$contador]['mesero'] = h($mesa['Mesero']['nombre_completo']);
-	$lista[$contador]['cliente'] = h($orden['cliente']);
-	$lista[$contador]['dui'] = $orden['dui'];
-	$lista[$contador]['total'] = '$'.number_format($orden['total'], 2, '.', ',');
+foreach ($ordenes as $orden) {
+	$lista[$contador]['id'] = $orden['Orden']['id'];
+	$lista[$contador]['mesero'] = h($orden['Persona']['nombre_completo']);
+	$lista[$contador]['cliente'] = h($orden['Cliente']['nombres'].' '.$orden['Cliente']['apellidos']);
+	$lista[$contador]['dui'] = h($orden['Cliente']['dui']);
+	$lista[$contador]['total'] = '$'.number_format($orden['Orden']['total'], 2, '.', ',');
 	$contador++;
 }
 echo $this->element(
 	'ver', array(
-		'icono' => 'coffee',
 		'id' => $mesa['Mesa']['id'],
 		'elemento_eliminar' => $mesa['Mesa']['serie'],
 		'alias_singular' => 'mesa',
@@ -19,7 +18,7 @@ echo $this->element(
 			'serie' => array('value' => $mesa['Mesa']['serie'], 'disabled' => TRUE),
 			'puestos' => array('value' => $mesa['Mesa']['puestos'], 'disabled' => TRUE),
 			'posicion' => array('value' => $mesa['Mesa']['posicion'], 'disabled' => TRUE, 'rows' => 3),
-			'mesa_id' => $this->Funciones->campo_enlace('mesero', $this->Html->link($mesa['Mesero']['nombre_completo'], array('controller' => 'meseros', 'action' => 'ver', $mesa['Mesero']['id'])))
+			'mesa_id' => $this->Funciones->campo_enlace('mesero', $this->Html->link($mesa['Persona']['nombre_completo'], array('controller' => 'empleados', 'action' => 'ver', $mesa['Persona']['id'])))
 		),
 		'lista' => $lista,
 		'singular' => 'orden',

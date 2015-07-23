@@ -8,7 +8,7 @@ $this->Paginator->options(array(
 <div id="contenedor-ordenes">
 	<div class="row">
 		<div class="col-lg-12">
-			<h1 class="well page-header"><i class="fa fa-coffee"></i> Módulo de Ordenes</h1>
+			<h1 class="well page-header"><i class="fa fa-archive"></i> Módulo de Ordenes</h1>
 		</div>
 	</div>
 	<div class="row">
@@ -50,10 +50,10 @@ $this->Paginator->options(array(
 								<tbody>
 									<?php foreach ($ordenes as $orden): ?>
 									<tr>
-										<td><?= $orden['Mesero']['nombre_completo']; ?></td>
+										<td><?= $orden['Persona']['nombre_completo']; ?></td>
 										<td><?= $orden['Mesa']['serie']; ?></td>
-										<td><?= $orden['Orden']['cliente']; ?></td>
-										<td><?= $orden['Orden']['dui']; ?></td>
+										<td><?= $orden['Cliente']['nombres'].' '.$orden['Cliente']['apellidos']; ?></td>
+										<td><?= $orden['Cliente']['dui']; ?></td>
 										<td>$ <?= number_format($orden['Orden']['total'], 2, '.', ','); ?></td>
 										<td><?= $this->Time->format('d/m/Y h:i A', $orden['Orden']['created']); ?></td>
 										<td><?= $this->Time->format('d/m/Y h:i A', $orden['Orden']['modified']); ?></td>

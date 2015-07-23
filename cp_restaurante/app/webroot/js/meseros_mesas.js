@@ -2,7 +2,7 @@ $(document).ready(function() {
 	$('#OrdenMeseroId').on('change', function(event) {
 		$.ajax({
 			type: 'POST',
-			url: url_base + 'meseros/mesas',
+			url: url_base + 'empleados/mesas',
 			data: {
 				mesero_id: $(this).val() != '' ? $(this).val() : '%'
 			},

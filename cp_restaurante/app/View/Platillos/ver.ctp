@@ -65,7 +65,7 @@
 					<div class="col-lg-12 table-responsive">
 						<fieldset>
 							<legend>Cocineros Encargados</legend>
-							<?php if (empty($platillo['Cocinero'])) { ?>
+							<?php if (empty($platillo['Persona'])) { ?>
 								<p>No tiene cocineros asociados.</p>
 							<?php } else { ?>
 							<table class="table table-striped table-bordered table-hover">
@@ -79,16 +79,16 @@
 									</tr>
 								</thead>
 								<tbody>
-									<?php foreach ($platillo['Cocinero'] as $cocinero): ?>
+									<?php foreach ($platillo['Persona'] as $cocinero): ?>
 									<tr>
 										<td><?= $cocinero['nombres']; ?></td>
 										<td><?= $cocinero['apellidos']; ?></td>
 										<td><?= $this->Time->format('d/m/Y h:i A', $cocinero['created']); ?></td>
 										<td><?= $this->Time->format('d/m/Y h:i A', $cocinero['modified']); ?></td>
 										<td>
-											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i>'), array('controller' => 'cocineros', 'action' => 'ver', $cocinero['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Ver')); ?>
-											<?= $this->Html->link(__('<i class="fa fa-pencil"></i>'), array('controller' => 'cocineros', 'action' => 'editar', $cocinero['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Editar')); ?>
-											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i>'), array('controller' => 'cocineros', 'action' => 'eliminar', $cocinero['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Eliminar', 'confirm' =>  __('¿Eliminar a %s?', $cocinero['nombre_completo']))); ?>
+											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i>'), array('controller' => 'empleados', 'action' => 'ver', $cocinero['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Ver')); ?>
+											<?= $this->Html->link(__('<i class="fa fa-pencil"></i>'), array('controller' => 'empleados', 'action' => 'editar', $cocinero['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Editar')); ?>
+											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i>'), array('controller' => 'empleados', 'action' => 'eliminar', $cocinero['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Eliminar', 'confirm' =>  __('¿Eliminar a %s?', $cocinero['nombre_completo']))); ?>
 										</td>
 									</tr>
 									<?php endforeach; ?>

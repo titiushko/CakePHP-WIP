@@ -1,9 +1,9 @@
 <?php
 App::uses('AppModel', 'Model');
 
-class Mesero extends AppModel {
+class Persona extends AppModel {
 	public $displayField = 'nombres';
-	public $virtualFields = array('nombre_completo' => 'CONCAT(Mesero.nombres, " ", Mesero.apellidos)');
+	public $virtualFields = array('nombre_completo' => 'CONCAT(Persona.nombres, " ", Persona.apellidos)');
 	
 	public $validate = array(
 		'dui' => array(
@@ -45,10 +45,6 @@ class Mesero extends AppModel {
 			)
 		),
 		'telefono' => array(
-			'notEmpty' => array(
-				'rule' => 'notEmpty',
-				'message' => 'Teléfono requerida.'
-			),
 			'numeric' => array(
 				'rule' => 'numeric',
 				'message' => 'Sólo números.'
@@ -56,6 +52,12 @@ class Mesero extends AppModel {
 			'formatTelefono' => array(
 				'rule' => '/^\d{8}$/',
 				'message' => 'Teléfono inválido. Formato: 8 dígitos sin guiones.'
+			)
+		),
+		'cargo' => array(
+			'notEmpty' => array(
+				'rule' => 'notEmpty',
+				'message' => 'Cargo requerido.'
 			)
 		)
 	);
@@ -70,7 +72,17 @@ class Mesero extends AppModel {
 		),
 		'Orden' => array(
 			'className' => 'Orden',
-			'foreignKey' => 'mesa_id',
+			'foreignKey' => 'mesero_id',
+			'dependent' => FALSE
+		),
+		'Cliente' => array(
+			'className' => 'Orden',
+			'foreignKey' => 'cliente_id',
+			'dependent' => FALSE
+		),
+		'Usuario' => array(
+			'className' => 'Usuario',
+			'foreignKey' => 'persona_id',
 			'dependent' => FALSE
 		)
 	);

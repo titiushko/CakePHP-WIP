@@ -10,7 +10,6 @@ foreach ($categoria_platillo['Platillo'] as $platillo) {
 }
 echo $this->element(
 	'editar', array(
-		'icono' => 'random',
 		'id' => $categoria_platillo['CategoriaPlatillo']['id'],
 		'alias_singular' => 'categoria_platillo',
 		'alias_plural' => 'categoria_platillos',
