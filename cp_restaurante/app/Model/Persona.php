@@ -86,4 +86,14 @@ class Persona extends AppModel {
 			'dependent' => FALSE
 		)
 	);
+	
+	public $hasAndBelongsToMany = array(
+		'Platillo' => array(
+			'className' => 'Platillo',
+			'joinTable' => 'cocineros_platillos',
+			'foreignKey' => 'cocinero_id',
+			'associationForeignKey' => 'platillo_id',
+			'unique' => 'keepExisting'
+		)
+	);
 }

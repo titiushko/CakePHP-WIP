@@ -59,7 +59,7 @@ $formulario = array(
 				<div class="row">
 					<div class="col-lg-12 table-responsive">
 						<fieldset>
-							<legend>Cocineros Encargados</legend>
+							<legend>Cocineros</legend>
 							<?php if (empty($platillo['Persona'])) { ?>
 								<p>No tiene cocineros asociados.</p>
 							<?php } else { ?>

@@ -26,9 +26,14 @@ class EmpleadosController extends AppController {
 			throw new NotFoundException(__('Persona no existe.'));
 		}
 		else {
+			$empleado = $this->Persona->find('first', array('conditions' => array('Persona.'.$this->Persona->primaryKey => $id)));
+			$asociacion = array(
+				'mesero' => array('ordenes', $this->Persona->Orden->find('all', array('conditions' => array('Orden.mesero_id' => $id)))),
+				'cocinero' => array('categoriaPlatillos', $this->Persona->Platillo->CategoriaPlatillo->find('list'))
+			);
 			$this->set(array(
-				'empleado' => $this->Persona->find('first', array('conditions' => array('Persona.'.$this->Persona->primaryKey => $id))),
-				'ordenes' => $this->Persona->Orden->find('all', array('conditions' => array('Orden.mesero_id' => $id))),
+				'empleado' => $empleado,
+				$asociacion[$empleado['Persona']['cargo']][0] => $asociacion[$empleado['Persona']['cargo']][1],
 				'opcion_menu' => array('empleados' => 'active')
 			));
 		}
