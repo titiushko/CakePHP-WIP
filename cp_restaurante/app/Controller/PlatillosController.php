@@ -9,6 +9,24 @@ class PlatillosController extends AppController {
 		),
 	);
 	
+	public function isAuthorized($usuario) {
+		if (!isset($usuario_actual)) {
+			if (in_array($this->action, array('index', 'ver', 'busqueda', 'buscar'))) return TRUE;
+			else {
+				$this->Session->setFlash('NO TIENE ACCESO PARA REALIZAR ESTA ACCIÓN', 'default', array('class' => 'alert alert-danger'));
+				$this->redirect($this->Auth->redirect());
+			}
+		}
+		if ($usuario['rol'] == 'usuario') {
+			if (in_array($this->action, array('index', 'ver', 'nuevo', 'editar', 'busqueda', 'buscar'))) return TRUE;
+			else if($this->Auth->user('id')) {
+				$this->Session->setFlash('NO TIENE ACCESO PARA REALIZAR ESTA ACCIÓN', 'default', array('class' => 'alert alert-danger'));
+				$this->redirect($this->Auth->redirect());
+			}
+		}
+		else return parent::isAuthorized($usuario);
+	}
+	
 	public function index() {
 		$this->Platillo->recursive = 0;
 		$this->set(array('platillos' => $this->paginate(), 'opcion_menu' => array('platillos' => 'active')));

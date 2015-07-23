@@ -10,6 +10,17 @@ class OrdenesController extends AppController {
 		)
 	);
 	
+	public function isAuthorized($usuario) {
+		if ($usuario['rol'] == 'usuario') {
+			if (in_array($this->action, array('agregar'))) return TRUE;
+			else if($this->Auth->user('id')) {
+				$this->Session->setFlash('NO TIENE ACCESO PARA REALIZAR ESTA ACCIÓN', 'default', array('class' => 'alert alert-danger'));
+				$this->redirect($this->Auth->redirect());
+			}
+		}
+		else return parent::isAuthorized($usuario);
+	}
+	
 	public function index() {
 		$this->Orden->recursive = 0;
 		$ordenes = $this->paginate();

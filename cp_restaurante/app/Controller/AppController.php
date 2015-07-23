@@ -32,5 +32,25 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 	public $helpers = array('Html', 'Form', 'Time', 'Paginator', 'Js', 'Funciones');
-	public $components = array('Session', 'RequestHandler');
+	public $components = array(
+		'Session',
+		'RequestHandler',
+		'Auth' => array(
+			'loginRedirect' => array('controller' => 'platillos', 'action' => 'index'),
+			'logoutRedirect' => array('controller' => 'usuarios', 'action' => 'iniciar_sesion'),
+			'authenticate' => array('Form' => array('contrasena' => 'Blowfish')),
+			'authorize' => 'Controller',
+			'authError' => FALSE
+		)
+	);
+	
+	public function beforeFilter() {
+		$this->Auth->allow('iniciar_sesion', 'cerrar_sesion');
+		$this->set('usuario_actual', $this->Auth->user());
+	}
+
+	public function isAuthorized($usuario) {
+		if (isset($usuario['rol']) && $usuario['rol'] === 'admin') return TRUE;
+		else return FALSE;
+	}
 }

@@ -94,10 +94,10 @@ class Usuario extends AppModel {
 	);
 	
 	public function beforeSave($opciones = array()) {
-		if(isset($this->data[$this->alias]['contrasena'])) {
+		if (isset($this->data[$this->alias]['contrasena'])) {
 			$contrasena = new BlowfishPasswordHasher();
 			$this->data[$this->alias]['contrasena'] = $contrasena->hash($this->data[$this->alias]['contrasena']);
 		}
-		return TRUE;
+		else return TRUE;
 	}
 }

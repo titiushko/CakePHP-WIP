@@ -10,6 +10,17 @@ class EmpleadosController extends AppController {
 		),
 	);
 	
+	public function isAuthorized($usuario) {
+		if ($usuario['rol'] == 'usuario') {
+			if (in_array($this->action, array('index', 'ver', 'nuevo', 'editar', 'mesas'))) return TRUE;
+			else if($this->Auth->user('id')) {
+				$this->Session->setFlash('NO TIENE ACCESO PARA REALIZAR ESTA ACCIÓN', 'default', array('class' => 'alert alert-danger'));
+				$this->redirect($this->Auth->redirect());
+			}
+		}
+		else return parent::isAuthorized($usuario);
+	}
+	
 	public function index() {
 		$this->Persona->recursive = 0;
 		$this->paginate['Persona']['limit'] = 5;

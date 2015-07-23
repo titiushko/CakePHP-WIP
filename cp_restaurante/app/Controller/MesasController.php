@@ -10,6 +10,17 @@ class MesasController extends AppController {
 		),
 	);
 	
+	public function isAuthorized($usuario) {
+		if ($usuario['rol'] == 'usuario') {
+			if (in_array($this->action, array('index', 'ver', 'nuevo', 'editar'))) return TRUE;
+			else if($this->Auth->user('id')) {
+				$this->Session->setFlash('NO TIENE ACCESO PARA REALIZAR ESTA ACCIÓN', 'default', array('class' => 'alert alert-danger'));
+				$this->redirect($this->Auth->redirect());
+			}
+		}
+		else return parent::isAuthorized($usuario);
+	}
+	
 	public function index() {
 		$this->Mesa->recursive = 0;
 		$this->set(array('mesas' => $this->paginate(), 'opcion_menu' => array('mesas' => 'active')));

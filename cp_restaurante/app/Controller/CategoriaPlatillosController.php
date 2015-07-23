@@ -17,6 +17,24 @@ class CategoriaPlatillosController extends AppController {
 		)
 	);
 	
+	public function isAuthorized($usuario) {
+		if (!isset($usuario_actual)) {
+			if (in_array($this->action, array('index', 'ver'))) return TRUE;
+			else {
+				$this->Session->setFlash('NO TIENE ACCESO PARA REALIZAR ESTA ACCIÓN', 'default', array('class' => 'alert alert-danger'));
+				$this->redirect($this->Auth->redirect());
+			}
+		}
+		if ($usuario['rol'] == 'usuario') {
+			if (in_array($this->action, array('index', 'ver', 'nuevo', 'editar'))) return TRUE;
+			else if($this->Auth->user('id')) {
+				$this->Session->setFlash('NO TIENE ACCESO PARA REALIZAR ESTA ACCIÓN', 'default', array('class' => 'alert alert-danger'));
+				$this->redirect($this->Auth->redirect());
+			}
+		}
+		else return parent::isAuthorized($usuario);
+	}
+	
 	public function index() {
 		$this->CategoriaPlatillo->recursive = 0;
 		$this->paginate['CategoriaPlatillo']['order'] = array('CategoriaPlatillo.categoria' => 'asc');

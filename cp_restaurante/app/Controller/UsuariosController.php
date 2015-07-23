@@ -10,6 +10,21 @@ class UsuariosController extends AppController {
 		),
 	);
 	
+	public function beforeFilter() {
+		parent::beforeFilter();
+	}
+
+	public function iniciar_sesion() {
+		if ($this->request->is('post')) {
+			if ($this->Auth->login()) return $this->redirect($this->Auth->redirectUrl());
+			else $this->Session->setFlash('Datos incorrectos.', 'default', array('class' => 'alert alert-danger'));
+		}
+	}
+
+	public function cerrar_sesion() {
+		return $this->redirect($this->Auth->logout());
+	}
+	
 	public function index() {
 		$this->Usuario->recursive = 0;
 		$this->paginate['Usuario']['limit'] = 5;

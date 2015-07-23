@@ -2,6 +2,17 @@
 App::uses('AppController', 'Controller');
 
 class PedidosController extends AppController {
+	public function isAuthorized($usuario) {
+		if ($usuario['rol'] == 'usuario') {
+			if (in_array($this->action, array('agregar', 'index', 'actualizar_pedido', 'eliminar_pedido', 'eliminar_pedidos'))) return TRUE;
+			else if($this->Auth->user('id')) {
+				$this->Session->setFlash('NO TIENE ACCESO PARA REALIZAR ESTA ACCIÓN', 'default', array('class' => 'alert alert-danger'));
+				$this->redirect($this->Auth->redirect());
+			}
+		}
+		else return parent::isAuthorized($usuario);
+	}
+	
 	public function agregar() {
 		if ($this->request->is('ajax')) {
 			$platillo_id = $this->request->data['id'];
