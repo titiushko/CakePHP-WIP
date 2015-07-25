@@ -12,7 +12,7 @@
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<!--<li class="<?= @$opcion_menu['inicio']; ?>"><?= $this->Html->link(__('<i class="fa fa-home"></i> Inicio'), array('controller' => 'pages', 'action' => 'display', 'home'), array('escape' => FALSE)); ?></li>-->
-				<?php if($usuario_actual['role'] == 'admin'): ?>
+				<?php if(isset($usuario_actual) && $usuario_actual['rol'] == 'admin'): ?>
 				<li class="dropdown <?= @$opcion_menu['usuarios']; ?>">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users"></i> Usuarios <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
@@ -53,7 +53,7 @@
 						<?php endif; ?>
 					</ul>
 				</li>
-				<?php if($usuario_actual['role'] == 'admin'): ?>
+				<?php if(isset($usuario_actual) && $usuario_actual['rol'] == 'admin'): ?>
 				<li class="dropdown <?= @$opcion_menu['ordenes']; ?>">
 					<?= $this->Html->link(__('<i class="fa fa-archive"></i> Ordenes'), array('controller' => 'ordenes', 'action' => 'index'), array('escape' => FALSE)); ?>
 				</li>
@@ -75,7 +75,7 @@
 				<?= $this->Html->link(__('<i class="fa fa-shopping-cart"></i> Pedidos'), array('controller' => 'pedidos', 'action' => 'index'), array('class' => 'btn btn-success navbar-btn', 'escape' => FALSE)); ?>
 			</div>
 			<?php else: ?>
-			<?= $this->Form->create('Usuario', array('class' => 'navbar-form navbar-left', 'role' => 'search')); ?>
+			<?= $this->Form->create('Usuario', array('url' => array('controller' => 'usuarios', 'action' => 'iniciar_sesion'), 'class' => 'nav navbar-form navbar-right', 'role' => 'search')); ?>
 				<?= $this->Form->input('usuario', array('label' => FALSE, 'div' => array('class' => 'form-group'), 'class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'Usuario', 'size' => 12)); ?>
 				<?= $this->Form->input('contrasena', array('type' => 'password', 'label' => FALSE, 'div' => array('class' => 'form-group'), 'class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'Contraseña', 'size' => 12)); ?>
 				<?= $this->Form->button(__('<i class="fa fa-sign-in"></i> Entrar'), array('div' => FALSE, 'class' => 'btn btn-success', 'escape' => FALSE)); ?>

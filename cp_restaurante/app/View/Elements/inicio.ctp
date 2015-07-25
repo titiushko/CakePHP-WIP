@@ -1,6 +1,12 @@
 <div class="row">
+	<div class="col-lg-12" style="margin-top: 30px;">
+		<?= $this->Session->flash(); ?>
+		<!--<?= $this->Session->flash('auth'); ?>-->
+	</div>
+</div>
+<div class="row">
 	<div class="col-lg-12">
-		<div class="well page-header jumbotron">
+		<div class="well page-header jumbotron" style="margin-top: 0px;">
 			<h1>Bienvenido...</h1>
 			<p>¿Necesita terminar con las pérdidas en su restaurante? ¿Necesita mejorar el servicio a sus clientes? ¿Quiere aumentar su rentabilidad?</p>
 			<p>¡Entonces llegó al lugar correcto!</p>

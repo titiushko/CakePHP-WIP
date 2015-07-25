@@ -42,6 +42,8 @@ class AppController extends Controller {
 			'authenticate' => array('Form' => array('contrasena' => 'Blowfish')),
 			'authorize' => 'Controller',
 			'authError' => FALSE
+			//'authError' => 'Usted debe estar conectado para ver esta página.',
+			//'loginError' => 'Usuario o contraseña no válidos, por favor vuelva a intentarlo.'
 		)
 	);
 	
@@ -49,7 +51,7 @@ class AppController extends Controller {
 		$this->Auth->allow('iniciar_sesion', 'cerrar_sesion');
 		$this->set('usuario_actual', $this->Auth->user());
 	}
-
+	
 	public function isAuthorized($usuario) {
 		if (isset($usuario['rol']) && $usuario['rol'] === 'admin') return TRUE;
 		else return FALSE;

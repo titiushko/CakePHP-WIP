@@ -69,6 +69,15 @@ class Usuario extends AppModel {
 				'rule' => 'isUnique',
 				'message' => 'Usuario ya existe.',
 				'on' => 'create'
+			),
+			'between' => array(
+				'rule' => array('between', 5, 15),
+				'required' => TRUE,
+				'message' => 'Usuario debe tener entre 5 y 15 caracteres.'
+			),
+			'alphaNumericDashUnderscore' => array(
+				'rule' => '/^[a-zA-Z0-9_ \-]*$/',
+				'message' => 'Usuario sólo puede ser letras, números y guiones bajos.'
 			)
 		),
 		'contrasena' => array(
@@ -76,15 +85,43 @@ class Usuario extends AppModel {
 				'rule' => 'notEmpty',
 				'message' => 'Contraseña requerida.',
 				//'on' => 'create'
+			),
+			'min_length' => array(
+				'rule' => array('minLength', '6'),
+				'message' => 'Contraseña debe tener un mínimo de 6 caracteres.'
 			)
 		),
+		/*'confirmar_contrasena' => array(
+			'required' => array(
+				'rule' => 'notEmpty',
+				'message' => 'Por favor, confirmar contraseña.'
+			),
+			'equalToField' => array(
+				'rule' => array('equaltofield', 'contrasena'),
+				'message' => 'Ambas contraseñas deben coincidir.'
+			)
+		),*/
 		'rol' => array(
 			'notEmpty' => array(
 				'rule' => 'notEmpty',
 				'message' => 'Rol requerido.'
+			),
+			'valid' => array(
+				'rule' => array('inList', array('admin', 'user')),
+				'message' => 'Por favor ingrese un rol válido.',
+				'allowEmpty' => FALSE
 			)
 		)
 	);
+	
+	public function equalToField($campo, $otro_campo) {
+		$nombre_campo = '';
+		foreach ($campo as $indice => $valor) {
+			$nombre_campo = $indice;
+			break;
+		}
+		return $this->data[$this->name][$otro_campo] === $this->data[$this->name][$nombre_campo]; 
+	}
 	
 	public $belongsTo = array(
 		'Persona' => array(

@@ -13,14 +13,14 @@ class UsuariosController extends AppController {
 	public function beforeFilter() {
 		parent::beforeFilter();
 	}
-
+	
 	public function iniciar_sesion() {
 		if ($this->request->is('post')) {
 			if ($this->Auth->login()) return $this->redirect($this->Auth->redirectUrl());
-			else $this->Session->setFlash('Datos incorrectos.', 'default', array('class' => 'alert alert-danger'));
+			else $this->Session->setFlash('Usuario o contraseña no válidos, por favor vuelva a intentarlo.', 'default', array('class' => 'alert alert-danger'));
 		}
 	}
-
+	
 	public function cerrar_sesion() {
 		return $this->redirect($this->Auth->logout());
 	}

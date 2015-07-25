@@ -51,8 +51,6 @@ $this->Html->docType('html5');
 	<?= $this->element('menu'); ?>
 	<div class="container theme-showcase" role="main">
 		<?php
-		echo $this->Session->flash();
-		echo $this->Session->flash('auth');
 		echo $this->fetch('content');
 		//echo '<h1>Objeto CakeRequest</h1>'; pr($this->request);
 		//echo $this->element('sql_dump');

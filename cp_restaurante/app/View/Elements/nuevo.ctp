@@ -9,7 +9,7 @@ $formulario = array(
 		'class' => 'form-control',
 		'between' => '<div class="col-lg-9">',
 		'after' => '</div>',
-		'error' => array('attributes' => array('wrap' => 'span', 'class' => 'help-inline')),
+		'error' => array('attributes' => array('wrap' => 'span', 'class' => 'error-message')),
 	)
 );
 if (!isset($modelo)) {

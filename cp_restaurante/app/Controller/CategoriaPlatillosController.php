@@ -17,14 +17,11 @@ class CategoriaPlatillosController extends AppController {
 		)
 	);
 	
+	public function beforeFilter() {
+		$this->Auth->allow('index', 'ver');
+	}
+	
 	public function isAuthorized($usuario) {
-		if (!isset($usuario_actual)) {
-			if (in_array($this->action, array('index', 'ver'))) return TRUE;
-			else {
-				$this->Session->setFlash('NO TIENE ACCESO PARA REALIZAR ESTA ACCIÓN', 'default', array('class' => 'alert alert-danger'));
-				$this->redirect($this->Auth->redirect());
-			}
-		}
 		if ($usuario['rol'] == 'usuario') {
 			if (in_array($this->action, array('index', 'ver', 'nuevo', 'editar'))) return TRUE;
 			else if($this->Auth->user('id')) {
