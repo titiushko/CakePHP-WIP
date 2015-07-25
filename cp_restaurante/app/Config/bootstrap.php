@@ -70,6 +70,7 @@ Cache::config('default', array('engine' => 'File'));
  *
  */
 CakePlugin::load('Upload');
+CakePlugin::load('DebugKit');
  
 /**
  * To prefer app translation over plugin translation, you can set
