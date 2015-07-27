@@ -43,6 +43,18 @@ class Orden extends AppModel {
 				'rule' => '/^[a-zA-Z[:space:]ñáéíóúÑÁÉÍÓÚ]*$/',
 				'message' => 'Sólo letras.'
 			)
+		),
+		'mesero_id' => array(
+			'notEmpty' => array(
+				'rule' => 'notEmpty',
+				'message' => 'Seleccionar un mesero.'
+			)
+		),
+		'mesa_id' => array(
+			'notEmpty' => array(
+				'rule' => 'notEmpty',
+				'message' => 'Seleccionar una mesa.'
+			)
 		)
 	);
 	

@@ -9,6 +9,10 @@ $formulario = array(
 	'after' => '</div>',
 	'error' => array('attributes' => array('wrap' => 'span', 'class' => 'error-message'))
 );
+if (!isset($controlador)) {
+	$controlador_palabras = explode('_', $alias_plural);
+	$controlador = ''; foreach ($controlador_palabras as $controlador_palabra) $controlador .= ucwords($controlador_palabra);
+}
 if (!isset($modelo)) {
 	$modelo_palabras = explode('_', $alias_singular);
 	$modelo = ''; foreach ($modelo_palabras as $modelo_palabra) $modelo .= ucwords($modelo_palabra);
@@ -42,9 +46,9 @@ if (!isset($modelo)) {
 								?>
 							<div class="form-group">
 								<div class="col-lg-12 text-center">
-									<?= $this->Html->link(__('<i class="fa fa-pencil"></i> Editar'), array('controller' => $alias_plural, 'action' => 'editar', $id), array('class' => 'btn btn-primary', 'escape' => FALSE)); ?>
-									<?= $this->Form->postLink(__('<i class="fa fa-trash"></i> Eliminar'), array('controller' => $alias_plural, 'action' => 'eliminar', $id), array('class' => 'btn btn-danger', 'escape' => FALSE, 'confirm' => __('¿Eliminar %s %s?', $alias_singular, $elemento_eliminar))); ?>
-									<?= $this->Html->link(__('<i class="fa fa-times-circle"></i> Cancelar'), array('controller' => $alias_plural, 'action' => 'index'), array('class' => 'btn btn-default', 'escape' => FALSE)); ?>
+									<?= $this->Html->link(__('<i class="fa fa-pencil"></i> Editar'), array('controller' => $controlador, 'action' => 'editar', $id), array('class' => 'btn btn-primary', 'escape' => FALSE)); ?>
+									<?= $this->Form->postLink(__('<i class="fa fa-trash"></i> Eliminar'), array('controller' => $controlador, 'action' => 'eliminar', $id), array('class' => 'btn btn-danger', 'escape' => FALSE, 'confirm' => __('¿Eliminar %s %s?', $alias_singular, $elemento_eliminar))); ?>
+									<?= $this->Html->link(__('<i class="fa fa-times-circle"></i> Cancelar'), array('controller' => $controlador, 'action' => 'index'), array('class' => 'btn btn-default', 'escape' => FALSE)); ?>
 								</div>
 							</div>
 						</fieldset>

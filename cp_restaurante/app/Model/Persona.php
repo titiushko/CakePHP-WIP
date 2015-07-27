@@ -80,8 +80,8 @@ class Persona extends AppModel {
 			'foreignKey' => 'cliente_id',
 			'dependent' => FALSE
 		),
-		'Usuario' => array(
-			'className' => 'Usuario',
+		'User' => array(
+			'className' => 'User',
 			'foreignKey' => 'persona_id',
 			'dependent' => FALSE
 		)

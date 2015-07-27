@@ -38,8 +38,8 @@ $formulario = array(
 							<legend>Orden Cliente</legend>
 							<?= $this->Form->input('nombres'); ?>
 							<?= $this->Form->input('apellidos'); ?>
-							<?= $this->Form->input('dui'); ?>
-							<?= $this->Form->input('mesero_id'); ?>
+							<?= $this->Form->input('dui', array('label' => array('text' => 'DUI', 'class' => 'col-lg-3 control-label'))); ?>
+							<?= $this->Form->input('mesero_id', array('empty' => '')); ?>
 							<?= $this->Form->input('mesa_id'); ?>
 							<?= $this->Form->input('total', array('type' => 'hidden', 'value' => $total_orden)); ?>
 							<div class="form-group">

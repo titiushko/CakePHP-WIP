@@ -71,4 +71,15 @@ class FuncionesHelper extends AppHelper {
 		);
 		return '<i class="fa fa-'.$icono[$alias_plural].'"></i>';
 	}
+	
+	/* Devuelve un ícono de notificación de: confirmación, información, alerta o error */
+	public function icono_notificacion($notificacion) {
+		$iconos = array(
+			'confirmacion' => '<span style="color: #5cb85c;"><i class="fa fa-check"></i></span> ',
+			'informacion' => '<span style="color: #428bca;"><i class="fa fa-info-circle"></i></span> ',
+			'alerta' => '<span style="color: #f0ad4e;"><i class="fa fa-exclamation-triangle"></i></span> ',
+			'error' => '<span style="color: #d9534f;"><i class="fa fa-times-circle"></i></span> '
+		);
+		return $iconos[$notificacion];
+	}
 }

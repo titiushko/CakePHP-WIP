@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$('.agregar_pedido_carrito').on('click', function(event) {
+	$('.agregar_pedido').on('click', function(event) {
 		$.ajax({
 			type: 'POST',
 			url: url_base + 'pedidos/agregar',

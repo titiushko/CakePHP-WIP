@@ -38,8 +38,8 @@ class AppController extends Controller {
 		'DebugKit.Toolbar',
 		'Auth' => array(
 			'loginRedirect' => array('controller' => 'platillos', 'action' => 'index'),
-			'logoutRedirect' => array('controller' => 'usuarios', 'action' => 'iniciar_sesion'),
-			'authenticate' => array('Form' => array('contrasena' => 'Blowfish')),
+			'logoutRedirect' => array('controller' => 'users', 'action' => 'login'),
+			'authenticate' => array('Form' => array('passwordHasher' => 'Blowfish')),
 			'authorize' => 'Controller',
 			'authError' => FALSE
 			//'authError' => 'Usted debe estar conectado para ver esta página.',
@@ -48,7 +48,7 @@ class AppController extends Controller {
 	);
 	
 	public function beforeFilter() {
-		$this->Auth->allow('iniciar_sesion', 'cerrar_sesion');
+		$this->Auth->allow('login', 'logout');
 		$this->set('usuario_actual', $this->Auth->user());
 	}
 	

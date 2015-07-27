@@ -93,16 +93,16 @@ CREATE TABLE IF NOT EXISTS platillos_ordenes(
 	CONSTRAINT fk_platillos_ordenes_ordenes FOREIGN KEY(orden_id) REFERENCES ordenes(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
-DROP TABLE IF EXISTS usuarios;
-CREATE TABLE IF NOT EXISTS usuarios(
+DROP TABLE IF EXISTS users;
+CREATE TABLE IF NOT EXISTS users(
 	id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	persona_id INT(10) UNSIGNED NULL DEFAULT NULL,
-	usuario VARCHAR(50) NOT NULL,
-	contrasena VARCHAR(255) NOT NULL,
+	username VARCHAR(50) NOT NULL,
+	password VARCHAR(255) NOT NULL,
 	rol VARCHAR(10) NOT NULL,
 	created DATETIME NULL DEFAULT NULL,
 	modified DATETIME NULL DEFAULT NULL,
-	CONSTRAINT fk_ordenes_personas FOREIGN KEY(persona_id) REFERENCES personas(id) ON DELETE CASCADE ON UPDATE CASCADE
+	CONSTRAINT fk_usuarios_personas FOREIGN KEY(persona_id) REFERENCES personas(id) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 -- ============================================================================================================================================================
@@ -329,7 +329,7 @@ INSERT INTO platillos_ordenes(platillo_id, orden_id, cantidad, subtotal, created
 (8, 2, 1, '5.80', NOW()),
 (3, 2, 2, '13.50', NOW());
 
-INSERT INTO usuarios(persona_id, usuario, contrasena, rol, created) VALUES
-(18, 'jgaldamez', '$2a$10$SwB9eYCwNgZ0UyXoUL1XHu1A6NyyOL2H8i2zn7yVotj19exyxffWy', 'admin', NOW()),
+INSERT INTO users(persona_id, username, password, rol, created) VALUES
+(18, 'jgaldamez', '$2a$10$9N6nNL7Q4tdOB0sSrJ2D9Od5xA.v5k6RXoSZqYQ9jXVMTo/hHOkSW', 'admin', NOW()),
 (10, 'titiushko', '$2a$10$bBi6684a.KhrCAvvmgMt1.EoDgufrCcmRutKJFInJsXH74ncXFQO.', 'user', NOW()),
 (11, 'tito', '$2a$10$bBi6684a.KhrCAvvmgMt1.EoDgufrCcmRutKJFInJsXH74ncXFQO.', 'user', NOW());

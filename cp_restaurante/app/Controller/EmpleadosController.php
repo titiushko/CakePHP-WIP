@@ -11,11 +11,11 @@ class EmpleadosController extends AppController {
 	);
 	
 	public function isAuthorized($usuario) {
-		if ($usuario['rol'] == 'usuario') {
+		if ($usuario['rol'] == 'user') {
 			if (in_array($this->action, array('index', 'ver', 'nuevo', 'editar', 'mesas'))) return TRUE;
-			else if($this->Auth->user('id')) {
-				$this->Session->setFlash('NO TIENE ACCESO PARA REALIZAR ESTA ACCIÓN', 'default', array('class' => 'alert alert-danger'));
-				$this->redirect($this->Auth->redirect());
+			elseif ($this->Auth->user('id')) {
+				$this->Session->setFlash(__('%s NO TIENE ACCESO PARA REALIZAR ESTA ACCIÓN', '<span style="color: #d9534f;"><i class="fa fa-times-circle"></i></span>'), 'default', array('class' => 'alert alert-danger'));
+				return $this->redirect(array('action' => 'index'));
 			}
 		}
 		else return parent::isAuthorized($usuario);
@@ -56,11 +56,11 @@ class EmpleadosController extends AppController {
 			$this->Persona->create();
 			$empleado = $this->request->data;
 			if ($this->Persona->save($empleado)) {
-				$this->Session->setFlash(__('Se creó empleado %s %s.', $empleado['Persona']['nombres'], $empleado['Persona']['apellidos']), 'default', array('class' => 'alert alert-success'));
+				$this->Session->setFlash(__('%s Se creó empleado %s %s.', '<span style="color: #5cb85c;"><i class="fa fa-check"></i></span>', $empleado['Persona']['nombres'], $empleado['Persona']['apellidos']), 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'index'));
 			}
 			
-			$this->Session->setFlash(__('No se pudo crear empleado.'), 'default', array('class' => 'alert alert-danger'));
+			$this->Session->setFlash(__('%s No se pudo crear empleado.', '<span style="color: #d9534f;"><i class="fa fa-times-circle"></i></span>'), 'default', array('class' => 'alert alert-danger'));
 		}
 		
 		$this->set(array('opcion_menu' => array('empleados' => 'active')));
@@ -80,11 +80,11 @@ class EmpleadosController extends AppController {
 			$this->Persona->id = $id;
 			if ($this->Persona->save($this->request->data)) {
 				$empleado = $this->Persona->findById($id);
-				$this->Session->setFlash(__('Se actualizó empleado %s %s.', $empleado['Persona']['nombres'], $empleado['Persona']['apellidos']), 'default', array('class' => 'alert alert-success'));
+				$this->Session->setFlash(__('%s Se actualizó empleado %s.', '<span style="color: #5cb85c;"><i class="fa fa-check"></i></span>', $empleado['Persona']['nombre_completo']), 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'index'));
 			}
 			
-			$this->Session->setFlash(__('No se pudo actualizar empleado.'), 'default', array('class' => 'alert alert-danger'));
+			$this->Session->setFlash(__('%s No se pudo actualizar empleado.', '<span style="color: #d9534f;"><i class="fa fa-times-circle"></i></span>'), 'default', array('class' => 'alert alert-danger'));
 		}
 		
 		if (!$this->request->data) {
@@ -109,7 +109,7 @@ class EmpleadosController extends AppController {
 		}
 		
 		if ($this->Persona->delete($id)) {
-			$this->Session->setFlash(__('Se eliminó empleado %s.', $empleado['Persona']['nombre_completo']), 'default', array('class' => 'alert alert-success'));
+			$this->Session->setFlash(__('%s Se eliminó empleado %s.', '<span style="color: #5cb85c;"><i class="fa fa-check"></i></span>', $empleado['Persona']['nombre_completo']), 'default', array('class' => 'alert alert-success'));
 			return $this->redirect(array('action' => 'index'));
 		}
 	}

@@ -1,3 +1,4 @@
+<?= $this->Html->script(array('agregar_pedido'), array('inline' => FALSE)); ?>
 <?php
 $formulario = array(
 	'format' => array('before', 'label', 'between', 'input', 'error', 'after'),
@@ -50,7 +51,7 @@ $formulario = array(
 							</div>
 							<div class="row margen-superior">
 								<div class="col-lg-12 text-center">
-									<?= $this->Form->button(__('<i class="fa fa-cart-plus"></i> Agregar a Pedido'), array('class' => 'btn btn-success agregar_pedido_carrito', 'id' => $platillo['Platillo']['id']) ); ?>
+									<?= $this->Form->button(__('<i class="fa fa-cart-plus"></i> Agregar a Pedido'), array('class' => 'btn btn-success agregar_pedido', 'id' => $platillo['Platillo']['id']) ); ?>
 								</div>
 							</div>
 						</div>

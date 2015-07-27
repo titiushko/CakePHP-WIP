@@ -9,16 +9,12 @@ class PlatillosController extends AppController {
 		),
 	);
 	
-	public function beforeFilter() {
-		$this->Auth->allow('index', 'ver', 'busqueda', 'buscar');
-	}
-	
 	public function isAuthorized($usuario) {
-		if ($usuario['rol'] == 'usuario') {
+		if ($usuario['rol'] == 'user') {
 			if (in_array($this->action, array('index', 'ver', 'nuevo', 'editar', 'busqueda', 'buscar'))) return TRUE;
-			else if($this->Auth->user('id')) {
-				$this->Session->setFlash('NO TIENE ACCESO PARA REALIZAR ESTA ACCIÓN', 'default', array('class' => 'alert alert-danger'));
-				$this->redirect($this->Auth->redirect());
+			elseif ($this->Auth->user('id')) {
+				$this->Session->setFlash(__('%s NO TIENE ACCESO PARA REALIZAR ESTA ACCIÓN', '<span style="color: #d9534f;"><i class="fa fa-times-circle"></i></span>'), 'default', array('class' => 'alert alert-danger'));
+				return $this->redirect(array('action' => 'index'));
 			}
 		}
 		else return parent::isAuthorized($usuario);
@@ -37,8 +33,10 @@ class PlatillosController extends AppController {
 			throw new NotFoundException(__('Platillo no existe.'));
 		}
 		else {
-			$opciones = array('conditions' => array('Platillo.'.$this->Platillo->primaryKey => $id));
-			$this->set(array('platillo' => $this->Platillo->find('first', $opciones), 'opcion_menu' => array('platillos' => 'active')));
+			$this->set(array(
+				'platillo' => $this->Platillo->find('first', array('conditions' => array('Platillo.'.$this->Platillo->primaryKey => $id))),
+				'opcion_menu' => array('platillos' => 'active')
+			));
 		}
 	}
 	
@@ -48,11 +46,11 @@ class PlatillosController extends AppController {
 			$this->Platillo->create();
 			$platillo = $this->request->data;
 			if ($this->Platillo->save($platillo)) {
-				$this->Session->setFlash(__('Se creó platillo %s.', $platillo['Platillo']['nombre']), 'default', array('class' => 'alert alert-success'));
+				$this->Session->setFlash(__('%s Se creó platillo %s.', '<span style="color: #5cb85c;"><i class="fa fa-check"></i></span>', $platillo['Platillo']['nombre']), 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'index'));
 			}
 			
-			$this->Session->setFlash(__('No se pudo crear platillo.'), 'default', array('class' => 'alert alert-danger'));
+			$this->Session->setFlash(__('%s No se pudo crear platillo.', '<span style="color: #d9534f;"><i class="fa fa-times-circle"></i></span>'), 'default', array('class' => 'alert alert-danger'));
 		}
 		
 		$this->set(array(
@@ -78,11 +76,11 @@ class PlatillosController extends AppController {
 				$platillo = $this->Platillo->findById($id);
 				$this->loadModel('Pedido');
 				$this->Pedido->updateAll(array('Pedido.subtotal' =>'Pedido.cantidad * '.$platillo['Platillo']['precio']), array('Pedido.platillo_id' => $id));
-				$this->Session->setFlash(__('Se actualizó platillo %s.', $platillo['Platillo']['nombre']), 'default', array('class' => 'alert alert-success'));
+				$this->Session->setFlash(__('%s Se actualizó platillo %s.', '<span style="color: #5cb85c;"><i class="fa fa-check"></i></span>', $platillo['Platillo']['nombre']), 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'index'));
 			}
 			
-			$this->Session->setFlash(__('No se pudo actualizar platillo.'), 'default', array('class' => 'alert alert-danger'));
+			$this->Session->setFlash(__('%s No se pudo actualizar platillo.', '<span style="color: #d9534f;"><i class="fa fa-times-circle"></i></span>'), 'default', array('class' => 'alert alert-danger'));
 		}
 		
 		if (!$this->request->data) {
@@ -110,7 +108,7 @@ class PlatillosController extends AppController {
 		if ($this->Platillo->delete($id)) {
 			$this->loadModel('Pedido');
 			$this->Pedido->deleteAll(array('Pedido.platillo_id' => $id));
-			$this->Session->setFlash(__('Se eliminadó platillo %s.', $platillo['Platillo']['nombre']), 'default', array('class' => 'alert alert-success'));
+			$this->Session->setFlash(__('%s Se eliminadó platillo %s.', '<span style="color: #5cb85c;"><i class="fa fa-check"></i></span>', $platillo['Platillo']['nombre']), 'default', array('class' => 'alert alert-success'));
 			return $this->redirect(array('action' => 'index'));
 		}
 	}

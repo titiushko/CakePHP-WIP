@@ -43,7 +43,7 @@ $formulario = array(
 								<?= $this->Form->input('nombre'); ?>
 								<?= $this->Form->input('descripcion', array('rows' => 4)); ?>
 								<?= $this->Form->input('precio'); ?>
-								<?= $this->Form->input('categoria_platillo_id', array('label' => array('text' => 'Categoría', 'class' => 'col-lg-3 control-label'))); ?>
+								<?= $this->Form->input('categoria_platillo_id', array('label' => array('text' => 'Categoría', 'class' => 'col-lg-3 control-label'), 'empty' => '')); ?>
 								<?= $this->Form->input('Persona'); ?>
 								<div class="form-group">
 									<div class="col-lg-12 text-center">

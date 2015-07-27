@@ -12,6 +12,10 @@ $formulario = array(
 		'error' => array('attributes' => array('wrap' => 'span', 'class' => 'error-message')),
 	)
 );
+if (!isset($controlador)) {
+	$controlador_palabras = explode('_', $alias_plural);
+	$controlador = ''; foreach ($controlador_palabras as $controlador_palabra) $controlador .= ucwords($controlador_palabra);
+}
 if (!isset($modelo)) {
 	$modelo_palabras = explode('_', $alias_singular);
 	$modelo = ''; foreach ($modelo_palabras as $modelo_palabra) $modelo .= ucwords($modelo_palabra);
@@ -43,7 +47,7 @@ if (!isset($modelo)) {
 							<div class="form-group">
 								<div class="col-lg-12 text-center">
 									<span class="submit"><?= $this->Form->button(__('<i class="fa fa-save"></i> Guardar'), array('type' => 'submit', 'class' => 'btn btn-primary', 'escape' => FALSE)); ?></span>
-									<?= $this->Html->link(__('<i class="fa fa-times-circle"></i> Cancelar'), array('controller' => $alias_plural, 'action' => 'index'), array('class' => 'btn btn-default', 'escape' => FALSE)); ?>
+									<?= $this->Html->link(__('<i class="fa fa-times-circle"></i> Cancelar'), array('controller' => $controlador, 'action' => 'index'), array('class' => 'btn btn-default', 'escape' => FALSE)); ?>
 								</div>
 							</div>
 						</fieldset>

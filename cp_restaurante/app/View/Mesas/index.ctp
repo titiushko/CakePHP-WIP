@@ -7,7 +7,8 @@ foreach ($mesas as $mesa) {
 	$lista_valores[$contador]['posicion'] = h($mesa['Mesa']['posicion']);
 	$lista_valores[$contador]['creado'] = $this->Time->format('d/m/Y h:i A', $mesa['Mesa']['created']);
 	$lista_valores[$contador]['modificado'] = $this->Time->format('d/m/Y h:i A', $mesa['Mesa']['modified']);
-	$lista_valores[$contador]['Persona.nombre_completo'] = $this->Html->link(__('%s', $mesa['Persona']['nombre_completo']), array('controller' => 'empleados', 'action' => 'ver', $mesa['Persona']['id']));
+	$nombre_completo = empty($mesa['Persona']['nombre_completo']) ? '' : $mesa['Persona']['nombre_completo'];
+	$lista_valores[$contador]['Persona.nombre_completo'] = $this->Html->link(__('%s', $nombre_completo), array('controller' => 'empleados', 'action' => 'ver', $mesa['Persona']['id']));
 	$lista_valores[$contador]['elemento_eliminar'] = h($mesa['Mesa']['serie']);
 	$contador++;
 }

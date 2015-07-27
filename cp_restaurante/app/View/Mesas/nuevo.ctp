@@ -6,7 +6,7 @@
 			'serie' => array(),
 			'puestos' => array('type' => 'number'),
 			'posicion' => array('rows' => 3),
-			'mesero_id' => array()
+			'mesero_id' => array('empty' => '')
 		)
 	)
 ); ?>

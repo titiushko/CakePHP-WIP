@@ -3,11 +3,11 @@ App::uses('AppController', 'Controller');
 
 class PedidosController extends AppController {
 	public function isAuthorized($usuario) {
-		if ($usuario['rol'] == 'usuario') {
+		if ($usuario['rol'] == 'user') {
 			if (in_array($this->action, array('agregar', 'index', 'actualizar_pedido', 'eliminar_pedido', 'eliminar_pedidos'))) return TRUE;
-			else if($this->Auth->user('id')) {
-				$this->Session->setFlash('NO TIENE ACCESO PARA REALIZAR ESTA ACCIÓN', 'default', array('class' => 'alert alert-danger'));
-				$this->redirect($this->Auth->redirect());
+			elseif ($this->Auth->user('id')) {
+				$this->Session->setFlash(__('%s NO TIENE ACCESO PARA REALIZAR ESTA ACCIÓN', '<span style="color: #d9534f;"><i class="fa fa-times-circle"></i></span>'), 'default', array('class' => 'alert alert-danger'));
+				return $this->redirect(array('action' => 'index'));
 			}
 		}
 		else return parent::isAuthorized($usuario);
@@ -29,7 +29,7 @@ class PedidosController extends AppController {
 	public function index() {
 		$pedidos = $this->Pedido->find('all');
 		if (count($pedidos) == 0) {
-			$this->Session->setFlash(__('No se han agregado pedidos a la orden.'), 'default', array('class' => 'alert alert-danger'));
+			$this->Session->setFlash(__('%s No se han agregado pedidos a la orden.', '<span style="color: #d9534f;"><i class="fa fa-times-circle"></i></span>'), 'default', array('class' => 'alert alert-danger'));
 			return $this->redirect(array('controller' => 'platillos', 'action' => 'index'));
 		}
 		else {
@@ -74,8 +74,8 @@ class PedidosController extends AppController {
 	}
 	
 	public function eliminar_pedidos() {
-		if ($this->Pedido->deleteAll(TRUE, FALSE)) $this->Session->setFlash(__('Se eliminaron todos los pedidos de la orden.'), 'default', array('class' => 'alert alert-success'));
-		else $this->Session->setFlash(__('No se pudieron eliminar todos los pedidos de la orden.'), 'default', array('class' => 'alert alert-danger'));
+		if ($this->Pedido->deleteAll(TRUE, FALSE)) $this->Session->setFlash(__('%s Se eliminaron todos los pedidos de la orden.', '<span style="color: #5cb85c;"><i class="fa fa-check"></i></span>'), 'default', array('class' => 'alert alert-success'));
+		else $this->Session->setFlash(__('%s No se pudieron eliminar todos los pedidos de la orden.', '<span style="color: #d9534f;"><i class="fa fa-times-circle"></i></span>'), 'default', array('class' => 'alert alert-danger'));
 		return $this->redirect(array('controller' => 'platillos', 'action' => 'index'));
 	}
 }

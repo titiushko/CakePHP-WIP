@@ -2,8 +2,8 @@
 App::uses('BlowfishPasswordHasher', 'Controller/Component/Auth');
 App::uses('AppModel', 'Model');
 
-class Usuario extends AppModel {
-	public $displayField = 'usuario';
+class User extends AppModel {
+	public $displayField = 'username';
 	
 	public $validate = array(
 		'dui' => array(
@@ -60,7 +60,7 @@ class Usuario extends AppModel {
 				'message' => 'Cargo requerido.'
 			)
 		),*/
-		'usuario' => array(
+		'username' => array(
 			'notEmpty' => array(
 				'rule' => 'notEmpty',
 				'message' => 'Usuario requerido.'
@@ -80,7 +80,7 @@ class Usuario extends AppModel {
 				'message' => 'Usuario sólo puede ser letras, números y guiones bajos.'
 			)
 		),
-		'contrasena' => array(
+		'password' => array(
 			'notEmpty' => array(
 				'rule' => 'notEmpty',
 				'message' => 'Contraseña requerida.',
@@ -91,14 +91,14 @@ class Usuario extends AppModel {
 				'message' => 'Contraseña debe tener un mínimo de 6 caracteres.'
 			)
 		),
-		/*'confirmar_contrasena' => array(
+		/*'confirmar_password' => array(
 			'required' => array(
 				'rule' => 'notEmpty',
-				'message' => 'Por favor, confirmar contraseña.'
+				'message' => 'Por favor, confirmar password.'
 			),
 			'equalToField' => array(
-				'rule' => array('equaltofield', 'contrasena'),
-				'message' => 'Ambas contraseñas deben coincidir.'
+				'rule' => array('equaltofield', 'password'),
+				'message' => 'Ambas passwords deben coincidir.'
 			)
 		),*/
 		'rol' => array(
@@ -131,9 +131,9 @@ class Usuario extends AppModel {
 	);
 	
 	public function beforeSave($opciones = array()) {
-		if (isset($this->data[$this->alias]['contrasena'])) {
-			$contrasena = new BlowfishPasswordHasher();
-			$this->data[$this->alias]['contrasena'] = $contrasena->hash($this->data[$this->alias]['contrasena']);
+		if (isset($this->data[$this->alias]['password'])) {
+			$password = new BlowfishPasswordHasher();
+			$this->data[$this->alias]['password'] = $password->hash($this->data[$this->alias]['password']);
 		}
 		else return TRUE;
 	}
