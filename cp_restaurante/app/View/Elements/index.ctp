@@ -5,8 +5,7 @@ $this->Paginator->options(array(
 	'complete' => $this->Js->get('#procesando')->effect('fadeOut', array('buffer' => FALSE))
 ));
 if (!isset($controlador)) {
-	$controlador_palabras = explode('_', $alias_plural);
-	$controlador = ''; foreach ($controlador_palabras as $controlador_palabra) $controlador .= ucwords($controlador_palabra);
+	$controlador = $alias_plural;
 }
 ?>
 <div id="contenedor-<?= $alias_plural; ?>">
@@ -27,12 +26,14 @@ if (!isset($controlador)) {
 					Listado de <?= ucwords(str_replace('_', ' ', $alias_plural)); ?>
 				</div>
 				<div class="panel-body">
+					<?php if (isset($usuario_actual)): ?>
 					<div class="row">
 						<div class="col-lg-12">
 							<?= $this->Html->link(__('<i class="fa fa-plus-square"></i> Agregar %s', ucwords(str_replace('_', ' ', $alias_singular))), array('controller' => $controlador, 'action' => 'nuevo'), array('class' => 'btn btn-success', 'escape' => FALSE)); ?>
 						</div>
 					</div>
 					<div class="row"><div class="col-lg-12">&nbsp;</div></div>
+					<?php endif; ?>
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="progress oculto" id="procesando">
@@ -60,8 +61,12 @@ if (!isset($controlador)) {
 										<?php foreach ($campos as $campo) echo '<td>'.$valor[$campo].'</td>'; ?>
 										<td>
 											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i>'), array('controller' => $controlador, 'action' => 'ver', $valor['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Ver')); ?>
+											<?php if (isset($usuario_actual)): ?>
 											<?= $this->Html->link(__('<i class="fa fa-pencil"></i>'), array('controller' => $controlador, 'action' => 'editar', $valor['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Editar')); ?>
+											<?php if($usuario_actual['rol'] == 'admin'): ?>
 											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i>'), array('controller' => $controlador, 'action' => 'eliminar', $valor['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Eliminar', 'confirm' => __('¿Eliminar %s %s?', $alias_singular, $valor['elemento_eliminar']))); ?>
+											<?php endif; ?>
+											<?php endif; ?>
 										</td>
 									</tr>
 									<?php endforeach; ?>

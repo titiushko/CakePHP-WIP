@@ -13,8 +13,7 @@ $formulario = array(
 	)
 );
 if (!isset($controlador)) {
-	$controlador_palabras = explode('_', $alias_plural);
-	$controlador = ''; foreach ($controlador_palabras as $controlador_palabra) $controlador .= ucwords($controlador_palabra);
+	$controlador = $alias_plural;
 }
 if (!isset($modelo)) {
 	$modelo_palabras = explode('_', $alias_singular);
@@ -80,7 +79,9 @@ if (!isset($modelo)) {
 										<td>
 											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i>'), array('controller' => $asociacion_plural, 'action' => 'ver', $valor['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Ver')); ?>
 											<?= $this->Html->link(__('<i class="fa fa-pencil"></i>'), array('controller' => $asociacion_plural, 'action' => 'editar', $valor['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Editar')); ?>
+											<?php if($usuario_actual['rol'] == 'admin'): ?>
 											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i>'), array('controller' => $asociacion_plural, 'action' => 'eliminar', $valor['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Eliminar', 'confirm' => __('¿Eliminar %$ %s?', $asociacion_singular, $valor['elemento_eliminar']))); ?>
+											<?php endif; ?>
 										</td>
 									</tr>
 									<?php endforeach; ?>

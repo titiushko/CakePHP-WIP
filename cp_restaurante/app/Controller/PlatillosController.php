@@ -9,6 +9,11 @@ class PlatillosController extends AppController {
 		),
 	);
 	
+	public function beforeFilter() {
+		$this->Auth->allow('index', 'ver', 'busqueda', 'buscar');
+		parent::beforeFilter();
+	}
+	
 	public function isAuthorized($usuario) {
 		if ($usuario['rol'] == 'user') {
 			if (in_array($this->action, array('index', 'ver', 'nuevo', 'editar', 'busqueda', 'buscar'))) return TRUE;

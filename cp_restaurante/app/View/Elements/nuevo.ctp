@@ -13,8 +13,7 @@ $formulario = array(
 	)
 );
 if (!isset($controlador)) {
-	$controlador_palabras = explode('_', $alias_plural);
-	$controlador = ''; foreach ($controlador_palabras as $controlador_palabra) $controlador .= ucwords($controlador_palabra);
+	$controlador = $alias_plural;
 }
 if (!isset($modelo)) {
 	$modelo_palabras = explode('_', $alias_singular);

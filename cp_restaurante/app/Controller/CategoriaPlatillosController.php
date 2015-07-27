@@ -17,6 +17,11 @@ class CategoriaPlatillosController extends AppController {
 		)
 	);
 	
+	public function beforeFilter() {
+		$this->Auth->allow('index', 'ver');
+		parent::beforeFilter();
+	}
+	
 	public function isAuthorized($usuario) {
 		if ($usuario['rol'] == 'user') {
 			if (in_array($this->action, array('index', 'ver', 'nuevo', 'editar'))) return TRUE;

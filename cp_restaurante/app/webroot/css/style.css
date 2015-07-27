@@ -34,7 +34,7 @@ body {
     height: 60px;
 }
 
-div.nav.navbar-nav.navbar-right>.btn.btn-success.navbar-btn {
+div.nav.navbar-nav>.btn.navbar-btn {
 	margin-left: 15px;
 }
 

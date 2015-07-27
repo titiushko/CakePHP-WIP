@@ -70,7 +70,7 @@
 					<li class="dropdown-header"><strong>Usuario: </strong><?= $usuario_actual['username']; ?></li>
 					<li class="dropdown-header"><strong>Rol: </strong><?= $this->Funciones->rol($usuario_actual['rol']); ?></li>
 					<li><?= $this->Html->link(__('<i class="fa fa-sign-out"></i> Salir'), array('controller' => 'users', 'action' => 'logout'), array('escape' => FALSE)); ?></li>
-					<?php if(isset($usuario_actual) && $usuario_actual['rol'] == 'admin'): ?>
+					<?php if($usuario_actual['rol'] == 'admin'): ?>
 					<li class="divider"></li>
 					<li class="dropdown-header"><i class="fa fa-users"></i> Usuarios</li>
 					<li><?= $this->Html->link(__('<i class="fa fa-list-alt"></i> Lista Usuarios'), array('controller' => 'users', 'action' => 'index'), array('escape' => FALSE)); ?></li>
@@ -81,10 +81,9 @@
 			</div>
 			<?php else: ?>
 			<?= $this->Form->create('User', array('url' => array('controller' => 'users', 'action' => 'login'), 'class' => 'nav navbar-form navbar-right', 'role' => 'search')); ?>
-				<?= $this->Form->input('username', array('label' => FALSE, 'div' => array('class' => 'form-group'), 'class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'Usuario', 'size' => 12)); ?>
-				<?= $this->Form->input('password', array('type' => 'password', 'label' => FALSE, 'div' => array('class' => 'form-group'), 'class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'Contraseña', 'size' => 12)); ?>
-				<?= $this->Form->button(__('<i class="fa fa-sign-in"></i> Entrar'), array('div' => FALSE, 'class' => 'btn btn-success', 'escape' => FALSE)); ?>
-			</div>
+			<?= $this->Form->input('username', array('label' => FALSE, 'div' => array('class' => 'form-group'), 'class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'Usuario', 'size' => 12)); ?>
+			<?= $this->Form->input('password', array('type' => 'password', 'label' => FALSE, 'div' => array('class' => 'form-group'), 'class' => 'form-control', 'autocomplete' => 'off', 'placeholder' => 'Contraseña', 'size' => 12)); ?>
+			<?= $this->Form->button(__('<i class="fa fa-sign-in"></i> Entrar'), array('div' => FALSE, 'class' => 'btn btn-success', 'escape' => FALSE)); ?>
 			<?= $this->Form->end(); ?>
 			<?php endif; ?>
 		</div>

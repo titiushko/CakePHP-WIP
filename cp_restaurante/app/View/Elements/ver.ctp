@@ -10,8 +10,7 @@ $formulario = array(
 	'error' => array('attributes' => array('wrap' => 'span', 'class' => 'error-message'))
 );
 if (!isset($controlador)) {
-	$controlador_palabras = explode('_', $alias_plural);
-	$controlador = ''; foreach ($controlador_palabras as $controlador_palabra) $controlador .= ucwords($controlador_palabra);
+	$controlador = $alias_plural;
 }
 if (!isset($modelo)) {
 	$modelo_palabras = explode('_', $alias_singular);
@@ -46,9 +45,13 @@ if (!isset($modelo)) {
 								?>
 							<div class="form-group">
 								<div class="col-lg-12 text-center">
+									<?php if (isset($usuario_actual)): ?>
 									<?= $this->Html->link(__('<i class="fa fa-pencil"></i> Editar'), array('controller' => $controlador, 'action' => 'editar', $id), array('class' => 'btn btn-primary', 'escape' => FALSE)); ?>
+									<?php if($usuario_actual['rol'] == 'admin'): ?>
 									<?= $this->Form->postLink(__('<i class="fa fa-trash"></i> Eliminar'), array('controller' => $controlador, 'action' => 'eliminar', $id), array('class' => 'btn btn-danger', 'escape' => FALSE, 'confirm' => __('¿Eliminar %s %s?', $alias_singular, $elemento_eliminar))); ?>
-									<?= $this->Html->link(__('<i class="fa fa-times-circle"></i> Cancelar'), array('controller' => $controlador, 'action' => 'index'), array('class' => 'btn btn-default', 'escape' => FALSE)); ?>
+									<?php endif; ?>
+									<?php endif; ?>
+									<?= $this->Html->link(__('<i class="fa fa-arrow-left"></i> Regresar'), array('controller' => $controlador, 'action' => 'index'), array('class' => 'btn btn-default', 'escape' => FALSE)); ?>
 								</div>
 							</div>
 						</fieldset>
@@ -80,8 +83,12 @@ if (!isset($modelo)) {
 										<?php foreach ($campos_asociacion as $campo) echo '<td>'.$valor[$campo].'</td>'; ?>
 										<td>
 											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i>'), array('controller' => $asociacion_plural, 'action' => 'ver', $valor['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Ver')); ?>
+											<?php if (isset($usuario_actual)): ?>
 											<?= $this->Html->link(__('<i class="fa fa-pencil"></i>'), array('controller' => $asociacion_plural, 'action' => 'editar', $valor['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Editar')); ?>
+											<?php if($usuario_actual['rol'] == 'admin'): ?>
 											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i>'), array('controller' => $asociacion_plural, 'action' => 'eliminar', $valor['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Eliminar', 'confirm' => __('¿Eliminar %$ %s?', $asociacion_singular, $valor['elemento_eliminar']))); ?>
+											<?php endif; ?>
+											<?php endif; ?>
 										</td>
 									</tr>
 									<?php endforeach; ?>
