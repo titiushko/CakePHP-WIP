@@ -35,7 +35,8 @@ class AppController extends Controller {
 	public $components = array(
 		'Session',
 		'RequestHandler',
-		'DebugKit.Toolbar' => array('panels' => array('timer' => false, 'log' => false, 'environment' => false, 'include' => false), 'history' => 10),
+		//?debug=true
+		'DebugKit.Toolbar' => array('panels' => array('timer' => FALSE, 'log' => FALSE, 'environment' => FALSE, 'include' => FALSE), 'history' => 10, 'autoRun' => FALSE),
 		'Auth' => array(
 			'loginRedirect' => array('controller' => 'platillos', 'action' => 'index'),
 			'logoutRedirect' => array('controller' => 'users', 'action' => 'login'),

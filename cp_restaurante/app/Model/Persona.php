@@ -84,6 +84,11 @@ class Persona extends AppModel {
 			'className' => 'User',
 			'foreignKey' => 'persona_id',
 			'dependent' => FALSE
+		),
+		'CocinerosPlatillo' => array(
+			'className' => 'CocinerosPlatillo',
+			'foreignKey' => 'cocinero_id',
+			'dependent' => FALSE
 		)
 	);
 	

@@ -8,6 +8,7 @@ foreach ($ordenes as $orden) {
 	$lista[$contador]['total'] = '$'.number_format($orden['Orden']['total'], 2, '.', ',');
 	$contador++;
 }
+
 echo $this->element(
 	'editar', array(
 		'id' => $mesa['Mesa']['id'],
@@ -17,7 +18,7 @@ echo $this->element(
 			'serie' => array(),
 			'puestos' => array(),
 			'posicion' => array('rows' => 3),
-			'mesero_id' => array()
+			'mesero_id' => array('empty' => '')
 		),
 		'lista' => $lista,
 		'singular' => 'orden',

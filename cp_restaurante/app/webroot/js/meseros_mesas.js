@@ -4,7 +4,7 @@ $(document).ready(function() {
 			type: 'POST',
 			url: url_base + 'empleados/mesas',
 			data: {
-				mesero_id: $(this).val() != '' ? $(this).val() : '%'
+				mesero_id: $(this).val() != '' ? $(this).val() : ''
 			},
 			dataType: 'json',
 			success: function(resultado) {

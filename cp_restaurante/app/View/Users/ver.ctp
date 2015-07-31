@@ -1,5 +1,4 @@
-<?php
-echo $this->element(
+<?= $this->element(
 	'ver', array(
 		'id' => $usuario['User']['id'],
 		'elemento_eliminar' => $usuario['User']['username'],
@@ -18,5 +17,4 @@ echo $this->element(
 			'rol' => array('value' => $usuario['User']['rol'], 'disabled' => TRUE, 'options' => $this->Funciones->roles())
 		)
 	)
-);
-?>
+); ?>

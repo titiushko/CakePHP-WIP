@@ -128,6 +128,11 @@ class Platillo extends AppModel {
 			'className' => 'PlatillosOrden',
 			'foreignKey' => 'platillo_id',
 			'dependent' => FALSE
+		),
+		'CocinerosPlatillo' => array(
+			'className' => 'CocinerosPlatillo',
+			'foreignKey' => 'platillo_id',
+			'dependent' => FALSE
 		)
 	);
 	

@@ -10,6 +10,7 @@ foreach ($usuarios as $usuario) {
 	$lista_valores[$contador]['elemento_eliminar'] = h($usuario['User']['username']);
 	$contador++;
 }
+
 echo $this->element('index', array(
 	'alias_singular' => 'usuario',
 	'alias_plural' => 'usuarios',

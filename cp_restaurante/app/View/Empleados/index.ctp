@@ -10,6 +10,7 @@ foreach ($empleados as $empleado) {
 	$lista_valores[$contador]['elemento_eliminar'] = h($empleado['Persona']['nombre_completo']);
 	$contador++;
 }
+
 echo $this->element('index', array(
 		'alias_singular' => 'empleado',
 		'alias_plural' => 'empleados',

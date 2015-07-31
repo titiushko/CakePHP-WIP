@@ -1,4 +1,4 @@
-<?= $this->Html->script(array('agregar_pedido'), array('inline' => FALSE)); ?>
+<?= $this->Html->script(array('agregar_pedido', 'quitar_registro'), array('inline' => FALSE)); ?>
 <?php
 $formulario = array(
 	'format' => array('before', 'label', 'between', 'input', 'error', 'after'),
@@ -88,7 +88,7 @@ $formulario = array(
 								</thead>
 								<tbody>
 									<?php foreach ($platillo['Persona'] as $cocinero): ?>
-									<tr>
+									<tr class="registro-<?= $cocinero['id']; ?>" id="<?= $cocinero['CocinerosPlatillo']['id']; ?>">
 										<td><?= $cocinero['nombres']; ?></td>
 										<td><?= $cocinero['apellidos']; ?></td>
 										<td><?= $this->Time->format('d/m/Y h:i A', $cocinero['created']); ?></td>
@@ -98,6 +98,7 @@ $formulario = array(
 											<?= $this->Html->link(__('<i class="fa fa-pencil"></i>'), array('controller' => 'empleados', 'action' => 'editar', $cocinero['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Editar')); ?>
 											<?php if($usuario_actual['rol'] == 'admin'): ?>
 											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i>'), array('controller' => 'empleados', 'action' => 'eliminar', $cocinero['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Eliminar', 'confirm' =>  __('¿Eliminar a %s?', $cocinero['nombre_completo']))); ?>
+											<?= $this->Form->button(__('<span style="color: #d9534f;"><i class="fa fa-minus-circle"></i></span>'), array('class' => 'btn btn-sm btn-default quitar_registro', 'title' => 'Quitar cocinero', 'id' => $cocinero['id'], 'modelo' => 'cocinero')); ?>
 											<?php endif; ?>
 										</td>
 									</tr>

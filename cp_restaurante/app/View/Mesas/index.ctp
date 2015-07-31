@@ -12,6 +12,7 @@ foreach ($mesas as $mesa) {
 	$lista_valores[$contador]['elemento_eliminar'] = h($mesa['Mesa']['serie']);
 	$contador++;
 }
+
 echo $this->element('index', array(
 	'alias_singular' => 'mesa',
 	'alias_plural' => 'mesas',

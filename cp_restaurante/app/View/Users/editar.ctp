@@ -1,5 +1,4 @@
-<?php
-echo $this->element(
+<?= $this->element(
 	'editar', array(
 		'id' => $usuario['User']['id'],
 		'alias_singular' => 'usuario',
@@ -17,5 +16,4 @@ echo $this->element(
 			'rol' => array('options' => $this->Funciones->roles())
 		)
 	)
-);
-?>
+); ?>

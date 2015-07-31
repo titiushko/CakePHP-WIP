@@ -1,3 +1,4 @@
+<?= $this->Html->script(array('quitar_registro'), array('inline' => FALSE)); ?>
 <?php
 $formulario = array(
 	'class' => 'form-horizontal',
@@ -74,13 +75,14 @@ if (!isset($modelo)) {
 								</thead>
 								<tbody>
 									<?php foreach ($lista_asociacion as $valor): ?>
-									<tr>
+									<tr class="registro-<?= $valor['id']; ?>">
 										<?php foreach ($campos_asociacion as $campo) echo '<td>'.$valor[$campo].'</td>'; ?>
 										<td>
 											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i>'), array('controller' => $asociacion_plural, 'action' => 'ver', $valor['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Ver')); ?>
 											<?= $this->Html->link(__('<i class="fa fa-pencil"></i>'), array('controller' => $asociacion_plural, 'action' => 'editar', $valor['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Editar')); ?>
 											<?php if($usuario_actual['rol'] == 'admin'): ?>
-											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i>'), array('controller' => $asociacion_plural, 'action' => 'eliminar', $valor['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Eliminar', 'confirm' => __('¿Eliminar %$ %s?', $asociacion_singular, $valor['elemento_eliminar']))); ?>
+											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i>'), array('controller' => $asociacion_plural, 'action' => 'eliminar', $valor['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Eliminar', 'confirm' => __('¿Eliminar %s %s?', $asociacion_singular, $valor['elemento_eliminar']))); ?>
+											<?= $this->Form->button(__('<span style="color: #d9534f;"><i class="fa fa-minus-circle"></i></span>'), array('class' => 'btn btn-sm btn-default quitar_registro', 'title' => 'Quitar '.$asociacion_singular, 'id' => $valor['id'], 'modelo' => $asociacion_singular)); ?>
 											<?php endif; ?>
 										</td>
 									</tr>

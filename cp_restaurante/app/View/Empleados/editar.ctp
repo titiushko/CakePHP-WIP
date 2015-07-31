@@ -11,9 +11,11 @@ if ($empleado['Persona']['cargo'] == 'mesero') {
 		$lista_asociacion[$contador]['elemento_eliminar'] = h($mesa['serie']);
 		$contador++;
 	}
+	
 	$asociacion_singular = 'mesa';
 	$asociacion_plural = 'mesas';
 	$campos_asociacion = array('mesa', 'puestos', 'posicion', 'creado', 'modificado');
+	
 	$lista = array(); $contador = 0;
 	foreach ($ordenes as $orden) {
 		$lista[$contador]['id'] = $orden['Orden']['id'];
@@ -23,6 +25,7 @@ if ($empleado['Persona']['cargo'] == 'mesero') {
 		$lista[$contador]['total'] = '$'.number_format($orden['Orden']['total'], 2, '.', ',');
 		$contador++;
 	}
+	
 	$singular = 'orden';
 	$plural = 'ordenes';
 	$titulos = array('mesa', 'cliente', 'dui', 'total');
@@ -37,11 +40,13 @@ elseif ($empleado['Persona']['cargo'] == 'cocinero') {
 		$lista_asociacion[$contador]['elemento_eliminar'] = h($platillo['nombre']);
 		$contador++;
 	}
+	
 	$asociacion_singular = 'platillo';
 	$asociacion_plural = 'platillos';
 	$campos_asociacion = array('foto', 'nombre', 'precio');
 	$lista = $singular = $plural = $titulos = NULL;
 }
+
 echo $this->element(
 	'editar', array(
 		'id' => $empleado['Persona']['id'],
@@ -65,4 +70,7 @@ echo $this->element(
 		'titulos' => $titulos
 	)
 );
+
+foreach ($empleado['CocinerosPlatillo'] as $cocineros_platillo)
+	echo $this->Form->input('platillo-'.$cocineros_platillo['platillo_id'], array('class' => 'platillo-'.$cocineros_platillo['platillo_id'], 'value' => $cocineros_platillo['id'], 'type' => 'hidden', 'id' => FALSE, 'name' => FALSE));
 ?>
