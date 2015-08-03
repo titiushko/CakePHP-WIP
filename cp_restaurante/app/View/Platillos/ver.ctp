@@ -5,6 +5,7 @@ $formulario = array(
 	'div' => array('class' => 'form-group'),
 	'label' => array('class' => 'col-lg-3 control-label'),
 	'autocomplete' => 'off',
+	'disabled' => TRUE,
 	'class' => 'form-control',
 	'between' => '<div class="col-lg-9">',
 	'after' => '</div>',
@@ -38,9 +39,9 @@ $formulario = array(
 							<?php } ?>
 						</div>
 						<div class="col-lg-5">
-							<?= $this->Form->input('nombre', array_merge($formulario, array('value' => $platillo['Platillo']['nombre'], 'disabled' => TRUE))); ?>
-							<?= $this->Form->input('descripcion', array_merge($formulario, array('value' => $platillo['Platillo']['descripcion'], 'disabled' => TRUE, 'rows' => 4))); ?>
-							<?= $this->Form->input('precio', array_merge($formulario, array('value' => $platillo['Platillo']['precio'], 'disabled' => TRUE))); ?>
+							<?= $this->Form->input('nombre', array_merge($formulario, array('value' => $platillo['Platillo']['nombre']))); ?>
+							<?= $this->Form->input('descripcion', array_merge($formulario, array('value' => $platillo['Platillo']['descripcion'], 'rows' => 4))); ?>
+							<?= $this->Form->input('precio', array_merge($formulario, array('value' => $platillo['Platillo']['precio']))); ?>
 							<?= $this->Funciones->campo_enlace('categoría', $this->Html->link($platillo['CategoriaPlatillo']['categoria'], array('controller' => 'categoria_platillos', 'action' => 'ver', $platillo['CategoriaPlatillo']['id']))); ?>
 							<?php if (isset($usuario_actual)): ?>
 							<div class="form-group">

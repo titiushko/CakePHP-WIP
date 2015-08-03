@@ -6,13 +6,13 @@ class CategoriaPlatillosController extends AppController {
 		'CategoriaPlatillo' => array(
 			'limit' => 4,
 			'order' => array(
-				'CategoriaPlatillo.categoria' => 'asc'
+				'CategoriaPlatillo.categoria' => 'ASC'
 			)
 		),
 		'Platillo' => array(
 			'limit' => 3,
 			'order' => array(
-				'Platillo.nombre' => 'asc'
+				'Platillo.nombre' => 'ASC'
 			)
 		)
 	);
@@ -35,7 +35,7 @@ class CategoriaPlatillosController extends AppController {
 	
 	public function index() {
 		$this->CategoriaPlatillo->recursive = 0;
-		$this->paginate['CategoriaPlatillo']['order'] = array('CategoriaPlatillo.categoria' => 'asc');
+		$this->paginate['CategoriaPlatillo']['order'] = array('CategoriaPlatillo.categoria' => 'ASC');
 		$this->set(array('categoria_platillos' => $this->paginate(), 'opcion_menu' => array('platillos' => 'active')));
 	}
 	

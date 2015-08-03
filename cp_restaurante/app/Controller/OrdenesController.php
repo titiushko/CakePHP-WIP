@@ -2,11 +2,11 @@
 App::uses('AppController', 'Controller');
 
 class OrdenesController extends AppController {
-	public $uses = array('Orden', 'Pedido', 'Persona');
+	public $uses = array('Orden', 'Pedido', 'Persona', 'Platillo', 'PlatillosOrden');
 	public $paginate = array(
 		'limit' => 4,
 		'order' => array(
-			'Orden.id' => 'asc'
+			'Orden.id' => 'ASC'
 		)
 	);
 	
@@ -80,7 +80,7 @@ class OrdenesController extends AppController {
 				}
 				$this->Pedido->deleteAll(TRUE, FALSE);
 				$this->Session->setFlash(__('%s Se procesó la orden.', '<span style="color: #5cb85c;"><i class="fa fa-check"></i></span>'), 'default', array('class' => 'alert alert-success'));
-				return $this->redirect(array('action' => 'index'));
+				return $this->redirect(array('action' => 'reporte', $this->Orden->getLastInsertID()));
 			}
 			elseif (!$nueva_persona) {
 				$this->Orden->delete($this->Orden->getLastInsertID());
@@ -93,5 +93,64 @@ class OrdenesController extends AppController {
 			}
 			else $this->Session->setFlash(__('%s No se pudo procesar la orden.', '<span style="color: #d9534f;"><i class="fa fa-times-circle"></i></span>'), 'default', array('class' => 'alert alert-danger'));
 		}
+	}
+	
+	public function reporte($id = null) {
+		if (!$id) {
+			throw new NotFoundException(__('Datos incorrectos.'));
+		}
+		
+		$orden = $this->Orden->findById($id);
+		if (!$orden) {
+			throw new NotFoundException(__('Orden no existe.'));
+		}
+		
+		$platillos = $this->PlatillosOrden->find('all', array('conditions' => array('PlatillosOrden.orden_id' => $id)));
+		$this->set(array('orden' => $orden, 'platillos' => $platillos, 'opcion_menu' => array('ordenes' => 'active')));
+	}
+	
+	public function imprimir($id = null) {
+		if (!$id) {
+			throw new NotFoundException(__('Datos incorrectos.'));
+		}
+		
+		$orden = $this->Orden->findById($id);
+		if (!$orden) {
+			throw new NotFoundException(__('Orden no existe.'));
+		}
+		
+		$this->layout = 'imprimir';
+		$platillos = $this->PlatillosOrden->find('all', array('conditions' => array('PlatillosOrden.orden_id' => $id)));
+		$this->set(array('orden' => $orden, 'platillos' => $platillos, 'opcion_menu' => array('ordenes' => 'active')));
+	}
+	
+	public function excel($id = null) {
+		if (!$id) {
+			throw new NotFoundException(__('Datos incorrectos.'));
+		}
+		
+		$orden = $this->Orden->findById($id);
+		if (!$orden) {
+			throw new NotFoundException(__('Orden no existe.'));
+		}
+		
+		$this->layout = 'imprimir';
+		$platillos = $this->PlatillosOrden->find('all', array('conditions' => array('PlatillosOrden.orden_id' => $id)));
+		$this->set(array('orden' => $orden, 'platillos' => $platillos, 'opcion_menu' => array('ordenes' => 'active')));
+	}
+	
+	public function pdf($id = null) {
+		if (!$id) {
+			throw new NotFoundException(__('Datos incorrectos.'));
+		}
+		
+		$orden = $this->Orden->findById($id);
+		if (!$orden) {
+			throw new NotFoundException(__('Orden no existe.'));
+		}
+		
+		$this->layout = 'imprimir';
+		$platillos = $this->PlatillosOrden->find('all', array('conditions' => array('PlatillosOrden.orden_id' => $id)));
+		$this->set(array('orden' => $orden, 'platillos' => $platillos, 'opcion_menu' => array('ordenes' => 'active')));
 	}
 }

@@ -58,7 +58,7 @@ $this->Paginator->options(array(
 										<td><?= $this->Time->format('d/m/Y h:i A', $orden['Orden']['created']); ?></td>
 										<td><?= $this->Time->format('d/m/Y h:i A', $orden['Orden']['modified']); ?></td>
 										<td>
-											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i>'), array('controller' => 'platillos_ordenes', 'action' => 'ver', $orden['Orden']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Ver')); ?>
+											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i>'), array('controller' => 'ordenes', 'action' => 'reporte', $orden['Orden']['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Ver')); ?>
 										</td>
 									</tr>
 									<?php endforeach; ?>

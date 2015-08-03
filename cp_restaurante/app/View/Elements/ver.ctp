@@ -5,6 +5,7 @@ $formulario = array(
 	'div' => array('class' => 'form-group'),
 	'label' => array('class' => 'col-lg-3 control-label'),
 	'autocomplete' => 'off',
+	'disabled' => TRUE,
 	'class' => 'form-control',
 	'between' => '<div class="col-lg-9">',
 	'after' => '</div>',

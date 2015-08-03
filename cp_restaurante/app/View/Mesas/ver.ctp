@@ -16,9 +16,9 @@ echo $this->element(
 		'alias_singular' => 'mesa',
 		'alias_plural' => 'mesas',
 		'campos' => array(
-			'serie' => array('value' => $mesa['Mesa']['serie'], 'disabled' => TRUE),
-			'puestos' => array('value' => $mesa['Mesa']['puestos'], 'disabled' => TRUE),
-			'posicion' => array('value' => $mesa['Mesa']['posicion'], 'disabled' => TRUE, 'rows' => 3),
+			'serie' => array('value' => $mesa['Mesa']['serie']),
+			'puestos' => array('value' => $mesa['Mesa']['puestos']),
+			'posicion' => array('value' => $mesa['Mesa']['posicion'], 'rows' => 3),
 			'mesa_id' => $this->Funciones->campo_enlace('mesero', $this->Html->link($mesa['Persona']['nombre_completo'], array('controller' => 'empleados', 'action' => 'ver', $mesa['Persona']['id'])))
 		),
 		'lista' => $lista,

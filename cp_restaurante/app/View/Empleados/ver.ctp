@@ -54,11 +54,11 @@ echo $this->element(
 		'alias_singular' => 'empleado',
 		'alias_plural' => 'empleados',
 		'campos' => array(
-			'dui' => array('value' => $empleado['Persona']['dui'], 'disabled' => TRUE, 'label' => array('text' => 'DUI', 'class' => 'col-lg-3 control-label')),
-			'nombres' => array('value' => $empleado['Persona']['nombres'], 'disabled' => TRUE),
-			'apellidos' => array('value' => $empleado['Persona']['apellidos'], 'disabled' => TRUE),
-			'telefono' => array('value' => $empleado['Persona']['telefono'], 'disabled' => TRUE, 'label' => array('text' => 'Teléfono', 'class' => 'col-lg-3 control-label')),
-			'cargo' => array('value' => $empleado['Persona']['cargo'], 'disabled' => TRUE, 'options' => $this->Funciones->cargos())
+			'dui' => array('value' => $empleado['Persona']['dui'], 'label' => array('text' => 'DUI', 'class' => 'col-lg-3 control-label')),
+			'nombres' => array('value' => $empleado['Persona']['nombres']),
+			'apellidos' => array('value' => $empleado['Persona']['apellidos']),
+			'telefono' => array('value' => $empleado['Persona']['telefono'], 'label' => array('text' => 'Teléfono', 'class' => 'col-lg-3 control-label')),
+			'cargo' => array('value' => $empleado['Persona']['cargo'], 'options' => $this->Funciones->cargos())
 		),
 		'lista_asociacion' => $lista_asociacion,
 		'asociacion_singular' => $asociacion_singular,

@@ -16,7 +16,7 @@ echo $this->element(
 		'alias_singular' => 'categoria_platillo',
 		'alias_plural' => 'categoria_platillos',
 		'campos' => array(
-			'categoria' => array('value' => $categoria_platillo['CategoriaPlatillo']['categoria'], 'disabled' => TRUE)
+			'categoria' => array('value' => $categoria_platillo['CategoriaPlatillo']['categoria'])
 		),
 		'lista_asociacion' => $lista_asociacion,
 		'asociacion_singular' => 'platillo',

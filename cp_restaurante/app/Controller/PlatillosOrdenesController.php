@@ -6,7 +6,7 @@ class PlatillosOrdenesController extends AppController {
 	public $paginate = array(
 		'limit' => 4,
 		'order' => array(
-			'PlatillosOrden.id' => 'asc'
+			'PlatillosOrden.id' => 'ASC'
 		)
 	);
 	
@@ -19,7 +19,7 @@ class PlatillosOrdenesController extends AppController {
 		}
 		else {
 			$this->paginate['PlatillosOrden']['limit'] = 4;
-			$this->paginate['PlatillosOrden']['order'] = array('PlatillosOrden.id' => 'asc');
+			$this->paginate['PlatillosOrden']['order'] = array('PlatillosOrden.id' => 'ASC');
 			$this->paginate['PlatillosOrden']['conditions'] = array('PlatillosOrden.orden_id' => $id);
 			$this->set(array('platillos_ordenes' => $this->paginate(), 'opcion_menu' => array('ordenes' => 'active')));
 		}

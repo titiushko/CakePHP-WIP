@@ -150,7 +150,7 @@ class PlatillosController extends AppController {
 			$filtro = NULL;
 			foreach($terminos_busqueda as $termino) $filtro[] = array('Platillo.nombre LIKE' => '%'.$termino.'%');
 			
-			$platillos = $this->Platillo->find('all', array('recursive' => 0, 'conditions' => $filtro, 'order' => array('Platillo.nombre' => 'asc'), 'limit' => 100));
+			$platillos = $this->Platillo->find('all', array('recursive' => 0, 'conditions' => $filtro, 'order' => array('Platillo.nombre' => 'ASC'), 'limit' => 100));
 			if (count($platillos) == 1) return $this->redirect(array('action' => 'ver', $platillos[0]['Platillo']['id']));
 			
 			$this->set(compact('platillos'));
