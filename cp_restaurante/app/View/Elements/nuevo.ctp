@@ -9,15 +9,20 @@ $formulario = array(
 		'class' => 'form-control',
 		'between' => '<div class="col-lg-9">',
 		'after' => '</div>',
-		'error' => array('attributes' => array('wrap' => 'span', 'class' => 'help-inline')),
+		'error' => array('attributes' => array('wrap' => 'span', 'class' => 'error-message')),
 	)
 );
-$modelo_palabras = explode('_', $alias_singular);
-$modelo = ''; foreach ($modelo_palabras as $modelo_palabra) $modelo .= ucwords($modelo_palabra);
+if (!isset($controlador)) {
+	$controlador = $alias_plural;
+}
+if (!isset($modelo)) {
+	$modelo_palabras = explode('_', $alias_singular);
+	$modelo = ''; foreach ($modelo_palabras as $modelo_palabra) $modelo .= ucwords($modelo_palabra);
+}
 ?>
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="well page-header"><i class="fa fa-<?= $icono; ?>"></i> Módulo de <?= ucwords(str_replace('_', ' ', $alias_plural)); ?></h1>
+		<h1 class="well page-header"><?= $this->Funciones->icono_modulo($alias_plural); ?> Módulo de <?= ucwords(str_replace('_', ' ', $alias_plural)); ?></h1>
 	</div>
 </div>
 <div class="row">
@@ -41,7 +46,7 @@ $modelo = ''; foreach ($modelo_palabras as $modelo_palabra) $modelo .= ucwords($
 							<div class="form-group">
 								<div class="col-lg-12 text-center">
 									<span class="submit"><?= $this->Form->button(__('<i class="fa fa-save"></i> Guardar'), array('type' => 'submit', 'class' => 'btn btn-primary', 'escape' => FALSE)); ?></span>
-									<?= $this->Html->link(__('<i class="fa fa-times-circle"></i> Cancelar'), array('controller' => $alias_plural, 'action' => 'index'), array('class' => 'btn btn-default', 'escape' => FALSE)); ?>
+									<?= $this->Html->link(__('<i class="fa fa-times-circle"></i> Cancelar'), array('controller' => $controlador, 'action' => 'index'), array('class' => 'btn btn-default', 'escape' => FALSE)); ?>
 								</div>
 							</div>
 						</fieldset>

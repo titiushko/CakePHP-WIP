@@ -24,7 +24,8 @@ if (!$ajax) {
 		'inputDefaults' => array(
 			'format' => array('before', 'label', 'between', 'input', 'error', 'after'),
 			'div' => array('class' => 'form-group'),
-			'label' => array('class' => 'control-label'),
+			'label' => array('text' => 'Platillo', 'class' => 'col-lg-3 control-label'),
+			'autocomplete' => 'off',
 			'class' => 'form-control buscar-platillo',
 			'between' => '<div class="col-lg-9">',
 			'after' => '</div>',
@@ -37,7 +38,7 @@ if (!$ajax) {
 						<?= $this->Form->create('Platillo', $formulario); ?>
 						<fieldset>
 							<legend>Buscar Platillo</legend>
-							<?= $this->Form->input('busqueda', array('label' => array('text' => 'Platillo', 'class' => 'col-lg-3 control-label'), 'autocomplete' => 'off', 'value' => $busqueda)); ?>
+							<?= $this->Form->input('busqueda', array('value' => $busqueda)); ?>
 							<div class="form-group">
 								<div class="col-lg-12 text-center">
 									<span class="submit"><?= $this->Form->button(__('<i class="fa fa-search"></i> Buscar'), array('type' => 'submit', 'class' => 'btn btn-primary', 'escape' => FALSE)); ?></span>

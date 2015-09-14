@@ -4,11 +4,14 @@ $this->Paginator->options(array(
 	'before' => $this->Js->get('#procesando')->effect('fadeIn', array('buffer' => FALSE)),
 	'complete' => $this->Js->get('#procesando')->effect('fadeOut', array('buffer' => FALSE))
 ));
+if (!isset($controlador)) {
+	$controlador = $alias_plural;
+}
 ?>
 <div id="contenedor-<?= $alias_plural; ?>">
 	<div class="row">
 		<div class="col-lg-12">
-			<h1 class="well page-header"><i class="fa fa-<?= $icono; ?>"></i> Módulo de <?= ucwords(str_replace('_', ' ', $alias_plural)); ?></h1>
+			<h1 class="well page-header"><?= $this->Funciones->icono_modulo($alias_plural); ?> Módulo de <?= ucwords(str_replace('_', ' ', $alias_plural)); ?></h1>
 		</div>
 	</div>
 	<div class="row">
@@ -23,12 +26,14 @@ $this->Paginator->options(array(
 					Listado de <?= ucwords(str_replace('_', ' ', $alias_plural)); ?>
 				</div>
 				<div class="panel-body">
+					<?php if (isset($usuario_actual)): ?>
 					<div class="row">
 						<div class="col-lg-12">
-							<?= $this->Html->link(__('<i class="fa fa-plus-square"></i> Agregar %s', ucwords(str_replace('_', ' ', $alias_singular))), array('controller' => $alias_plural, 'action' => 'nuevo'), array('class' => 'btn btn-success', 'escape' => FALSE)); ?>
+							<?= $this->Html->link(__('<i class="fa fa-plus-square"></i> Agregar %s', ucwords(str_replace('_', ' ', $alias_singular))), array('controller' => $controlador, 'action' => 'nuevo'), array('class' => 'btn btn-success', 'escape' => FALSE)); ?>
 						</div>
 					</div>
 					<div class="row"><div class="col-lg-12">&nbsp;</div></div>
+					<?php endif; ?>
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="progress oculto" id="procesando">
@@ -55,9 +60,13 @@ $this->Paginator->options(array(
 									<tr>
 										<?php foreach ($campos as $campo) echo '<td>'.$valor[$campo].'</td>'; ?>
 										<td>
-											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i>'), array('controller' => $alias_plural, 'action' => 'ver', $valor['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Ver')); ?>
-											<?= $this->Html->link(__('<i class="fa fa-pencil"></i>'), array('controller' => $alias_plural, 'action' => 'editar', $valor['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Editar')); ?>
-											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i>'), array('controller' => $alias_plural, 'action' => 'eliminar', $valor['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Eliminar', 'confirm' => __('¿Eliminar %s %s?', $alias_singular, $valor['elemento_eliminar']))); ?>
+											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i>'), array('controller' => $controlador, 'action' => 'ver', $valor['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Ver')); ?>
+											<?php if (isset($usuario_actual)): ?>
+											<?= $this->Html->link(__('<i class="fa fa-pencil"></i>'), array('controller' => $controlador, 'action' => 'editar', $valor['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Editar')); ?>
+											<?php if($usuario_actual['rol'] == 'admin'): ?>
+											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i>'), array('controller' => $controlador, 'action' => 'eliminar', $valor['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Eliminar', 'confirm' => __('¿Eliminar %s %s?', $alias_singular, $valor['elemento_eliminar']))); ?>
+											<?php endif; ?>
+											<?php endif; ?>
 										</td>
 									</tr>
 									<?php endforeach; ?>

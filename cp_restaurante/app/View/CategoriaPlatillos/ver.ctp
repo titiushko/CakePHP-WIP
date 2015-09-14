@@ -8,15 +8,15 @@ foreach ($categoria_platillo['Platillo'] as $platillo) {
 	$lista_asociacion[$contador]['elemento_eliminar'] = h($platillo['nombre']);
 	$contador++;
 }
+
 echo $this->element(
 	'ver', array(
-		'icono' => 'random',
 		'id' => $categoria_platillo['CategoriaPlatillo']['id'],
 		'elemento_eliminar' => $categoria_platillo['CategoriaPlatillo']['categoria'],
 		'alias_singular' => 'categoria_platillo',
 		'alias_plural' => 'categoria_platillos',
 		'campos' => array(
-			'categoria' => array('value' => $categoria_platillo['CategoriaPlatillo']['categoria'], 'disabled' => TRUE)
+			'categoria' => array('value' => $categoria_platillo['CategoriaPlatillo']['categoria'])
 		),
 		'lista_asociacion' => $lista_asociacion,
 		'asociacion_singular' => 'platillo',

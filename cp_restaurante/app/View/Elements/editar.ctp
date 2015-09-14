@@ -1,3 +1,4 @@
+<?= $this->Html->script(array('quitar_registro'), array('inline' => FALSE)); ?>
 <?php
 $formulario = array(
 	'class' => 'form-horizontal',
@@ -9,15 +10,20 @@ $formulario = array(
 		'class' => 'form-control',
 		'between' => '<div class="col-lg-9">',
 		'after' => '</div>',
-		'error' => array('attributes' => array('wrap' => 'span', 'class' => 'help-inline')),
+		'error' => array('attributes' => array('wrap' => 'span', 'class' => 'error-message')),
 	)
 );
-$modelo_palabras = explode('_', $alias_singular);
-$modelo = ''; foreach ($modelo_palabras as $modelo_palabra) $modelo .= ucwords($modelo_palabra);
+if (!isset($controlador)) {
+	$controlador = $alias_plural;
+}
+if (!isset($modelo)) {
+	$modelo_palabras = explode('_', $alias_singular);
+	$modelo = ''; foreach ($modelo_palabras as $modelo_palabra) $modelo .= ucwords($modelo_palabra);
+}
 ?>
 <div class="row">
 	<div class="col-lg-12">
-		<h1 class="well page-header"><i class="fa fa-<?= $icono; ?>"></i> Módulo de <?= ucwords(str_replace('_', ' ', $alias_plural)); ?></h1>
+		<h1 class="well page-header"><?= $this->Funciones->icono_modulo($alias_plural); ?> Módulo de <?= ucwords(str_replace('_', ' ', $alias_plural)); ?></h1>
 	</div>
 </div>
 <div class="row">
@@ -41,7 +47,7 @@ $modelo = ''; foreach ($modelo_palabras as $modelo_palabra) $modelo .= ucwords($
 							<div class="form-group">
 								<div class="col-lg-12 text-center">
 									<span class="submit"><?= $this->Form->button(__('<i class="fa fa-save"></i> Guardar'), array('type' => 'submit', 'class' => 'btn btn-primary', 'escape' => FALSE)); ?></span>
-									<?= $this->Html->link(__('<i class="fa fa-times-circle"></i> Cancelar'), array('controller' => $alias_plural, 'action' => 'ver', $id), array('class' => 'btn btn-default', 'escape' => FALSE)); ?>
+									<?= $this->Html->link(__('<i class="fa fa-times-circle"></i> Cancelar'), array('controller' => $controlador, 'action' => 'ver', $id), array('class' => 'btn btn-default', 'escape' => FALSE)); ?>
 								</div>
 							</div>
 						</fieldset>
@@ -69,12 +75,15 @@ $modelo = ''; foreach ($modelo_palabras as $modelo_palabra) $modelo .= ucwords($
 								</thead>
 								<tbody>
 									<?php foreach ($lista_asociacion as $valor): ?>
-									<tr>
+									<tr class="registro-<?= $valor['id']; ?>">
 										<?php foreach ($campos_asociacion as $campo) echo '<td>'.$valor[$campo].'</td>'; ?>
 										<td>
 											<?= $this->Html->link(__('<i class="fa fa-file-text-o"></i>'), array('controller' => $asociacion_plural, 'action' => 'ver', $valor['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Ver')); ?>
 											<?= $this->Html->link(__('<i class="fa fa-pencil"></i>'), array('controller' => $asociacion_plural, 'action' => 'editar', $valor['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Editar')); ?>
-											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i>'), array('controller' => $asociacion_plural, 'action' => 'eliminar', $valor['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Eliminar', 'confirm' => __('¿Eliminar %$ %s?', $asociacion_singular, $valor['elemento_eliminar']))); ?>
+											<?php if($usuario_actual['rol'] == 'admin'): ?>
+											<?= $this->Form->postLink(__('<i class="fa fa-trash"></i>'), array('controller' => $asociacion_plural, 'action' => 'eliminar', $valor['id']), array('class' => 'btn btn-sm btn-default', 'escape' => FALSE, 'title' => 'Eliminar', 'confirm' => __('¿Eliminar %s %s?', $asociacion_singular, $valor['elemento_eliminar']))); ?>
+											<?= $this->Form->button(__('<span style="color: #d9534f;"><i class="fa fa-minus-circle"></i></span>'), array('class' => 'btn btn-sm btn-default quitar_registro', 'title' => 'Quitar '.$asociacion_singular, 'id' => $valor['id'], 'modelo' => $asociacion_singular)); ?>
+											<?php endif; ?>
 										</td>
 									</tr>
 									<?php endforeach; ?>

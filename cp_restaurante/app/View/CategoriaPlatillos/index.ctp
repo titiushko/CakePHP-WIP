@@ -6,8 +6,8 @@ foreach ($categoria_platillos as $categoria_platillo) {
 	$lista_valores[$contador]['elemento_eliminar'] = h($categoria_platillo['CategoriaPlatillo']['categoria']);
 	$contador++;
 }
+
 echo $this->element('index', array(
-	'icono' => 'random',
 	'alias_singular' => 'categoria_platillo',
 	'alias_plural' => 'categoria_platillos',
 	'lista_valores' => $lista_valores,

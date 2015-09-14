@@ -5,9 +5,25 @@ class PlatillosController extends AppController {
 	public $paginate = array(
 		'limit' => 12,
 		'order' => array(
-			'Platillo.nombre' => 'asc'
+			'Platillo.nombre' => 'ASC'
 		),
 	);
+	
+	public function beforeFilter() {
+		$this->Auth->allow('index', 'ver', 'busqueda', 'buscar');
+		parent::beforeFilter();
+	}
+	
+	public function isAuthorized($usuario) {
+		if ($usuario['rol'] == 'user') {
+			if (in_array($this->action, array('index', 'ver', 'nuevo', 'editar', 'busqueda', 'buscar'))) return TRUE;
+			elseif ($this->Auth->user('id')) {
+				$this->Session->setFlash(__('%s NO TIENE ACCESO PARA REALIZAR ESTA ACCIÓN', '<span style="color: #d9534f;"><i class="fa fa-times-circle"></i></span>'), 'default', array('class' => 'alert alert-danger'));
+				return $this->redirect(array('action' => 'index'));
+			}
+		}
+		else return parent::isAuthorized($usuario);
+	}
 	
 	public function index() {
 		$this->Platillo->recursive = 0;
@@ -22,8 +38,10 @@ class PlatillosController extends AppController {
 			throw new NotFoundException(__('Platillo no existe.'));
 		}
 		else {
-			$opciones = array('conditions' => array('Platillo.'.$this->Platillo->primaryKey => $id));
-			$this->set(array('platillo' => $this->Platillo->find('first', $opciones), 'opcion_menu' => array('platillos' => 'active')));
+			$this->set(array(
+				'platillo' => $this->Platillo->find('first', array('conditions' => array('Platillo.'.$this->Platillo->primaryKey => $id))),
+				'opcion_menu' => array('platillos' => 'active')
+			));
 		}
 	}
 	
@@ -33,14 +51,18 @@ class PlatillosController extends AppController {
 			$this->Platillo->create();
 			$platillo = $this->request->data;
 			if ($this->Platillo->save($platillo)) {
-				$this->Session->setFlash(__('Se creó platillo %s.', $platillo['Platillo']['nombre']), 'default', array('class' => 'alert alert-success'));
+				$this->Session->setFlash(__('%s Se creó platillo %s.', '<span style="color: #5cb85c;"><i class="fa fa-check"></i></span>', $platillo['Platillo']['nombre']), 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'index'));
 			}
 			
-			$this->Session->setFlash(__('No se pudo crear platillo.'), 'default', array('class' => 'alert alert-danger'));
+			$this->Session->setFlash(__('%s No se pudo crear platillo.', '<span style="color: #d9534f;"><i class="fa fa-times-circle"></i></span>'), 'default', array('class' => 'alert alert-danger'));
 		}
 		
-		$this->set(array('categoriaPlatillos' => $this->Platillo->CategoriaPlatillo->find('list'), 'cocineros' => $this->Platillo->Cocinero->find('list', array('fields' => array('id', 'nombre_completo'))), 'opcion_menu' => array('platillos' => 'active')));
+		$this->set(array(
+			'categoriaPlatillos' => $this->Platillo->CategoriaPlatillo->find('list'),
+			'personas' => $this->Platillo->Persona->find('list', array('fields' => array('id', 'nombre_completo'), 'conditions' => array('Persona.cargo' => 'cocinero'), 'order' => array('Persona.nombre_completo' => 'ASC'))),
+			'opcion_menu' => array('platillos' => 'active')
+		));
 	}
 	
 	public function editar($id = null) {
@@ -59,11 +81,11 @@ class PlatillosController extends AppController {
 				$platillo = $this->Platillo->findById($id);
 				$this->loadModel('Pedido');
 				$this->Pedido->updateAll(array('Pedido.subtotal' =>'Pedido.cantidad * '.$platillo['Platillo']['precio']), array('Pedido.platillo_id' => $id));
-				$this->Session->setFlash(__('Se actualizó platillo %s.', $platillo['Platillo']['nombre']), 'default', array('class' => 'alert alert-success'));
+				$this->Session->setFlash(__('%s Se actualizó platillo %s.', '<span style="color: #5cb85c;"><i class="fa fa-check"></i></span>', $platillo['Platillo']['nombre']), 'default', array('class' => 'alert alert-success'));
 				return $this->redirect(array('action' => 'index'));
 			}
 			
-			$this->Session->setFlash(__('No se pudo actualizar platillo.'), 'default', array('class' => 'alert alert-danger'));
+			$this->Session->setFlash(__('%s No se pudo actualizar platillo.', '<span style="color: #d9534f;"><i class="fa fa-times-circle"></i></span>'), 'default', array('class' => 'alert alert-danger'));
 		}
 		
 		if (!$this->request->data) {
@@ -73,7 +95,7 @@ class PlatillosController extends AppController {
 		$this->set(array(
 			'platillo' => $platillo,
 			'categoriaPlatillos' => $this->Platillo->CategoriaPlatillo->find('list'),
-			'cocineros' => $this->Platillo->Cocinero->find('list', array('fields' => array('id', 'nombre_completo'))),
+			'personas' => $this->Platillo->Persona->find('list', array('fields' => array('id', 'nombre_completo'), 'conditions' => array('Persona.cargo' => 'cocinero'), 'order' => array('Persona.nombre_completo' => 'ASC'))),
 			'opcion_menu' => array('platillos' => 'active')
 		));
 	}
@@ -91,7 +113,7 @@ class PlatillosController extends AppController {
 		if ($this->Platillo->delete($id)) {
 			$this->loadModel('Pedido');
 			$this->Pedido->deleteAll(array('Pedido.platillo_id' => $id));
-			$this->Session->setFlash(__('Se eliminadó platillo %s.', $platillo['Platillo']['nombre']), 'default', array('class' => 'alert alert-success'));
+			$this->Session->setFlash(__('%s Se eliminadó platillo %s.', '<span style="color: #5cb85c;"><i class="fa fa-check"></i></span>', $platillo['Platillo']['nombre']), 'default', array('class' => 'alert alert-success'));
 			return $this->redirect(array('action' => 'index'));
 		}
 	}
@@ -128,7 +150,7 @@ class PlatillosController extends AppController {
 			$filtro = NULL;
 			foreach($terminos_busqueda as $termino) $filtro[] = array('Platillo.nombre LIKE' => '%'.$termino.'%');
 			
-			$platillos = $this->Platillo->find('all', array('recursive' => 0, 'conditions' => $filtro, 'order' => array('Platillo.nombre' => 'asc'), 'limit' => 100));
+			$platillos = $this->Platillo->find('all', array('recursive' => 0, 'conditions' => $filtro, 'order' => array('Platillo.nombre' => 'ASC'), 'limit' => 100));
 			if (count($platillos) == 1) return $this->redirect(array('action' => 'ver', $platillos[0]['Platillo']['id']));
 			
 			$this->set(compact('platillos'));

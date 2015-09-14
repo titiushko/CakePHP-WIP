@@ -32,5 +32,29 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 	public $helpers = array('Html', 'Form', 'Time', 'Paginator', 'Js', 'Funciones');
-	public $components = array('Session', 'RequestHandler');
+	public $components = array(
+		'Session',
+		'RequestHandler',
+		//?debug=true
+		'DebugKit.Toolbar' => array('panels' => array('timer' => FALSE, 'log' => FALSE, 'environment' => FALSE, 'include' => FALSE), 'history' => 10, 'autoRun' => FALSE),
+		'Auth' => array(
+			'loginRedirect' => array('controller' => 'platillos', 'action' => 'index'),
+			'logoutRedirect' => array('controller' => 'users', 'action' => 'login'),
+			'authenticate' => array('Form' => array('passwordHasher' => 'Blowfish')),
+			'authorize' => 'Controller',
+			'authError' => FALSE
+			//'authError' => 'Usted debe estar conectado para ver esta página.',
+			//'loginError' => 'Usuario o contraseña no válidos, por favor vuelva a intentarlo.'
+		)
+	);
+	
+	public function beforeFilter() {
+		$this->Auth->allow('login', 'logout');
+		$this->set('usuario_actual', $this->Auth->user());
+	}
+	
+	public function isAuthorized($usuario) {
+		if (isset($usuario['rol']) && $usuario['rol'] === 'admin') return TRUE;
+		else return FALSE;
+	}
 }

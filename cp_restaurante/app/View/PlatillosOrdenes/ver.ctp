@@ -8,7 +8,7 @@ $this->Paginator->options(array(
 <div id="contenedor-pedidos">
 	<div class="row">
 		<div class="col-lg-12">
-			<h1 class="well page-header"><i class="fa fa-coffee"></i> Módulo de Ordenes</h1>
+			<h1 class="well page-header"><i class="fa fa-archive"></i> Módulo de Ordenes</h1>
 		</div>
 	</div>
 	<div class="row">

@@ -8,9 +8,9 @@ foreach ($categoria_platillo['Platillo'] as $platillo) {
 	$lista_asociacion[$contador]['elemento_eliminar'] = h($platillo['nombre']);
 	$contador++;
 }
+
 echo $this->element(
 	'editar', array(
-		'icono' => 'random',
 		'id' => $categoria_platillo['CategoriaPlatillo']['id'],
 		'alias_singular' => 'categoria_platillo',
 		'alias_plural' => 'categoria_platillos',

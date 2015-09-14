@@ -1,16 +1,16 @@
 <?php
 $lista = array(); $contador = 0;
-foreach ($mesa['Orden'] as $orden) {
-	$lista[$contador]['id'] = $orden['id'];
-	$lista[$contador]['mesero'] = h($mesa['Mesero']['nombre_completo']);
-	$lista[$contador]['cliente'] = h($orden['cliente']);
-	$lista[$contador]['dui'] = $orden['dui'];
-	$lista[$contador]['total'] = '$'.number_format($orden['total'], 2, '.', ',');
+foreach ($ordenes as $orden) {
+	$lista[$contador]['id'] = $orden['Orden']['id'];
+	$lista[$contador]['mesero'] = h($orden['Persona']['nombre_completo']);
+	$lista[$contador]['cliente'] = h($orden['Cliente']['nombres'].' '.$orden['Cliente']['apellidos']);
+	$lista[$contador]['dui'] = h($orden['Cliente']['dui']);
+	$lista[$contador]['total'] = '$'.number_format($orden['Orden']['total'], 2, '.', ',');
 	$contador++;
 }
+
 echo $this->element(
 	'editar', array(
-		'icono' => 'coffee',
 		'id' => $mesa['Mesa']['id'],
 		'alias_singular' => 'mesa',
 		'alias_plural' => 'mesas',
@@ -18,7 +18,7 @@ echo $this->element(
 			'serie' => array(),
 			'puestos' => array(),
 			'posicion' => array('rows' => 3),
-			'mesero_id' => array()
+			'mesero_id' => array('empty' => '')
 		),
 		'lista' => $lista,
 		'singular' => 'orden',

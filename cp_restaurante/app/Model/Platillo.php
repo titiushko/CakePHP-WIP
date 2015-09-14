@@ -103,8 +103,8 @@ class Platillo extends AppModel {
 	);
 	
 	public $hasAndBelongsToMany = array(
-		'Cocinero' => array(
-			'className' => 'Cocinero',
+		'Persona' => array(
+			'className' => 'Persona',
 			'joinTable' => 'cocineros_platillos',
 			'foreignKey' => 'platillo_id',
 			'associationForeignKey' => 'cocinero_id',
@@ -126,6 +126,11 @@ class Platillo extends AppModel {
 		),
 		'PlatillosOrden' => array(
 			'className' => 'PlatillosOrden',
+			'foreignKey' => 'platillo_id',
+			'dependent' => FALSE
+		),
+		'CocinerosPlatillo' => array(
+			'className' => 'CocinerosPlatillo',
 			'foreignKey' => 'platillo_id',
 			'dependent' => FALSE
 		)

@@ -23,12 +23,14 @@ $this->Paginator->options(array(
 					Listado de Platillos
 				</div>
 				<div class="panel-body">
+					<?php if (isset($usuario_actual)): ?>
 					<div class="row">
 						<div class="col-lg-12">
 							<?= $this->Html->link(__('<i class="fa fa-plus-square"></i> Agregar Platillo'), array('controller' => 'platillos', 'action' => 'nuevo'), array('class' => 'btn btn-success', 'escape' => FALSE)); ?>
 						</div>
 					</div>
 					<div class="row"><div class="col-lg-12">&nbsp;</div></div>
+					<?php endif; ?>
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="progress oculto" id="procesando">
