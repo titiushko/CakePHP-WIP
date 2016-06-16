@@ -1,0 +1,511 @@
+﻿body {
+	padding-top: 30px;
+}
+
+.fuente {
+	font-family: 'Stalinist One', cursive;
+}
+
+/* paginate_button */
+.paginate_button {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+      touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.paginate_button {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+}
+.paginate_button:focus,
+.paginate_button.focus {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #8c8c8c;
+}
+.paginate_button:hover {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+.paginate_button:active,
+.paginate_button.active,
+.open > .dropdown-toggle.paginate_button {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+.paginate_button.current:hover,
+.paginate_button[disabled]:hover,
+fieldset[disabled] .paginate_button:hover,
+.paginate_button.current:focus,
+.paginate_button[disabled]:focus,
+fieldset[disabled] .paginate_button:focus,
+.paginate_button.current.focus,
+.paginate_button[disabled].focus,
+fieldset[disabled] .paginate_button.focus {
+  background-color: #fff;
+  border-color: #ccc;
+}
+
+.paginate_button:focus,
+.paginate_button:active:focus,
+.paginate_button.active:focus,
+.paginate_button.focus,
+.paginate_button:active.focus,
+.paginate_button.active.focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+.paginate_button:hover,
+.paginate_button:focus,
+.paginate_button.focus {
+  color: #333;
+  text-decoration: none;
+}
+.paginate_button:active,
+.paginate_button.active {
+  background-image: none;
+  outline: 0;
+  -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+          box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+.paginate_button.disabled,
+.paginate_button[disabled],
+fieldset[disabled] .paginate_button {
+  cursor: not-allowed;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  opacity: .65;
+}
+a.paginate_button.disabled,
+fieldset[disabled] a.paginate_button {
+  pointer-events: none;
+}
+.paginate_button-default {
+  color: #333;
+  background-color: #fff;
+  border-color: #ccc;
+}
+.paginate_button-default:focus,
+.paginate_button-default.focus {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #8c8c8c;
+}
+.paginate_button-default:hover {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+.paginate_button-default:active,
+.paginate_button-default.active,
+.open > .dropdown-toggle.paginate_button-default {
+  color: #333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+.paginate_button-default:active:hover,
+.paginate_button-default.active:hover,
+.open > .dropdown-toggle.paginate_button-default:hover,
+.paginate_button-default:active:focus,
+.paginate_button-default.active:focus,
+.open > .dropdown-toggle.paginate_button-default:focus,
+.paginate_button-default:active.focus,
+.paginate_button-default.active.focus,
+.open > .dropdown-toggle.paginate_button-default.focus {
+  color: #333;
+  background-color: #d4d4d4;
+  border-color: #8c8c8c;
+}
+.paginate_button-default:active,
+.paginate_button-default.active,
+.open > .dropdown-toggle.paginate_button-default {
+  background-image: none;
+}
+.paginate_button-default.disabled:hover,
+.paginate_button-default[disabled]:hover,
+fieldset[disabled] .paginate_button-default:hover,
+.paginate_button-default.disabled:focus,
+.paginate_button-default[disabled]:focus,
+fieldset[disabled] .paginate_button-default:focus,
+.paginate_button-default.disabled.focus,
+.paginate_button-default[disabled].focus,
+fieldset[disabled] .paginate_button-default.focus {
+  background-color: #fff;
+  border-color: #ccc;
+}
+.paginate_button-default .badge {
+  color: #fff;
+  background-color: #333;
+}
+.paginate_button-primary {
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+.paginate_button-primary:focus,
+.paginate_button-primary.focus {
+  color: #fff;
+  background-color: #286090;
+  border-color: #122b40;
+}
+.paginate_button-primary:hover {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+.paginate_button-primary:active,
+.paginate_button-primary.active,
+.open > .dropdown-toggle.paginate_button-primary {
+  color: #fff;
+  background-color: #286090;
+  border-color: #204d74;
+}
+.paginate_button-primary:active:hover,
+.paginate_button-primary.active:hover,
+.open > .dropdown-toggle.paginate_button-primary:hover,
+.paginate_button-primary:active:focus,
+.paginate_button-primary.active:focus,
+.open > .dropdown-toggle.paginate_button-primary:focus,
+.paginate_button-primary:active.focus,
+.paginate_button-primary.active.focus,
+.open > .dropdown-toggle.paginate_button-primary.focus {
+  color: #fff;
+  background-color: #204d74;
+  border-color: #122b40;
+}
+.paginate_button-primary:active,
+.paginate_button-primary.active,
+.open > .dropdown-toggle.paginate_button-primary {
+  background-image: none;
+}
+.paginate_button-primary.disabled:hover,
+.paginate_button-primary[disabled]:hover,
+fieldset[disabled] .paginate_button-primary:hover,
+.paginate_button-primary.disabled:focus,
+.paginate_button-primary[disabled]:focus,
+fieldset[disabled] .paginate_button-primary:focus,
+.paginate_button-primary.disabled.focus,
+.paginate_button-primary[disabled].focus,
+fieldset[disabled] .paginate_button-primary.focus {
+  background-color: #337ab7;
+  border-color: #2e6da4;
+}
+.paginate_button-primary .badge {
+  color: #337ab7;
+  background-color: #fff;
+}
+.paginate_button-success {
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+.paginate_button-success:focus,
+.paginate_button-success.focus {
+  color: #fff;
+  background-color: #449d44;
+  border-color: #255625;
+}
+.paginate_button-success:hover {
+  color: #fff;
+  background-color: #449d44;
+  border-color: #398439;
+}
+.paginate_button-success:active,
+.paginate_button-success.active,
+.open > .dropdown-toggle.paginate_button-success {
+  color: #fff;
+  background-color: #449d44;
+  border-color: #398439;
+}
+.paginate_button-success:active:hover,
+.paginate_button-success.active:hover,
+.open > .dropdown-toggle.paginate_button-success:hover,
+.paginate_button-success:active:focus,
+.paginate_button-success.active:focus,
+.open > .dropdown-toggle.paginate_button-success:focus,
+.paginate_button-success:active.focus,
+.paginate_button-success.active.focus,
+.open > .dropdown-toggle.paginate_button-success.focus {
+  color: #fff;
+  background-color: #398439;
+  border-color: #255625;
+}
+.paginate_button-success:active,
+.paginate_button-success.active,
+.open > .dropdown-toggle.paginate_button-success {
+  background-image: none;
+}
+.paginate_button-success.disabled:hover,
+.paginate_button-success[disabled]:hover,
+fieldset[disabled] .paginate_button-success:hover,
+.paginate_button-success.disabled:focus,
+.paginate_button-success[disabled]:focus,
+fieldset[disabled] .paginate_button-success:focus,
+.paginate_button-success.disabled.focus,
+.paginate_button-success[disabled].focus,
+fieldset[disabled] .paginate_button-success.focus {
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+}
+.paginate_button-success .badge {
+  color: #5cb85c;
+  background-color: #fff;
+}
+.paginate_button-info {
+  color: #fff;
+  background-color: #5bc0de;
+  border-color: #46b8da;
+}
+.paginate_button-info:focus,
+.paginate_button-info.focus {
+  color: #fff;
+  background-color: #31b0d5;
+  border-color: #1b6d85;
+}
+.paginate_button-info:hover {
+  color: #fff;
+  background-color: #31b0d5;
+  border-color: #269abc;
+}
+.paginate_button-info:active,
+.paginate_button-info.active,
+.open > .dropdown-toggle.paginate_button-info {
+  color: #fff;
+  background-color: #31b0d5;
+  border-color: #269abc;
+}
+.paginate_button-info:active:hover,
+.paginate_button-info.active:hover,
+.open > .dropdown-toggle.paginate_button-info:hover,
+.paginate_button-info:active:focus,
+.paginate_button-info.active:focus,
+.open > .dropdown-toggle.paginate_button-info:focus,
+.paginate_button-info:active.focus,
+.paginate_button-info.active.focus,
+.open > .dropdown-toggle.paginate_button-info.focus {
+  color: #fff;
+  background-color: #269abc;
+  border-color: #1b6d85;
+}
+.paginate_button-info:active,
+.paginate_button-info.active,
+.open > .dropdown-toggle.paginate_button-info {
+  background-image: none;
+}
+.paginate_button-info.disabled:hover,
+.paginate_button-info[disabled]:hover,
+fieldset[disabled] .paginate_button-info:hover,
+.paginate_button-info.disabled:focus,
+.paginate_button-info[disabled]:focus,
+fieldset[disabled] .paginate_button-info:focus,
+.paginate_button-info.disabled.focus,
+.paginate_button-info[disabled].focus,
+fieldset[disabled] .paginate_button-info.focus {
+  background-color: #5bc0de;
+  border-color: #46b8da;
+}
+.paginate_button-info .badge {
+  color: #5bc0de;
+  background-color: #fff;
+}
+.paginate_button-warning {
+  color: #fff;
+  background-color: #f0ad4e;
+  border-color: #eea236;
+}
+.paginate_button-warning:focus,
+.paginate_button-warning.focus {
+  color: #fff;
+  background-color: #ec971f;
+  border-color: #985f0d;
+}
+.paginate_button-warning:hover {
+  color: #fff;
+  background-color: #ec971f;
+  border-color: #d58512;
+}
+.paginate_button-warning:active,
+.paginate_button-warning.active,
+.open > .dropdown-toggle.paginate_button-warning {
+  color: #fff;
+  background-color: #ec971f;
+  border-color: #d58512;
+}
+.paginate_button-warning:active:hover,
+.paginate_button-warning.active:hover,
+.open > .dropdown-toggle.paginate_button-warning:hover,
+.paginate_button-warning:active:focus,
+.paginate_button-warning.active:focus,
+.open > .dropdown-toggle.paginate_button-warning:focus,
+.paginate_button-warning:active.focus,
+.paginate_button-warning.active.focus,
+.open > .dropdown-toggle.paginate_button-warning.focus {
+  color: #fff;
+  background-color: #d58512;
+  border-color: #985f0d;
+}
+.paginate_button-warning:active,
+.paginate_button-warning.active,
+.open > .dropdown-toggle.paginate_button-warning {
+  background-image: none;
+}
+.paginate_button-warning.disabled:hover,
+.paginate_button-warning[disabled]:hover,
+fieldset[disabled] .paginate_button-warning:hover,
+.paginate_button-warning.disabled:focus,
+.paginate_button-warning[disabled]:focus,
+fieldset[disabled] .paginate_button-warning:focus,
+.paginate_button-warning.disabled.focus,
+.paginate_button-warning[disabled].focus,
+fieldset[disabled] .paginate_button-warning.focus {
+  background-color: #f0ad4e;
+  border-color: #eea236;
+}
+.paginate_button-warning .badge {
+  color: #f0ad4e;
+  background-color: #fff;
+}
+.paginate_button-danger {
+  color: #fff;
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}
+.paginate_button-danger:focus,
+.paginate_button-danger.focus {
+  color: #fff;
+  background-color: #c9302c;
+  border-color: #761c19;
+}
+.paginate_button-danger:hover {
+  color: #fff;
+  background-color: #c9302c;
+  border-color: #ac2925;
+}
+.paginate_button-danger:active,
+.paginate_button-danger.active,
+.open > .dropdown-toggle.paginate_button-danger {
+  color: #fff;
+  background-color: #c9302c;
+  border-color: #ac2925;
+}
+.paginate_button-danger:active:hover,
+.paginate_button-danger.active:hover,
+.open > .dropdown-toggle.paginate_button-danger:hover,
+.paginate_button-danger:active:focus,
+.paginate_button-danger.active:focus,
+.open > .dropdown-toggle.paginate_button-danger:focus,
+.paginate_button-danger:active.focus,
+.paginate_button-danger.active.focus,
+.open > .dropdown-toggle.paginate_button-danger.focus {
+  color: #fff;
+  background-color: #ac2925;
+  border-color: #761c19;
+}
+.paginate_button-danger:active,
+.paginate_button-danger.active,
+.open > .dropdown-toggle.paginate_button-danger {
+  background-image: none;
+}
+.paginate_button-danger.disabled:hover,
+.paginate_button-danger[disabled]:hover,
+fieldset[disabled] .paginate_button-danger:hover,
+.paginate_button-danger.disabled:focus,
+.paginate_button-danger[disabled]:focus,
+fieldset[disabled] .paginate_button-danger:focus,
+.paginate_button-danger.disabled.focus,
+.paginate_button-danger[disabled].focus,
+fieldset[disabled] .paginate_button-danger.focus {
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}
+.paginate_button-danger .badge {
+  color: #d9534f;
+  background-color: #fff;
+}
+.paginate_button-link {
+  font-weight: normal;
+  color: #337ab7;
+  border-radius: 0;
+}
+.paginate_button-link,
+.paginate_button-link:active,
+.paginate_button-link.active,
+.paginate_button-link[disabled],
+fieldset[disabled] .paginate_button-link {
+  background-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.paginate_button-link,
+.paginate_button-link:hover,
+.paginate_button-link:focus,
+.paginate_button-link:active {
+  border-color: transparent;
+}
+.paginate_button-link:hover,
+.paginate_button-link:focus {
+  color: #23527c;
+  text-decoration: underline;
+  background-color: transparent;
+}
+.paginate_button-link[disabled]:hover,
+fieldset[disabled] .paginate_button-link:hover,
+.paginate_button-link[disabled]:focus,
+fieldset[disabled] .paginate_button-link:focus {
+  color: #777;
+  text-decoration: none;
+}
+.paginate_button-lg,
+.paginate_button-group-lg > .paginate_button {
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  border-radius: 6px;
+}
+.paginate_button-sm,
+.paginate_button-group-sm > .paginate_button {
+  padding: 5px 10px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+.paginate_button-xs,
+.paginate_button-group-xs > .paginate_button {
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+.paginate_button-block {
+  display: block;
+  width: 100%;
+}
+.paginate_button-block + .paginate_button-block {
+  margin-top: 5px;
+}
+input[type="submit"].paginate_button-block,
+input[type="reset"].paginate_button-block,
+input[type="button"].paginate_button-block {
+  width: 100%;
+}
