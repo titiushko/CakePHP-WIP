@@ -149,14 +149,3 @@ BEGIN
 	RETURN v_types;
 END$$
 DELIMITER ;
-
-DELIMITER $$
-DROP VIEW IF EXISTS pokemonList $$
-CREATE VIEW pokemonList AS
-	SELECT DISTINCT p.id pokemon_id, initcap(p.identifier) pokemon, typesByPokemon(p.id) type, p.count count
-	FROM pokemon p
-	JOIN pokemon_types pt ON pt.pokemon_id = p.id
-	JOIN types t ON t.id = pt.type_id
-	ORDER BY pokemon_id ASC;
-$$
-DELIMITER ;

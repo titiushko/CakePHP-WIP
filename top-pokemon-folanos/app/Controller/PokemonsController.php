@@ -1,12 +1,12 @@
 <?php
 App::uses("AppController", "Controller");
 
-class PokemonlistsController extends AppController {
-	public $uses = array("Pokemonlist", "Pokemon");
+class PokemonsController extends AppController {
+	public $uses = array("Pokemon");
 	
 	public function index() {
 		$this->set(array(
-			"pokemonlist" => $this->Pokemonlist->find("all"),
+			"pokemonlist" => $this->Pokemon->query("SELECT DISTINCT Pokemon.id pokemon_id, initcap(Pokemon.identifier) pokemon, typesByPokemon(Pokemon.id) type, Pokemon.count count FROM pokedex.pokemon AS Pokemon WHERE Pokemon.id <= 721"),
 			"pagina" => "<a href='top' class='btn btn-success'>Ver top</a>"
 		));
 	}
@@ -36,11 +36,7 @@ class PokemonlistsController extends AppController {
 	
 	public function top() {
 		$this->set(array(
-			"pokemonlist" => $this->Pokemonlist->find("all", array(
-				"conditions" => array("Pokemonlist.count >" => "0"),
-				"order" => array("Pokemonlist.count" => "desc"),
-				"limit" => 100
-			)),
+			"pokemonlist" => $this->Pokemon->query("SELECT Pokemon.id pokemon_id, initcap(Pokemon.identifier) pokemon, typesByPokemon(Pokemon.id) type, Pokemon.count count FROM pokedex.pokemon AS Pokemon WHERE Pokemon.count > 0 ORDER BY Pokemon.count desc LIMIT 100"),
 			"pagina" => "<a href='votar' class='btn btn-success'>Votar</a>"
 		));
 	}

@@ -23,40 +23,43 @@
 									<tbody>
 										<?php
 										foreach ($pokemonlist as $pokemon):
-											if (strlen($pokemon["Pokemonlist"]["pokemon_id"]) == 1) {
-												$pokemon_id = "00".$pokemon["Pokemonlist"]["pokemon_id"];
+											if (strlen($pokemon["Pokemon"]["pokemon_id"]) == 1) {
+												$pokemon_id = "00".$pokemon["Pokemon"]["pokemon_id"];
 											}
-											elseif (strlen($pokemon["Pokemonlist"]["pokemon_id"]) == 2) {
-												$pokemon_id = "0".$pokemon["Pokemonlist"]["pokemon_id"];
+											elseif (strlen($pokemon["Pokemon"]["pokemon_id"]) == 2) {
+												$pokemon_id = "0".$pokemon["Pokemon"]["pokemon_id"];
 											}
-											elseif (strlen($pokemon["Pokemonlist"]["pokemon_id"]) == 3) {
-												$pokemon_id = $pokemon["Pokemonlist"]["pokemon_id"];
+											elseif (strlen($pokemon["Pokemon"]["pokemon_id"]) == 3) {
+												$pokemon_id = $pokemon["Pokemon"]["pokemon_id"];
 											}
 											
-											$position = strpos($pokemon["Pokemonlist"]["type"], "|");
+											$position = strpos($pokemon[0]["type"], "|");
 											if ($position === false) {
-												$type1 = $pokemon["Pokemonlist"]["type"];
+												$type1 = $pokemon[0]["type"];
 												$type2 = "";
 											}
 											else {
-												$type1 = substr($pokemon["Pokemonlist"]["type"], 0, $position);
-												$type2 = substr($pokemon["Pokemonlist"]["type"], $position + 1);
+												$type1 = substr($pokemon[0]["type"], 0, $position);
+												$type2 = substr($pokemon[0]["type"], $position + 1);
 											}
 											
-											if ($pokemon["Pokemonlist"]["pokemon_id"] >= 721) {
-												$url = "http://img.pokemondb.net/artwork/".strtolower($pokemon["Pokemonlist"]["pokemon"]).".jpg";
+											if ($pokemon["Pokemon"]["pokemon_id"] == 721) {
+												$url = "http://vignette3.wikia.nocookie.net/es.pokemon/images/8/8b/Volcanion.png";
+											}
+											elseif ($pokemon["Pokemon"]["pokemon_id"] >= 722) {
+												$url = "http://img.pokemondb.net/artwork/".strtolower($pokemon[0]["pokemon"]).".jpg";
 											}
 											else {
 												$url = "http://assets.pokemon.com/assets/cms2/img/pokedex/full/".$pokemon_id.".png";
 											}
 										?>
-										<tr class="votar" data-id="<?= $pokemon["Pokemonlist"]["pokemon_id"]; ?>" style="cursor: pointer !important;">
-											<td class="text-center"><?= $pokemon["Pokemonlist"]["pokemon_id"]; ?></td>
+										<tr class="votar" data-id="<?= $pokemon["Pokemon"]["pokemon_id"]; ?>" style="cursor: pointer !important;">
+											<td class="text-center"><?= $pokemon["Pokemon"]["pokemon_id"]; ?></td>
 											<td class="text-center"><?= $this->Html->image($url, array("width" => "50%")); ?></td>
-											<td class="text-center"><?= $pokemon["Pokemonlist"]["pokemon"]; ?></td>
+											<td class="text-center"><?= $pokemon[0]["pokemon"]; ?></td>
 											<td class="text-center hidden-phone"><?= $type1; ?></td>
 											<td class="text-center hidden-phone"><?= $type2; ?></td>
-											<td class="text-center hidden-phone"><?= $this->MyHelper->generation($pokemon["Pokemonlist"]["pokemon_id"]); ?></td>
+											<td class="text-center hidden-phone"><?= $this->MyHelper->generation($pokemon["Pokemon"]["pokemon_id"]); ?></td>
 										</tr>
 										<?php endforeach; ?>
 									</tbody>

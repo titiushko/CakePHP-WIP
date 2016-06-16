@@ -25,10 +25,10 @@
  * its action called 'display', and we pass a param to select the view file
  * to use (in this case, /app/View/Pages/home.ctp)...
  */
-	Router::connect('/', array('controller' => 'pokemonlists', 'action' => 'index'));
-	Router::connect('/votar/*', array('controller' => 'pokemonlists', 'action' => 'votar'));
-	Router::connect('/votacion/*', array('controller' => 'pokemonlists', 'action' => 'votacion'));
-	Router::connect('/top/*', array('controller' => 'pokemonlists', 'action' => 'top'));
+	Router::connect('/', array('controller' => 'pokemons', 'action' => 'index'));
+	Router::connect('/votar/*', array('controller' => 'pokemons', 'action' => 'votar'));
+	Router::connect('/votacion/*', array('controller' => 'pokemons', 'action' => 'votacion'));
+	Router::connect('/top/*', array('controller' => 'pokemons', 'action' => 'top'));
 /**
  * ...and connect the rest of 'Pages' controller's URLs.
  */
