@@ -6,6 +6,26 @@
 	font-family: 'Stalinist One', cursive;
 }
 
+.top-imagen {
+	width: 120% !important;
+	padding: 200px;
+}
+
+.top-nombre {
+	padding-top: 300px !important;
+}
+
+@media(max-width: 767px) {
+	.top-imagen {
+		width: 50% !important;
+		padding: 0 !important;
+	}
+
+	.top-nombre {
+		padding-top: 0 !important;
+	}
+}
+
 /* paginate_button */
 .paginate_button {
   display: inline-block;

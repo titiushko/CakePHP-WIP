@@ -47,7 +47,7 @@
 								<div class="alert" style="background-color: #ffffff !important;">
 									<h1><?= $this->Html->image("Fola.jpg", array("width" => "80%")); ?></h1>
 									<a style="color: #e62117;" target="_blank" href="https://www.youtube.com/user/Folagor03"><i class="fa fa-youtube-play fa-3x" aria-hidden="true"></i></a>
-									<a style="color: #1da1f2;" target="_blank" href="https://twitter.com/FolagoR"><i class="fa fa-twitter fa-3x" aria-hidden="true"></i></a>
+									<a style="color: #1da1f2;" target="_blank" href="https://twitter.com/FolagoR"><i class="fa fa-twitter-square fa-3x" aria-hidden="true"></i></a>
 									<a style="color: #3f5d9a;" target="_blank" href="https://www.facebook.com/Folagor"><i class="fa fa-facebook-official fa-3x" aria-hidden="true"></i></a>
 									<a style="color: #5a4080;" target="_blank" href="https://www.instagram.com/yoel__ramirez/"><i class="fa fa-instagram fa-3x" aria-hidden="true"></i></a>
 								</div>
@@ -73,9 +73,10 @@
 				<div class="row">
 					<div class="col-md-12 text-right">
 						<b>by Titiushko</b>: 
-						<a target="_blank" href="https://github.com/titiushko"><i class="fa fa-github fa-3x" aria-hidden="true"></i></a>
-						<a target="_blank" href="https://twitter.com/titiushko"><i class="fa fa-twitter fa-3x" aria-hidden="true"></i></a>
-						<a target="_blank" href="https://www.instagram.com/titiushko/"><i class="fa fa-instagram fa-3x" aria-hidden="true"></i></a>
+						<a target="_blank" href="https://github.com/titiushko/CakePHP-WIP/tree/master/top-pokemon-folanos"><i class="fa fa-github fa-3x" aria-hidden="true"></i></a>
+						<a target="_blank" href="https://twitter.com/titiushko"><i class="fa fa-twitter-square fa-3x" aria-hidden="true"></i></a>
+						<a target="_blank" href="https://www.instagram.com/titiushko"><i class="fa fa-instagram fa-3x" aria-hidden="true"></i></a>
+						<a target="_blank" href="https://plus.google.com/+TitiushkoJazz"><i class="fa fa-google-plus-square fa-3x" aria-hidden="true"></i></a>
 						<a target="_blank" href="https://www.youtube.com/user/titiushkojazz"><i class="fa fa-youtube-play fa-3x" aria-hidden="true"></i></a>
 						<a target="_blank" href="mailto:titiushko@gmail.com"><i class="fa fa-envelope fa-3x" aria-hidden="true"></i></a>
 					</div>

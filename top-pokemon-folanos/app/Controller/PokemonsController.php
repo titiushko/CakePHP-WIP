@@ -36,7 +36,7 @@ class PokemonsController extends AppController {
 	
 	public function top() {
 		$this->set(array(
-			"pokemonlist" => $this->Pokemon->query("SELECT Pokemon.id pokemon_id, initcap(Pokemon.identifier) pokemon, typesByPokemon(Pokemon.id) type, Pokemon.count count FROM pokedex.pokemon AS Pokemon WHERE Pokemon.count > 0 ORDER BY Pokemon.count desc LIMIT 100"),
+			"pokemonlist" => $this->Pokemon->query("SELECT Pokemon.id pokemon_id, initcap(Pokemon.identifier) pokemon, typesByPokemon(Pokemon.id) type, (Pokemon.count / (SELECT SUM(p.count) FROM pokemon p)) * 100 percent FROM pokedex.pokemon AS Pokemon WHERE Pokemon.count > 0 GROUP BY pokemon_id,  pokemon, type ORDER BY Pokemon.count DESC LIMIT 100"),
 			"pagina" => "<a href='votar' class='btn btn-success'>Votar</a>"
 		));
 	}

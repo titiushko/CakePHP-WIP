@@ -7,7 +7,7 @@
 <?php } else { ?>
 <div class="panel panel-primary">
 	<div class="panel-heading">
-		<h3>Top Pokémon de más popular a menos popular</h3>
+		<h3>Top Pokémon de menos popular a más popular</h3>
 	</div>
 	<div class="panel-body">
 		<div class="row">
@@ -20,7 +20,9 @@
 									<thead>
 										<tr>
 											<th class="text-center">Top</th>
+											<!--<th class="text-center">%</th>-->
 											<th class="text-center">Pokémon</th>
+											<th class="text-center">Name</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -41,7 +43,7 @@
 												$url = "http://vignette3.wikia.nocookie.net/es.pokemon/images/8/8b/Volcanion.png";
 											}
 											elseif ($pokemon["Pokemon"]["pokemon_id"] >= 722) {
-												$url = "http://img.pokemondb.net/artwork/".strtolower($pokemon["Pokemon"]["pokemon"]).".jpg";
+												$url = "http://img.pokemondb.net/artwork/".strtolower($pokemon[0]["pokemon"]).".jpg";
 											}
 											else {
 												$url = "http://assets.pokemon.com/assets/cms2/img/pokedex/full/".$pokemon_id.".png";
@@ -49,7 +51,9 @@
 										?>
 										<tr>
 											<td class="text-center"><?= $top++; ?></td>
-											<td class="text-center"><?= $this->Html->image($url, array("width" => "50%")); ?></td>
+											<!--<td class="text-center"><?= number_format($pokemon[0]["percent"], 2, '.', ',')." %"; ?></td>-->
+											<td class="text-center"><?= $this->Html->image($url, array("class" => "top-imagen")); ?></td>
+											<td class="text-center top-nombre"><?= $pokemon[0]["pokemon"]; ?></td>
 										</tr>
 										<?php endforeach; ?>
 									</tbody>
@@ -62,4 +66,13 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+	$("#dataTable").dataTable( {
+		"order": [[ 0, "desc" ]],
+		"info": false,
+		"searching": false,
+		"paging": false
+	} );
+</script>
 <?php } ?>
